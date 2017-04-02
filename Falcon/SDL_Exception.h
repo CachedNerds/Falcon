@@ -20,23 +20,23 @@
 class SDL_Exception : public std::exception
 {
 public:
-  
+
   SDL_Exception (const char * error)
   {
     this->error_ = std::string (error);
   }
-  
+
   const char * what () const throw ()
   {
     std::string message = "SDL_Error: " + this->error_;
-    
+
     return message.c_str ();
   }
-  
+
 protected:
-  
+
   std::string error_;
-  
+
 };
 
 #endif /* SDL_Exception_h */

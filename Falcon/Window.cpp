@@ -21,18 +21,18 @@ Window::Window (std::string title)
           SCREEN_WIDTH,
           SCREEN_HEIGHT)
 {
-  
+
 }
 
 // initializer constructor
 Window::Window (std::string title, int x, int y, int width, int height)
 : title_ (title),
-  x_ (x > 0 ? x : SDL_WINDOWPOS_UNDEFINED),
-  y_ (y > 0 ? y : SDL_WINDOWPOS_UNDEFINED),
-  width_ (width > 0 ? width : SCREEN_WIDTH),
-  height_ (height > 0 ? height : SCREEN_HEIGHT),
-  window_ (NULL),
-  surface_ (NULL)
+x_ (x > 0 ? x : SDL_WINDOWPOS_UNDEFINED),
+y_ (y > 0 ? y : SDL_WINDOWPOS_UNDEFINED),
+width_ (width > 0 ? width : SCREEN_WIDTH),
+height_ (height > 0 ? height : SCREEN_HEIGHT),
+window_ (nullptr),
+screen_ (nullptr)
 {
   SDL_Window * window = SDL_CreateWindow (this->title_.c_str (),
                                           this->x_,
@@ -40,7 +40,7 @@ Window::Window (std::string title, int x, int y, int width, int height)
                                           this->width_,
                                           this->height_,
                                           SDL_WINDOW_SHOWN);
-  if (window != NULL)
+  if (window != nullptr)
   {
     this->window_ = window;
   }
@@ -48,12 +48,12 @@ Window::Window (std::string title, int x, int y, int width, int height)
   {
     throw SDL_Exception (SDL_GetError ());
   }
-  
-  this->surface_ = SDL_GetWindowSurface (window);
-  
+
+  this->screen_ = SDL_GetWindowSurface (window);
+
   // Fill the surface white
-  SDL_FillRect (this->surface_, NULL, SDL_MapRGB (this->surface_->format, 0xFF, 0xFF, 0xFF));
-  
+  SDL_FillRect (this->screen_, nullptr, SDL_MapRGB (this->screen_->format, 0xFF, 0xFF, 0xFF));
+
   this->update ();
 }
 
@@ -61,11 +61,16 @@ Window::Window (std::string title, int x, int y, int width, int height)
 Window::~Window (void)
 {
   SDL_DestroyWindow (this->window_);
-  this->window_ = NULL;
+  this->window_ = nullptr;
 }
 
 // updates the window
 void Window::update (void)
 {
   SDL_UpdateWindowSurface (this->window_);
+}
+
+SDL_Surface * Window::getScreen (void) const
+{
+  return this->screen_;
 }

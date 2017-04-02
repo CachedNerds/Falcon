@@ -14,33 +14,36 @@
 
 /**
  * Window
- * 
+ *
  * Wrapper class around the SDL_Window
  */
 class Window
 {
 public:
-  
+
   // default constructor
   Window (std::string title);
-  
+
   // initializer constructor
   Window (std::string title, int x, int y, int width, int height);
-  
+
   // destructor
   ~Window (void);
-  
+
   // updates the window
   void update (void);
-  
+
+  SDL_Surface * getScreen (void) const;
+
 private:
-  
+
   std::string title_;
   int x_, y_;
   int width_, height_;
-  
+
   SDL_Window * window_;
-  SDL_Surface * surface_;
+  SDL_Surface * screen_;
+
 };
 
 #endif /* Window_h */

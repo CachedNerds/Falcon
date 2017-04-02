@@ -11,6 +11,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+#include "Sprite.h"
 
 /**
  * SDL_Manager
@@ -20,13 +21,13 @@
 class SDL_Manager
 {
 public:
-  
+
   // default constructor
   SDL_Manager (void);
-  
+
   // destructor
   ~SDL_Manager (void);
-  
+
 };
 
 #endif /* SDL_Manager_h */

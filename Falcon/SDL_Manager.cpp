@@ -16,7 +16,7 @@ SDL_Manager::SDL_Manager (void)
   {
     throw SDL_Exception (SDL_GetError ());
   }
-  
+
   if (!IMG_Init (IMG_INIT_JPG))
   {
     throw SDL_Exception (IMG_GetError ());
