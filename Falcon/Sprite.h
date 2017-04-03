@@ -20,16 +20,28 @@ class Sprite
 {
 public:
 
-  Sprite (Window & window, std::string image);
+  Sprite (std::string image, int x, int y);
 
   ~Sprite (void);
 
-  void draw (void) const;
+  void draw (Window & window);
+
+  void setX (int x);
+
+  int getX (void) const;
+
+  void setY (int y);
+
+  int getY (void) const;
+
+  int getWidth (void) const;
+
+  int getHeight (void) const;
 
 private:
 
-  Window & window_;
   SDL_Surface * image_;
+  SDL_Rect rect_;
 
   Graphics * graphics_;
 

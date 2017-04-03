@@ -13,7 +13,7 @@ Graphics::Graphics (void)
 
 }
 
-void Graphics::draw (SDL_Surface * surface, SDL_Surface * image) const
+void Graphics::draw (SDL_Surface * surface, SDL_Surface * image, SDL_Rect & dstrect) const
 {
-  SDL_BlitSurface (image, NULL, surface, NULL);
+  SDL_BlitSurface (image, NULL, surface, &dstrect);
 }

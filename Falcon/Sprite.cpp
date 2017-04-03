@@ -11,8 +11,7 @@
 #include "Graphics.h"
 #include "IMG_Exception.h"
 
-Sprite::Sprite (Window & window, std::string image)
-: window_ (window)
+Sprite::Sprite (std::string image, int x, int y)
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
@@ -21,6 +20,11 @@ Sprite::Sprite (Window & window, std::string image)
   }
 
   this->image_ = surface;
+
+  this->rect_.x = x;
+  this->rect_.y = y;
+  this->rect_.w = this->image_->w;
+  this->rect_.h = this->image_->h;
 
   this->graphics_ = new Graphics ();
 }
@@ -31,7 +35,37 @@ Sprite::~Sprite (void)
   delete this->graphics_; this->graphics_ = nullptr;
 }
 
-void Sprite::draw (void) const
+void Sprite::draw (Window & window)
 {
-  this->graphics_->draw (this->window_.getScreen (), this->image_);
+  this->graphics_->draw (window.getScreen (), this->image_, this->rect_);
+}
+
+void Sprite::setX (int x)
+{
+  this->rect_.x = x;
+}
+
+int Sprite::getX (void) const
+{
+  return this->rect_.x;
+}
+
+void Sprite::setY (int y)
+{
+  this->rect_.y = y;
+}
+
+int Sprite::getY (void) const
+{
+  return this->rect_.y;
+}
+
+int Sprite::getWidth (void) const
+{
+  return this->rect_.w;
+}
+
+int Sprite::getHeight (void) const
+{
+  return this->rect_.h;
 }

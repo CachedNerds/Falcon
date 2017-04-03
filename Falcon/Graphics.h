@@ -10,7 +10,6 @@
 #define Graphics_h
 
 #include <SDL2/SDL.h>
-#include "SDL_Manager.h"
 
 class Graphics
 {
@@ -18,7 +17,7 @@ public:
 
   Graphics (void);
 
-  void draw (SDL_Surface * surface, SDL_Surface * image) const;
+  void draw (SDL_Surface * surface, SDL_Surface * image, SDL_Rect & dstrect) const;
 
 };
 

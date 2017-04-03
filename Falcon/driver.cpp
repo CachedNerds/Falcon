@@ -9,7 +9,7 @@
 #include <iostream>
 #include <SDL2_image/SDL_image.h>
 #include "SDL_Exception.h"
-#include "SDL_Manager.h"
+#include "SDL_Initializer.h"
 #include "Window.h"
 #include "Sprite.h"
 
@@ -17,10 +17,13 @@ int main (int argc, char * args[])
 {
   try
   {
-    SDL_Manager manager;
-    Window window ("test");
-    Sprite sprite (window, "fez.jpg");
-    sprite.draw ();
+    SDL_Initializer::instance ()
+                    .enableAll ()
+                    .initialize ();
+
+    Window window ("Game", 0, 0, 500, 500);
+    Sprite sprite ("fez.jpg", 10, 10);
+    sprite.draw (window);
 
     bool quit = false;
     SDL_Event event;
@@ -28,7 +31,6 @@ int main (int argc, char * args[])
     {
       if (event.type == SDL_QUIT)
       {
-        std::cout << "quit" << std::endl;
         quit = true;
       }
       else if (event.type == SDL_KEYDOWN)
@@ -38,18 +40,22 @@ int main (int argc, char * args[])
         {
           case SDLK_UP:
             std::cout << "up" << std::endl;
+            sprite.setY (15);
             break;
 
           case SDLK_DOWN:
             std::cout << "down" << std::endl;
+            sprite.setY (5);
             break;
 
           case SDLK_LEFT:
             std::cout << "left" << std::endl;
+            sprite.setX (5);
             break;
 
           case SDLK_RIGHT:
             std::cout << "right" << std::endl;
+            sprite.setX (15);
             break;
 
           default:
@@ -57,6 +63,7 @@ int main (int argc, char * args[])
         }
       }
 
+      sprite.draw (window);
       window.update ();
     }
   }
