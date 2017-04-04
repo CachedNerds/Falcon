@@ -56,7 +56,7 @@ screen_ (nullptr)
   SDL_FillRect (this->screen_, nullptr, SDL_MapRGB (this->screen_->format, 0xFF, 0xFF, 0xFF));
 
   this->renderer_ = SDL_CreateRenderer (window, -1, SDL_RENDERER_ACCELERATED);
-
+  
   this->update ();
 }
 

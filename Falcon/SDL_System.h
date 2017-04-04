@@ -21,9 +21,9 @@
 class SDL_System
 {
 public:
-
+  
   friend SDL_Initializer;
-
+  
 private:
 
   // default constructor
@@ -31,10 +31,10 @@ private:
 
   // destructor
   ~SDL_System (void);
-
+  
   // initializes SDL Systems
   void init (Uint32 SDL_INIT_FLAGS, Uint32 IMG_INIT_FLAGS);
-
+  
 };
 
 #endif /* SDL_System_h */

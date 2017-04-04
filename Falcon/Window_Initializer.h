@@ -11,7 +11,7 @@
 
 class Window_Initializer
 {
-
+  
 };
 
 #endif /* Window_Initializer_h */

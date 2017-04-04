@@ -19,7 +19,7 @@ SDL_Initializer & SDL_Initializer::instance (void)
 }
 
 SDL_Initializer::SDL_Initializer (void)
-: system_ (new SDL_System ()),
+: system_ (new SDL_System),
   initialized_ (false)
 {
   

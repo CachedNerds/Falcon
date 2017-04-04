@@ -12,11 +12,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <string>
+#include "EventListener.h"
 
 class Window;
-class Graphics;
 
-class Sprite
+class Sprite : public EventListener
 {
 public:
 
@@ -25,25 +25,25 @@ public:
   ~Sprite (void);
 
   void draw (Window & window);
-
+  
+  virtual void notify (SDL_Event & event);
+  
   void setX (int x);
-
+  
   int getX (void) const;
-
+  
   void setY (int y);
-
+  
   int getY (void) const;
-
+  
   int getWidth (void) const;
-
+  
   int getHeight (void) const;
 
 private:
 
   SDL_Surface * image_;
   SDL_Rect rect_;
-
-  Graphics * graphics_;
 
 };
 

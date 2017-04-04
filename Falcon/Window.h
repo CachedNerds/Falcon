@@ -34,19 +34,19 @@ public:
   void update (void);
 
   SDL_Surface * getScreen (void) const;
-
+  
   SDL_Renderer * getRenderer (void) const;
-
+  
   std::string getTitle (void) const;
-
+  
   void setTitle (std::string title);
-
+  
   int getWidth (void) const;
-
+  
   int getHeight (void) const;
-
+  
   void hide (void);
-
+  
   void show (void);
 
 private:

@@ -12,6 +12,8 @@
 #include "SDL_Initializer.h"
 #include "Window.h"
 #include "Sprite.h"
+#include "EventHandler.h"
+#include "Events.h"
 
 int main (int argc, char * args[])
 {
@@ -20,50 +22,16 @@ int main (int argc, char * args[])
     SDL_Initializer::instance ()
                     .enableAll ()
                     .initialize ();
-
+    
     Window window ("Game", 0, 0, 500, 500);
-    Sprite sprite ("fez.jpg", 10, 10);
-    sprite.draw (window);
-
-    bool quit = false;
-    SDL_Event event;
-    while (SDL_WaitEvent (&event) != quit)
+    Sprite player ("fez.jpg", 10, 10);
+    
+    EventHandler handler;
+    handler.registerForEvent (Events::KEYDOWN, &player);
+    
+    while (handler.getEvent ())
     {
-      if (event.type == SDL_QUIT)
-      {
-        quit = true;
-      }
-      else if (event.type == SDL_KEYDOWN)
-      {
-        int symbol = event.key.keysym.sym;
-        switch (symbol)
-        {
-          case SDLK_UP:
-            std::cout << "up" << std::endl;
-            sprite.setY (15);
-            break;
-
-          case SDLK_DOWN:
-            std::cout << "down" << std::endl;
-            sprite.setY (5);
-            break;
-
-          case SDLK_LEFT:
-            std::cout << "left" << std::endl;
-            sprite.setX (5);
-            break;
-
-          case SDLK_RIGHT:
-            std::cout << "right" << std::endl;
-            sprite.setX (15);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      sprite.draw (window);
+      player.draw (window);
       window.update ();
     }
   }

@@ -12,7 +12,7 @@
 // default constructor
 SDL_System::SDL_System (void)
 {
-
+  
 }
 
 // destructor
@@ -28,7 +28,7 @@ void SDL_System::init (Uint32 SDL_INIT_FLAGS, Uint32 IMG_INIT_FLAGS)
   {
     throw SDL_Exception (SDL_GetError ());
   }
-
+  
   if (!IMG_Init (IMG_INIT_FLAGS))
   {
     throw SDL_Exception (IMG_GetError ());
