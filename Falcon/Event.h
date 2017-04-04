@@ -9,7 +9,6 @@
 #ifndef Event_h
 #define Event_h
 
-#include <iostream>
 #include <SDL2/SDL.h>
 #include "EventHandler.h"
 #include "Key.h"
@@ -59,7 +58,6 @@ public:
   
   void init (SDL_Event & event)
   {
-    std::cout << "KEYDOWN INIT" << std::endl;
     this->code_ = Key (event.key.keysym.sym);
   };
   
