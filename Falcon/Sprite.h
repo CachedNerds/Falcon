@@ -12,9 +12,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <string>
+#include "EventQueue.h"
 #include "EventListener.h"
 
 class Window;
+class SpriteEventHandler;
 
 class Sprite : public EventListener
 {
@@ -26,7 +28,7 @@ public:
 
   void draw (Window & window);
   
-  virtual void notify (SDL_Event & event);
+  virtual void notify (Event & event);
   
   void setX (int x);
   
@@ -44,6 +46,8 @@ private:
 
   SDL_Surface * image_;
   SDL_Rect rect_;
+  
+  SpriteEventHandler * eventHandler_;
 
 };
 

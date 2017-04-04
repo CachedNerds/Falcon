@@ -7,12 +7,15 @@
 //
 
 #include "Sprite.h"
+#include "SpriteEventHandler.h"
 #include "Window.h"
-#include "Events.h"
+#include "Event.h"
+#include "Key.h"
 #include "IMG_Exception.h"
 
 Sprite::Sprite (std::string image, int x, int y)
-: image_ (nullptr)
+: image_ (nullptr),
+  eventHandler_ (new SpriteEventHandler (this))
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
@@ -38,24 +41,9 @@ void Sprite::draw (Window & window)
   SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
 }
 
-void Sprite::notify (SDL_Event & event)
+void Sprite::notify (Event & event)
 {
-  if (event.type == Events::KEYDOWN)
-  {
-    switch (event.key.keysym.sym)
-    {
-      case SDLK_RIGHT:
-        this->setX (this->rect_.x + 5);
-    }
-  }
-  else if (event.type == Events::KEYUP)
-  {
-    switch (event.key.keysym.sym)
-    {
-      case SDLK_LEFT:
-        this->setX (this->rect_.x - 5);
-    }
-  }
+  event.accept (*this->eventHandler_);
 }
 
 void Sprite::setX (int x)

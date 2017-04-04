@@ -12,8 +12,8 @@
 #include "SDL_Initializer.h"
 #include "Window.h"
 #include "Sprite.h"
-#include "EventHandler.h"
-#include "Events.h"
+#include "EventSystem.h"
+#include "Event.h"
 
 int main (int argc, char * args[])
 {
@@ -26,10 +26,10 @@ int main (int argc, char * args[])
     Window window ("Game", 0, 0, 500, 500);
     Sprite player ("fez.jpg", 10, 10);
     
-    EventHandler handler;
-    handler.registerForEvent (Events::KEYDOWN, &player);
+    EventSystem & eventSystem = EventSystem::instance ();
+    eventSystem.registerForEvent (Events::KEYDOWN, &player);
     
-    while (handler.getEvent ())
+    while (eventSystem.getEvent ())
     {
       player.draw (window);
       window.update ();

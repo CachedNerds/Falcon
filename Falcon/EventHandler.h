@@ -2,37 +2,45 @@
 //  EventHandler.h
 //  Falcon
 //
-//  Created by Danny Peck on 4/3/17.
+//  Created by Danny Peck on 4/4/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
 #ifndef EventHandler_h
 #define EventHandler_h
 
-#include <SDL2/SDL.h>
-#include <map>
-#include <vector>
-#include "EventListener.h"
-#include "Events.h"
+class KEYDOWN;
+class KEYUP;
+class QUIT;
+class MOUSEMOTION;
+class MOUSEDOWN;
+class MOUSEUP;
+class MOUSEWHEEL;
+class WINDOW;
+class NULLEVENT;
 
 class EventHandler
 {
 public:
   
-  EventHandler (void);
+  virtual void handleKeyDown (KEYDOWN & event);
   
-  void registerForEvent (EventType & type, EventListener * listener);
+  virtual void handleKeyUp (KEYUP & event);
   
-  void handle (EventType & type);
+  virtual void handleQuit (QUIT & event);
   
-  bool getEvent (void);
+  virtual void handleMouseMotion (MOUSEMOTION & event);
   
-private:
+  virtual void handleMouseDown (MOUSEDOWN & event);
   
-  SDL_Event event_;
+  virtual void handleMouseUp (MOUSEUP & event);
   
-  std::map<EventType, std::vector<EventListener *> *> listeners_;
+  virtual void handleMouseWheel (MOUSEWHEEL & event);
 
+  virtual void handleWindow (WINDOW & event);
+  
+  virtual void handleNullEvent (NULLEVENT & event);
+  
 };
 
 #endif /* EventHandler_h */

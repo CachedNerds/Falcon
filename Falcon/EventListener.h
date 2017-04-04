@@ -9,13 +9,13 @@
 #ifndef EventListener_h
 #define EventListener_h
 
-#include <SDL2/SDL.h>
+#include "Event.h"
 
 class EventListener
 {
 public:
   
-  virtual void notify (SDL_Event & event) = 0;
+  virtual void notify (Event & event) = 0;
 
 };
 
