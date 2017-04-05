@@ -33,19 +33,23 @@ int main (int argc, char * args[])
     
     Sprite player ("fez.jpg", 10, 10);
     
-    EventSystem & inputEventSystem = EventSystem::instance ();
+    EventSystem & eventSystem = EventSystem::instance ();
     
     bool keepGoing = true;
     while (keepGoing)
     {
       // handle input
-      while (inputEventSystem.nextEvent ())
+      while (eventSystem.nextEvent ())
       {
-        Event * event = inputEventSystem.getNextEvent ();
+        Event * event = eventSystem.getNextEvent ();
         if (event->getType () == Events::QUIT)
         {
           keepGoing = false;
           break;
+        }
+        else if (event->getType () == Events::NULLEVENT)
+        {
+          // do nothing
         }
         else
         {

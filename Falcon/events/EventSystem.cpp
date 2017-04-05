@@ -30,28 +30,28 @@ namespace Events
   {
     switch (this->event_.type)
     {
-      case SDL_KEYDOWN:
+      case KEYDOWN:
         return this->eventFactory_.createKeyDown (this->event_);
         
-      case SDL_KEYUP:
+      case KEYUP:
         return this->eventFactory_.createKeyUp (this->event_);
         
-      case SDL_QUIT:
+      case QUIT:
         return this->eventFactory_.createQuit (this->event_);
         
-      case SDL_MOUSEMOTION:
+      case MOUSEMOTION:
         return this->eventFactory_.createMouseMotion (this->event_);
         
-      case SDL_MOUSEBUTTONDOWN:
+      case MOUSEDOWN:
         return this->eventFactory_.createMouseDown (this->event_);
         
-      case SDL_MOUSEBUTTONUP:
+      case MOUSEUP:
         return this->eventFactory_.createMouseUp (this->event_);
         
-      case SDL_MOUSEWHEEL:
+      case MOUSEWHEEL:
         return this->eventFactory_.createMouseWheel (this->event_);
         
-      case SDL_WINDOWEVENT:
+      case WINDOWEVENT:
         return this->eventFactory_.createWindowEvent (this->event_);
         
       default:

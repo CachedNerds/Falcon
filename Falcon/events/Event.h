@@ -18,18 +18,19 @@ namespace Falcon
 
 namespace Events
 {
-  
-typedef Uint32 EventType;
-  
-static EventType KEYDOWN = SDL_KEYDOWN;
-static EventType KEYUP = SDL_KEYUP;
-static EventType QUIT = SDL_QUIT;
-static EventType MOUSEMOTION = SDL_MOUSEMOTION;
-static EventType MOUSEDOWN = SDL_MOUSEBUTTONDOWN;
-static EventType MOUSEUP = SDL_MOUSEBUTTONUP;
-static EventType MOUSEWHEEL = SDL_MOUSEWHEEL;
-static EventType WINDOWEVENT = SDL_WINDOWEVENT;
-static EventType NULLEVENT = 0;
+
+enum EventType
+{
+  KEYDOWN = SDL_KEYDOWN,
+  KEYUP = SDL_KEYUP,
+  QUIT = SDL_QUIT,
+  MOUSEMOTION = SDL_MOUSEMOTION,
+  MOUSEDOWN = SDL_MOUSEBUTTONDOWN,
+  MOUSEUP = SDL_MOUSEBUTTONUP,
+  MOUSEWHEEL = SDL_MOUSEWHEEL,
+  WINDOWEVENT = SDL_WINDOWEVENT,
+  NULLEVENT = 0
+};
 
 class Event
 {
@@ -73,7 +74,7 @@ class KeyDown : public Event
 public:
   
   KeyDown (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     this->code_ = Key (event.key.keysym.sym);
   }
@@ -99,7 +100,7 @@ class KeyUp : public Event
 public:
   
   KeyUp (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -116,7 +117,7 @@ class Quit : public Event
 public:
   
   Quit (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -133,7 +134,7 @@ class MouseMotion : public Event
 public:
   
   MouseMotion (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -150,7 +151,7 @@ class MouseDown : public Event
 public:
   
   MouseDown (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -167,7 +168,7 @@ class MouseUp : public Event
 public:
   
   MouseUp (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -184,7 +185,7 @@ class MouseWheel : public Event
 public:
   
   MouseWheel (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -201,7 +202,7 @@ class WindowEvent : public Event
 public:
   
   WindowEvent (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
@@ -218,7 +219,7 @@ class NullEvent : public Event
 public:
   
   NullEvent (SDL_Event & event)
-  : Event (event.type)
+  : Event (EventType (event.type))
   {
     
   }
