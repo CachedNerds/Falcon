@@ -8,12 +8,13 @@
 
 #include <iostream>
 #include <SDL2_image/SDL_image.h>
-#include "SDL_Exception.h"
-#include "SDL_Initializer.h"
-#include "Window.h"
+#include <vector>
+#include "SDL/SDL_Exception.h"
+#include "SDL/SDL_Initializer.h"
+#include "SDL/Window.h"
 #include "Sprite.h"
-#include "EventSystem.h"
-#include "Event.h"
+#include "events/InputEventSystem.h"
+#include "events/Event.h"
 
 int main (int argc, char * args[])
 {
@@ -24,13 +25,22 @@ int main (int argc, char * args[])
                     .initialize ();
     
     Window window ("Game", 0, 0, 500, 500);
+    
     Sprite player ("fez.jpg", 10, 10);
+    std::vector<Sprite> sprites;
+    sprites.push_back (player);
     
-    EventSystem & eventSystem = EventSystem::instance ();
-    eventSystem.registerForEvent (Events::KEYDOWN, &player);
+    InputEventSystem & inputEventSystem = InputEventSystem::instance ();
     
-    while (eventSystem.getEvent ())
+    bool keepGoing = true;
+    while (keepGoing)
     {
+      // handle input
+      inputEventSystem.processInput ();
+      
+      // update
+      
+      // render
       player.draw (window);
       window.update ();
     }

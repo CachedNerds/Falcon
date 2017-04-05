@@ -36,25 +36,25 @@ public:
   
   virtual void init (SDL_Event & event)
   {
-    
+    // do nothing
   };
   
   virtual void accept (EventHandler & handler) = 0;
   
 protected:
   
+  Event (EventType type)
+  {
+    this->type_ = type;
+  }
+  
   EventType type_;
   
 };
 
-class KEYDOWN : public Event
+class KeyDown : public Event
 {
 public:
-  
-  KEYDOWN (void)
-  {
-    this->type_ = SDL_KEYDOWN;
-  }
   
   void init (SDL_Event & event)
   {
@@ -77,14 +77,9 @@ private:
   
 };
 
-class KEYUP : public Event
+class KeyUp : public Event
 {
 public:
-  
-  KEYUP (void)
-  {
-    this->type_ = SDL_KEYUP;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -93,14 +88,9 @@ public:
   
 };
 
-class QUIT : public Event
+class Quit : public Event
 {
 public:
-  
-  QUIT (void)
-  {
-    this->type_ = SDL_QUIT;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -109,14 +99,9 @@ public:
   
 };
 
-class MOUSEMOTION : public Event
+class MouseMotion : public Event
 {
 public:
-  
-  MOUSEMOTION (void)
-  {
-    this->type_ = SDL_MOUSEMOTION;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -125,14 +110,9 @@ public:
   
 };
 
-class MOUSEDOWN : public Event
+class MouseDown : public Event
 {
 public:
-  
-  MOUSEDOWN (void)
-  {
-    this->type_ = SDL_MOUSEBUTTONDOWN;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -141,14 +121,9 @@ public:
   
 };
 
-class MOUSEUP : public Event
+class MouseUp : public Event
 {
 public:
-  
-  MOUSEUP (void)
-  {
-    this->type_ = SDL_MOUSEBUTTONUP;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -157,14 +132,9 @@ public:
   
 };
 
-class MOUSEWHEEL : public Event
+class MouseWheel : public Event
 {
 public:
-  
-  MOUSEWHEEL (void)
-  {
-    this->type_ = SDL_MOUSEWHEEL;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -173,14 +143,9 @@ public:
   
 };
 
-class WINDOW : public Event
+class Window : public Event
 {
 public:
-  
-  WINDOW (void)
-  {
-    this->type_ = SDL_WINDOWEVENT;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -189,14 +154,9 @@ public:
   
 };
 
-class NULLEVENT: public Event
+class NullEvent : public Event
 {
 public:
-  
-  NULLEVENT (void)
-  {
-    this->type_ = 0;
-  }
   
   void accept (EventHandler & handler)
   {
@@ -204,51 +164,5 @@ public:
   }
   
 };
-
-namespace Events
-{
-  static KEYDOWN KEYDOWN;
-  static KEYUP KEYUP;
-  static QUIT QUIT;
-  static MOUSEMOTION MOUSEMOTION;
-  static MOUSEDOWN MOUSEDOWN;
-  static MOUSEUP MOUSEUP;
-  static MOUSEWHEEL MOUSEWHEEL;
-  static WINDOW WINDOW;
-  static NULLEVENT NULLEVENT;
-  
-  static Event & getEvent (Uint32 type)
-  {
-    switch (type)
-    {
-      case SDL_KEYDOWN:
-        return KEYDOWN;
-      
-      case SDL_KEYUP:
-        return KEYUP;
-        
-      case SDL_QUIT:
-        return QUIT;
-        
-      case SDL_MOUSEMOTION:
-        return MOUSEMOTION;
-        
-      case SDL_MOUSEBUTTONDOWN:
-        return MOUSEDOWN;
-        
-      case SDL_MOUSEBUTTONUP:
-        return MOUSEUP;
-        
-      case SDL_MOUSEWHEEL:
-        return MOUSEWHEEL;
-        
-      case SDL_WINDOWEVENT:
-        return WINDOW;
-        
-      default:
-        return NULLEVENT;
-    }
-  }
-}
 
 #endif /* Event_h */
