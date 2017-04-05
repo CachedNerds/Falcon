@@ -10,33 +10,50 @@
 #include <SDL2_image/SDL_image.h>
 #include <vector>
 #include "SDL/SDL_Exception.h"
-#include "SDL/SDL_Initializer.h"
+#include "SDL/Initializer.h"
 #include "SDL/Window.h"
 #include "Sprite.h"
-#include "events/InputEventSystem.h"
+#include "events/EventSystem.h"
 #include "events/Event.h"
 
 int main (int argc, char * args[])
 {
+  using namespace Falcon;
+  using SDL::Window;
+  using Events::EventSystem;
+  using SDL::SDL_Exception;
+  
   try
   {
-    SDL_Initializer::instance ()
-                    .enableAll ()
-                    .initialize ();
+    SDL::Initializer::instance ()
+                     .enableAll ()
+                     .initialize ();
     
     Window window ("Game", 0, 0, 500, 500);
     
     Sprite player ("fez.jpg", 10, 10);
-    std::vector<Sprite> sprites;
-    sprites.push_back (player);
     
-    InputEventSystem & inputEventSystem = InputEventSystem::instance ();
+    EventSystem & inputEventSystem = EventSystem::instance ();
     
     bool keepGoing = true;
     while (keepGoing)
     {
       // handle input
-      inputEventSystem.processInput ();
+      while (inputEventSystem.nextEvent ())
+      {
+        Event * event = inputEventSystem.getNextEvent ();
+        if (event->getType () == Events::QUIT)
+        {
+          keepGoing = false;
+          break;
+        }
+        else
+        {
+          player.notify (*event);
+        }
+        
+        delete event;
+      }
       
       // update
       

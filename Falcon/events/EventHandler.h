@@ -9,38 +9,48 @@
 #ifndef EventHandler_h
 #define EventHandler_h
 
-class KEYDOWN;
-class KEYUP;
-class QUIT;
-class MOUSEMOTION;
-class MOUSEDOWN;
-class MOUSEUP;
-class MOUSEWHEEL;
-class WINDOW;
-class NULLEVENT;
-
-class EventHandler
+namespace Falcon
 {
-public:
-  
-  virtual void handleKeyDown (KEYDOWN & event);
-  
-  virtual void handleKeyUp (KEYUP & event);
-  
-  virtual void handleQuit (QUIT & event);
-  
-  virtual void handleMouseMotion (MOUSEMOTION & event);
-  
-  virtual void handleMouseDown (MOUSEDOWN & event);
-  
-  virtual void handleMouseUp (MOUSEUP & event);
-  
-  virtual void handleMouseWheel (MOUSEWHEEL & event);
 
-  virtual void handleWindow (WINDOW & event);
+namespace Events
+{
   
-  virtual void handleNullEvent (NULLEVENT & event);
+  class KeyDown;
+  class KeyUp;
+  class Quit;
+  class MouseMotion;
+  class MouseDown;
+  class MouseUp;
+  class MouseWheel;
+  class WindowEvent;
+  class NullEvent;
   
-};
+  class EventHandler
+  {
+  public:
+    
+    virtual void handleKeyDown (KeyDown & event);
+    
+    virtual void handleKeyUp (KeyUp & event);
+    
+    virtual void handleQuit (Quit & event);
+    
+    virtual void handleMouseMotion (MouseMotion & event);
+    
+    virtual void handleMouseDown (MouseDown & event);
+    
+    virtual void handleMouseUp (MouseUp & event);
+    
+    virtual void handleMouseWheel (MouseWheel & event);
+    
+    virtual void handleWindowEvent (WindowEvent & event);
+    
+    virtual void handleNullEvent (NullEvent & event);
+    
+  };
+
+} // namespace Events
+  
+} // namespace Falcon
 
 #endif /* EventHandler_h */

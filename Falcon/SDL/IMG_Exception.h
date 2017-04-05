@@ -11,31 +11,41 @@
 
 #include <SDL2_image/SDL_image.h>
 
-/**
- * IMG_Exception
- *
- * Exception class that wraps IMG related errors
- */
-class IMG_Exception : public std::exception
+namespace Falcon
 {
-public:
 
-  IMG_Exception (const char * error)
+namespace SDL
+{
+
+  /**
+   * IMG_Exception
+   *
+   * Exception class that wraps IMG related errors
+   */
+  class IMG_Exception : public std::exception
   {
-    this->error_ = std::string (error);
-  }
+  public:
+    
+    IMG_Exception (const char * error)
+    {
+      this->error_ = std::string (error);
+    }
+    
+    const char * what () const throw ()
+    {
+      std::string message = "IMG_Error: " + this->error_;
+      
+      return message.c_str ();
+    }
+    
+  protected:
+    
+    std::string error_;
+    
+  };
 
-  const char * what () const throw ()
-  {
-    std::string message = "IMG_Error: " + this->error_;
-
-    return message.c_str ();
-  }
-
-protected:
-
-  std::string error_;
-
-};
+} // namespace SDL
+  
+} // namespace Falcon
 
 #endif /* IMG_Exception_h */

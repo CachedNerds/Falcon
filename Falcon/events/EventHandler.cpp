@@ -9,47 +9,57 @@
 #include "EventHandler.h"
 #include "Event.h"
 
-void EventHandler::handleKeyDown (KEYDOWN & event)
+namespace Falcon
 {
-  
-}
 
-void EventHandler::handleKeyUp (KEYUP & event)
+namespace Events
 {
+ 
+  void EventHandler::handleKeyDown (KeyDown & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleQuit (QUIT & event)
-{
+  void EventHandler::handleKeyUp (KeyUp & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleMouseMotion (MOUSEMOTION & event)
-{
+  void EventHandler::handleQuit (Quit & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleMouseDown (MOUSEDOWN & event)
-{
+  void EventHandler::handleMouseMotion (MouseMotion & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleMouseUp (MOUSEUP & event)
-{
+  void EventHandler::handleMouseDown (MouseDown & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleMouseWheel (MOUSEWHEEL & event)
-{
+  void EventHandler::handleMouseUp (MouseUp & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleWindow (WINDOW & event)
-{
+  void EventHandler::handleMouseWheel (MouseWheel & event)
+  {
+    
+  }
   
-}
-
-void EventHandler::handleNullEvent (NULLEVENT & event)
-{
+  void EventHandler::handleWindowEvent (WindowEvent & event)
+  {
+    
+  }
   
-}
+  void EventHandler::handleNullEvent (NullEvent & event)
+  {
+    
+  }
+  
+} // namespace Events
+  
+} // namespace Falcon

@@ -9,6 +9,12 @@
 #include "Window.h"
 #include "SDL_Exception.h"
 
+namespace Falcon
+{
+
+namespace SDL
+{
+  
 // Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -109,3 +115,7 @@ void Window::show (void)
 {
   SDL_ShowWindow (this->window_);
 }
+  
+} // namespace SDL
+  
+} // namespace Falcon

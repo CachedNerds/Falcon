@@ -9,23 +9,29 @@
 #ifndef SpriteEventHandler_h
 #define SpriteEventHandler_h
 
-#include "EventHandler.h"
+#include "events/EventHandler.h"
 
-class Sprite;
-
-class SpriteEventHandler : public EventHandler
+namespace Falcon
 {
-public:
+  using Events::EventHandler;
+  using Events::KeyDown;
   
-  SpriteEventHandler (Sprite * sprite);
+  class Sprite;
   
-  void handleKeyDown (KEYDOWN & event);
-  
-private:
-  
-  Sprite * sprite_;
-  
-};
+  class SpriteEventHandler : public EventHandler
+  {
+  public:
+    
+    SpriteEventHandler (Sprite * sprite);
+    
+    void handleKeyDown (KeyDown & event);
+    
+  private:
+    
+    Sprite * sprite_;
+    
+  };
+}
 
 
 #endif /* SpriteEventHandler_h */

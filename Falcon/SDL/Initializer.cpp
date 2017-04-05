@@ -1,5 +1,5 @@
 //
-//  SDL_Initializer.cpp
+//  Initializer.cpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/3/17.
@@ -7,82 +7,88 @@
 //
 
 #include <iostream>
-#include "SDL_Initializer.h"
-#include "SDL_System.h"
+#include "Initializer.h"
+#include "System.h"
 #include "SDL_Exception.h"
 #include "IMG_Exception.h"
 
-SDL_Initializer & SDL_Initializer::instance (void)
+namespace Falcon
 {
-  static SDL_Initializer initializer;
+
+namespace SDL
+{
+
+Initializer & Initializer::instance (void)
+{
+  static Initializer initializer;
   return initializer;
 }
 
-SDL_Initializer::SDL_Initializer (void)
-: system_ (new SDL_System),
+Initializer::Initializer (void)
+: system_ (new System),
   initialized_ (false)
 {
   
 }
 
-SDL_Initializer::~SDL_Initializer (void)
+Initializer::~Initializer (void)
 {
   delete this->system_;
 }
 
-SDL_Initializer & SDL_Initializer::enableVideo (void)
+Initializer & Initializer::enableVideo (void)
 {
   this->flags_.push_back (SDL_INIT_VIDEO);
   return *this;
 }
 
-SDL_Initializer & SDL_Initializer::enableAudio (void)
+Initializer & Initializer::enableAudio (void)
 {
   this->flags_.push_back (SDL_INIT_AUDIO);
   return *this;
 }
 
-SDL_Initializer & SDL_Initializer::enableEvents (void)
+Initializer & Initializer::enableEvents (void)
 {
   this->flags_.push_back (SDL_INIT_EVENTS);
   return *this;
 }
 
-SDL_Initializer & SDL_Initializer::enableJoystick (void)
+Initializer & Initializer::enableJoystick (void)
 {
   this->flags_.push_back (SDL_INIT_JOYSTICK);
   return *this;
 }
 
-SDL_Initializer & SDL_Initializer::enableTimer (void)
+Initializer & Initializer::enableTimer (void)
 {
   this->flags_.push_back (SDL_INIT_TIMER);
   return *this;
 }
 
-SDL_Initializer & SDL_Initializer::enableAll (void)
+Initializer & Initializer::enableAll (void)
 {
   this->flags_.push_back (SDL_INIT_EVERYTHING);
   return *this;
 }
 
-void SDL_Initializer::initialize (void)
+void Initializer::initialize (void)
 {
   if (!this->initialized_)
   {
-    Uint32 SDL_INIT_FLAGS = 0;
+    Uint32 INIT_FLAGS = 0;
     
     for (auto iterator = this->flags_.begin (); iterator != this->flags_.end (); ++ iterator)
     {
       Uint32 flag = *iterator;
-      SDL_INIT_FLAGS = SDL_INIT_FLAGS | flag;
+      INIT_FLAGS = INIT_FLAGS | flag;
     }
     
     Uint32 IMG_INIT_FLAGS = IMG_INIT_JPG | IMG_INIT_PNG;
     
     try
     {
-      this->system_->init (SDL_INIT_FLAGS, IMG_INIT_FLAGS);
+      this->system_->init (INIT_FLAGS, IMG_INIT_FLAGS);
       this->initialized_ = true;
     }
     catch (SDL_Exception & e)
@@ -95,3 +101,7 @@ void SDL_Initializer::initialize (void)
     }
   }
 }
+
+} // namespace SDL
+
+} // namespace Falcon

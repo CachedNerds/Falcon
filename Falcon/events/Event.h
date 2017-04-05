@@ -13,12 +13,33 @@
 #include "EventHandler.h"
 #include "Key.h"
 
+namespace Falcon
+{
+
+namespace Events
+{
+  
 typedef Uint32 EventType;
+  
+static EventType KEYDOWN = SDL_KEYDOWN;
+static EventType KEYUP = SDL_KEYUP;
+static EventType QUIT = SDL_QUIT;
+static EventType MOUSEMOTION = SDL_MOUSEMOTION;
+static EventType MOUSEDOWN = SDL_MOUSEBUTTONDOWN;
+static EventType MOUSEUP = SDL_MOUSEBUTTONUP;
+static EventType MOUSEWHEEL = SDL_MOUSEWHEEL;
+static EventType WINDOWEVENT = SDL_WINDOWEVENT;
+static EventType NULLEVENT = 0;
 
 class Event
 {
 public:
-  
+    
+  virtual ~Event (void)
+  {
+      
+  }
+    
   EventType & getType (void)
   {
     return this->type_;
@@ -33,11 +54,6 @@ public:
   {
     return !(this->operator == (rhs));
   }
-  
-  virtual void init (SDL_Event & event)
-  {
-    // do nothing
-  };
   
   virtual void accept (EventHandler & handler) = 0;
   
@@ -56,10 +72,11 @@ class KeyDown : public Event
 {
 public:
   
-  void init (SDL_Event & event)
+  KeyDown (SDL_Event & event)
+  : Event (event.type)
   {
     this->code_ = Key (event.key.keysym.sym);
-  };
+  }
   
   void accept (EventHandler & handler)
   {
@@ -81,6 +98,12 @@ class KeyUp : public Event
 {
 public:
   
+  KeyUp (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
     handler.handleKeyUp (*this);
@@ -91,6 +114,12 @@ public:
 class Quit : public Event
 {
 public:
+  
+  Quit (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
   
   void accept (EventHandler & handler)
   {
@@ -103,6 +132,12 @@ class MouseMotion : public Event
 {
 public:
   
+  MouseMotion (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
     handler.handleMouseMotion (*this);
@@ -113,6 +148,12 @@ public:
 class MouseDown : public Event
 {
 public:
+  
+  MouseDown (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
   
   void accept (EventHandler & handler)
   {
@@ -125,6 +166,12 @@ class MouseUp : public Event
 {
 public:
   
+  MouseUp (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
     handler.handleMouseUp (*this);
@@ -136,6 +183,12 @@ class MouseWheel : public Event
 {
 public:
   
+  MouseWheel (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
     handler.handleMouseWheel (*this);
@@ -143,13 +196,19 @@ public:
   
 };
 
-class Window : public Event
+class WindowEvent : public Event
 {
 public:
   
+  WindowEvent (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
-    handler.handleWindow (*this);
+    handler.handleWindowEvent (*this);
   }
   
 };
@@ -158,11 +217,21 @@ class NullEvent : public Event
 {
 public:
   
+  NullEvent (SDL_Event & event)
+  : Event (event.type)
+  {
+    
+  }
+  
   void accept (EventHandler & handler)
   {
     handler.handleNullEvent (*this);
   }
   
 };
+  
+} // namespace Events
+  
+} // namespace Falcon
 
 #endif /* Event_h */

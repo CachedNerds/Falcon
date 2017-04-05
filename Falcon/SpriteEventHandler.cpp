@@ -10,31 +10,39 @@
 #include "SpriteEventHandler.h"
 #include "Sprite.h"
 
+namespace Falcon
+{
+
 SpriteEventHandler::SpriteEventHandler (Sprite * sprite)
 : sprite_ (sprite)
 {
 }
 
-void SpriteEventHandler::handleKeyDown (KEYDOWN & event)
+void SpriteEventHandler::handleKeyDown (KeyDown & event)
 {
+  using Events::Key::LEFT;
+  using Events::Key::RIGHT;
+  using Events::Key::UP;
+  using Events::Key::DOWN;
+  
   switch (event.getKey ())
   {
-    case Key::RIGHT:
+    case RIGHT:
       std::cout << "right" << std::endl;
       this->sprite_->setX (this->sprite_->getX () + 5);
       break;
       
-    case Key::LEFT:
+    case LEFT:
       std::cout << "left" << std::endl;
       this->sprite_->setX (this->sprite_->getX () - 5);
       break;
       
-    case Key::UP:
+    case UP:
       std::cout << "up" << std::endl;
       this->sprite_->setY (this->sprite_->getY () - 5);
       break;
       
-    case Key::DOWN:
+    case DOWN:
       std::cout << "down" << std::endl;
       this->sprite_->setY (this->sprite_->getY () + 5);
       break;
@@ -43,3 +51,5 @@ void SpriteEventHandler::handleKeyDown (KEYDOWN & event)
       break;
   }
 }
+  
+} // namespace Falcon
