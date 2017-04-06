@@ -10,7 +10,7 @@
 #include <SDL2_image/SDL_image.h>
 #include <vector>
 #include "SDL/SDL_Exception.h"
-#include "SDL/Initializer.h"
+#include "SDL/System.h"
 #include "SDL/Window.h"
 #include "Sprite.h"
 #include "events/EventSystem.h"
@@ -22,12 +22,13 @@ int main (int argc, char * args[])
   using SDL::Window;
   using Events::EventSystem;
   using SDL::SDL_Exception;
+  using SDL::System;
   
   try
   {
-    SDL::Initializer::instance ()
-                     .enableAll ()
-                     .initialize ();
+    System::instance ()
+           .enableAll ()
+           .initialize ();
     
     Window window ("Game", 0, 0, 500, 500);
     

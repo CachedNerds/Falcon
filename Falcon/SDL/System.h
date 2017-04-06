@@ -1,50 +1,57 @@
 //
-//  System.h
+//  Initializer.h
 //  Falcon
 //
-//  Created by Danny Peck on 4/2/17.
+//  Created by Danny Peck on 4/5/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef SDL_System_h
-#define SDL_System_h
+#ifndef System_h
+#define System_h
 
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
-#include "Initializer.h"
+#include <vector>
 
 namespace Falcon
 {
 
 namespace SDL
 {
+
+class System
+{
+public:
   
-  /**
-   * System
-   *
-   * Class responsible for managing the SDL system
-   */
-  class System
-  {
-  public:
-    
-    friend Initializer;
-    
-  private:
-    
-    // default constructor
-    System (void);
-    
-    // destructor
-    ~System (void);
-    
-    // initializes SDL Systems
-    void init (Uint32 SDL_INIT_FLAGS, Uint32 IMG_INIT_FLAGS);
-    
-  };
-
+  static System & instance (void);
+  
+  System & enableVideo (void);
+  
+  System & enableAudio (void);
+  
+  System & enableEvents (void);
+  
+  System & enableJoystick (void);
+  
+  System & enableTimer (void);
+  
+  System & enableAll (void);
+  
+  void initialize (void);
+  
+private:
+  
+  std::vector<Uint32> flags_;
+  
+  bool initialized_;
+  
+  System (void);
+  
+  ~System (void);
+  
+};
+  
 } // namespace SDL
-
+  
 } // namespace Falcon
 
-#endif /* SDL_System_h */
+#endif /* System_h */
