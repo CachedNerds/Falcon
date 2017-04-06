@@ -13,7 +13,7 @@
 
 namespace Falcon
 {
-  
+
 namespace Events
 {
 
@@ -63,9 +63,9 @@ enum Key
   BACKSPACE = SDLK_BACKSPACE,
   RETURN = SDLK_RETURN
 };
-  
+
 } // namespace Events
-  
+
 } // namespace Falcon
 
 #endif /* Key_h */

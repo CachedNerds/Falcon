@@ -17,29 +17,29 @@ namespace Falcon
 
 namespace Events
 {
+
+class Event;
+
+class EventSystem
+{
+public:
   
-  class Event;
+  static EventSystem & instance (void);
   
-  class EventSystem
-  {
-  public:
-    
-    static EventSystem & instance (void);
-    
-    bool nextEvent (void);
-    
-    Event * getNextEvent (void);
-    
-  private:
-    
-    SDL_Event event_;
-    
-    EventFactory eventFactory_;
-    
-  };
+  bool nextEvent (void);
   
+  Event * getNextEvent (void);
+  
+private:
+  
+  SDL_Event event_;
+  
+  EventFactory eventFactory_;
+  
+};
+
 } // namespace Events
-  
+
 } // namespace Falcon
 
 #endif /* EventSystem_h */

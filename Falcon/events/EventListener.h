@@ -17,16 +17,16 @@ namespace Falcon
 namespace Events
 {
 
-  class EventListener
-  {
-  public:
-    
-    virtual void notify (Event & event) = 0;
-    
-  };
+class EventListener
+{
+public:
   
+  virtual void notify (Event & event) = 0;
+  
+};
+
 } // namespace Events
-  
+
 } // namespace Falcon
 
 #endif /* EventListener_h */
