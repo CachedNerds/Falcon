@@ -13,24 +13,26 @@
 
 namespace Falcon
 {
-  using Events::EventHandler;
-  using Events::KeyDown;
+
+using Events::EventHandler;
+using Events::KeyDown;
+
+class Sprite;
+
+class SpriteEventHandler : public EventHandler
+{
+public:
   
-  class Sprite;
+  SpriteEventHandler (Sprite * sprite);
   
-  class SpriteEventHandler : public EventHandler
-  {
-  public:
-    
-    SpriteEventHandler (Sprite * sprite);
-    
-    void handleKeyDown (KeyDown & event);
-    
-  private:
-    
-    Sprite * sprite_;
-    
-  };
+  void handleKeyDown (KeyDown & event);
+  
+private:
+  
+  Sprite * sprite_;
+  
+};
+
 }
 
 
