@@ -44,7 +44,7 @@ void Sprite::draw (SDL::Window & window)
   SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
 }
 
-void Sprite::notify (Events::Event & event)
+void Sprite::handleEvent (Events::Event & event)
 {
   event.accept (*this->eventHandler_);
 }

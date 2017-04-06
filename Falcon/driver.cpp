@@ -56,7 +56,7 @@ int main (int argc, char * args[])
         }
         else
         {
-          player.notify (*event);
+          player.handleEvent (*event);
         }
         
         delete event;

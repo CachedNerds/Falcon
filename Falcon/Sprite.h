@@ -38,7 +38,7 @@ namespace Falcon
     
     void draw (Window & window);
     
-    virtual void notify (Event & event);
+    virtual void handleEvent (Event & event);
     
     void setX (int x);
     

@@ -21,7 +21,7 @@ class EventListener
 {
 public:
   
-  virtual void notify (Event & event) = 0;
+  virtual void handleEvent (Event & event) = 0;
   
 };
 
