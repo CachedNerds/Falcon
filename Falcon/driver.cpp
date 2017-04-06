@@ -8,29 +8,63 @@
 
 #include <iostream>
 #include <SDL2_image/SDL_image.h>
-#include "SDL_Exception.h"
-#include "SDL_Initializer.h"
-#include "Window.h"
+#include <vector>
+#include "SDL/SDL_Exception.h"
+#include "SDL/System.h"
+#include "SDL/Window.h"
 #include "Sprite.h"
-#include "EventSystem.h"
-#include "Event.h"
+#include "events/EventSystem.h"
+#include "events/Event.h"
 
 int main (int argc, char * args[])
 {
+  using namespace Falcon;
+  using SDL::System;
+  using SDL::SDL_Exception;
+  using SDL::Window;
+  using Events::EventSystem;
+  using Events::QUIT;
+  using Events::NULLEVENT;
+  
   try
   {
-    SDL_Initializer::instance ()
-                    .enableAll ()
-                    .initialize ();
+    System::instance ()
+           .enableAll ()
+           .initialize ();
     
     Window window ("Game", 0, 0, 500, 500);
+    
     Sprite player ("fez.jpg", 10, 10);
     
     EventSystem & eventSystem = EventSystem::instance ();
-    eventSystem.registerForEvent (Events::KEYDOWN, &player);
     
-    while (eventSystem.getEvent ())
+    bool keepGoing = true;
+    while (keepGoing)
     {
+      // handle input
+      while (eventSystem.nextEvent ())
+      {
+        Event * event = eventSystem.getNextEvent ();
+        if (event->getType () == QUIT)
+        {
+          keepGoing = false;
+          break;
+        }
+        else if (event->getType () == NULLEVENT)
+        {
+          // do nothing
+        }
+        else
+        {
+          player.handleEvent (*event);
+        }
+        
+        delete event;
+      }
+      
+      // update
+      
+      // render
       player.draw (window);
       window.update ();
     }

@@ -8,10 +8,13 @@
 
 #include "Sprite.h"
 #include "SpriteEventHandler.h"
-#include "Window.h"
-#include "Event.h"
-#include "Key.h"
-#include "IMG_Exception.h"
+#include "SDL/Window.h"
+#include "events/Event.h"
+#include "events/Key.h"
+#include "SDL/IMG_Exception.h"
+
+namespace Falcon
+{
 
 Sprite::Sprite (std::string image, int x, int y)
 : image_ (nullptr),
@@ -20,7 +23,7 @@ Sprite::Sprite (std::string image, int x, int y)
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
   {
-    throw IMG_Exception (IMG_GetError ());
+    throw SDL::IMG_Exception (IMG_GetError ());
   }
 
   this->image_ = surface;
@@ -36,12 +39,12 @@ Sprite::~Sprite (void)
   SDL_FreeSurface (this->image_); this->image_ = nullptr;
 }
 
-void Sprite::draw (Window & window)
+void Sprite::draw (SDL::Window & window)
 {
   SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
 }
 
-void Sprite::notify (Event & event)
+void Sprite::handleEvent (Events::Event & event)
 {
   event.accept (*this->eventHandler_);
 }
@@ -75,3 +78,5 @@ int Sprite::getHeight (void) const
 {
   return this->rect_.h;
 }
+
+} // namespace Falcon

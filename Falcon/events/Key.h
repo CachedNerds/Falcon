@@ -11,6 +11,12 @@
 
 #include <SDL2/SDL.h>
 
+namespace Falcon
+{
+
+namespace Events
+{
+
 enum Key
 {
   ZERO = SDLK_0,
@@ -57,5 +63,9 @@ enum Key
   BACKSPACE = SDLK_BACKSPACE,
   RETURN = SDLK_RETURN
 };
+
+} // namespace Events
+
+} // namespace Falcon
 
 #endif /* Key_h */

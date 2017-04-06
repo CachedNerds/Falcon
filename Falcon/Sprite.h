@@ -12,43 +12,55 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <string>
-#include "EventQueue.h"
-#include "EventListener.h"
+#include "events/EventListener.h"
 
-class Window;
-class SpriteEventHandler;
-
-class Sprite : public EventListener
+namespace Falcon
 {
-public:
+  using Events::EventListener;
+  using Events::Event;
+  
+  namespace SDL
+  {
+    class Window;
+  } // namespace SDL
+  
+  using SDL::Window;
 
-  Sprite (std::string image, int x, int y);
+  class SpriteEventHandler;
+  
+  class Sprite : public EventListener
+  {
+  public:
+    
+    Sprite (std::string image, int x, int y);
+    
+    ~Sprite (void);
+    
+    void draw (Window & window);
+    
+    virtual void handleEvent (Event & event);
+    
+    void setX (int x);
+    
+    int getX (void) const;
+    
+    void setY (int y);
+    
+    int getY (void) const;
+    
+    int getWidth (void) const;
+    
+    int getHeight (void) const;
+    
+  private:
+    
+    SDL_Surface * image_;
+    SDL_Rect rect_;
+    
+    SpriteEventHandler * eventHandler_;
+    
+  };
 
-  ~Sprite (void);
-
-  void draw (Window & window);
-  
-  virtual void notify (Event & event);
-  
-  void setX (int x);
-  
-  int getX (void) const;
-  
-  void setY (int y);
-  
-  int getY (void) const;
-  
-  int getWidth (void) const;
-  
-  int getHeight (void) const;
-
-private:
-
-  SDL_Surface * image_;
-  SDL_Rect rect_;
-  
-  SpriteEventHandler * eventHandler_;
-
-};
+} // namespace Falcon
 
 #endif /* Sprite_h */
