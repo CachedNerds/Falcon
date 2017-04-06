@@ -19,10 +19,12 @@
 int main (int argc, char * args[])
 {
   using namespace Falcon;
+  using SDL::System;
+  using SDL::SDL_Exception;
   using SDL::Window;
   using Events::EventSystem;
-  using SDL::SDL_Exception;
-  using SDL::System;
+  using Events::QUIT;
+  using Events::NULLEVENT;
   
   try
   {
@@ -43,12 +45,12 @@ int main (int argc, char * args[])
       while (eventSystem.nextEvent ())
       {
         Event * event = eventSystem.getNextEvent ();
-        if (event->getType () == Events::QUIT)
+        if (event->getType () == QUIT)
         {
           keepGoing = false;
           break;
         }
-        else if (event->getType () == Events::NULLEVENT)
+        else if (event->getType () == NULLEVENT)
         {
           // do nothing
         }
