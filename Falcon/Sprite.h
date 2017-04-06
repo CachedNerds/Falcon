@@ -16,50 +16,51 @@
 
 namespace Falcon
 {
-  using Events::EventListener;
-  using Events::Event;
-  
-  namespace SDL
-  {
-    class Window;
-  } // namespace SDL
-  
-  using SDL::Window;
 
-  class SpriteEventHandler;
+using Events::EventListener;
+using Events::Event;
+
+namespace SDL
+{
+  class Window;
+} // namespace SDL
+
+using SDL::Window;
+
+class SpriteEventHandler;
+
+class Sprite : public EventListener
+{
+public:
   
-  class Sprite : public EventListener
-  {
-  public:
-    
-    Sprite (std::string image, int x, int y);
-    
-    ~Sprite (void);
-    
-    void draw (Window & window);
-    
-    virtual void handleEvent (Event & event);
-    
-    void setX (int x);
-    
-    int getX (void) const;
-    
-    void setY (int y);
-    
-    int getY (void) const;
-    
-    int getWidth (void) const;
-    
-    int getHeight (void) const;
-    
-  private:
-    
-    SDL_Surface * image_;
-    SDL_Rect rect_;
-    
-    SpriteEventHandler * eventHandler_;
-    
-  };
+  Sprite (std::string image, int x, int y);
+  
+  ~Sprite (void);
+  
+  void draw (Window & window);
+  
+  virtual void handleEvent (Event & event);
+  
+  void setX (int x);
+  
+  int getX (void) const;
+  
+  void setY (int y);
+  
+  int getY (void) const;
+  
+  int getWidth (void) const;
+  
+  int getHeight (void) const;
+  
+private:
+  
+  SDL_Surface * image_;
+  SDL_Rect rect_;
+  
+  SpriteEventHandler * eventHandler_;
+  
+};
 
 } // namespace Falcon
 

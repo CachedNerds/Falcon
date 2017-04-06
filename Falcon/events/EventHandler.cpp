@@ -7,15 +7,7 @@
 //
 
 #include "EventHandler.h"
-#include "KeyDown.h"
-#include "KeyUp.h"
-#include "Quit.h"
-#include "MouseMotion.h"
-#include "MouseDown.h"
-#include "MouseUp.h"
-#include "MouseWheel.h"
-#include "WindowEvent.h"
-#include "NullEvent.h"
+#include "Events.h"
 
 namespace Falcon
 {
