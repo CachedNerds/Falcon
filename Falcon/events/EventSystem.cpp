@@ -6,17 +6,9 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
+#include <iostream>
 #include "EventSystem.h"
-#include "Event.h"
-#include "KeyDown.h"
-#include "KeyUp.h"
-#include "Quit.h"
-#include "MouseMotion.h"
-#include "MouseDown.h"
-#include "MouseUp.h"
-#include "MouseWheel.h"
-#include "WindowEvent.h"
-#include "NullEvent.h"
+#include "Events.h"
 
 namespace Falcon
 {
@@ -30,6 +22,25 @@ EventSystem & EventSystem::instance (void)
   return system;
 }
 
+EventSystem::EventSystem (void)
+: eventFactory_ (new EventFactory)
+{
+  this->factoryMethods_[KEYDOWN] = &EventFactory::createKeyDown;
+  this->factoryMethods_[KEYUP] = &EventFactory::createKeyUp;
+  this->factoryMethods_[QUIT] = &EventFactory::createQuit;
+  this->factoryMethods_[MOUSEMOTION] = &EventFactory::createMouseMotion;
+  this->factoryMethods_[MOUSEDOWN] = &EventFactory::createKeyDown;
+  this->factoryMethods_[MOUSEUP] = &EventFactory::createMouseUp;
+  this->factoryMethods_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
+  this->factoryMethods_[WINDOWEVENT] = &EventFactory::createWindowEvent;
+  this->factoryMethods_[NULLEVENT] = &EventFactory::createNullEvent;
+}
+
+EventSystem::~EventSystem (void)
+{
+  delete this->eventFactory_;
+}
+
 bool EventSystem::nextEvent (void)
 {
   return SDL_PollEvent (&this->event_);
@@ -37,35 +48,10 @@ bool EventSystem::nextEvent (void)
 
 Event * EventSystem::getNextEvent (void)
 {
-  switch (this->event_.type)
-  {
-    case KEYDOWN:
-      return this->eventFactory_.createKeyDown (this->event_);
-      
-    case KEYUP:
-      return this->eventFactory_.createKeyUp (this->event_);
-      
-    case QUIT:
-      return this->eventFactory_.createQuit (this->event_);
-      
-    case MOUSEMOTION:
-      return this->eventFactory_.createMouseMotion (this->event_);
-      
-    case MOUSEDOWN:
-      return this->eventFactory_.createMouseDown (this->event_);
-      
-    case MOUSEUP:
-      return this->eventFactory_.createMouseUp (this->event_);
-      
-    case MOUSEWHEEL:
-      return this->eventFactory_.createMouseWheel (this->event_);
-      
-    case WINDOWEVENT:
-      return this->eventFactory_.createWindowEvent (this->event_);
-      
-    default:
-      return this->eventFactory_.createNullEvent (this->event_);
-  }
+  EventType type = EventType (this->event_.type);
+  FACTORYMETHOD createEvent = this->factoryMethods_[type];
+  return (createEvent == nullptr) ? this->eventFactory_->createNullEvent (this->event_)
+                                  : (this->eventFactory_->*createEvent)(this->event_);
 }
 
 } // namespace Events

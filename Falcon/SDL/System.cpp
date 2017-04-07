@@ -76,9 +76,9 @@ void System::initialize (void)
   {
     Uint32 SDL_INIT_FLAGS = 0;
     
-    for (auto iterator = this->flags_.begin (); iterator != this->flags_.end (); ++ iterator)
+    for (auto iter = this->flags_.begin (); iter != this->flags_.end (); ++ iter)
     {
-      Uint32 flag = *iterator;
+      Uint32 flag = *iter;
       SDL_INIT_FLAGS = SDL_INIT_FLAGS | flag;
     }
     
