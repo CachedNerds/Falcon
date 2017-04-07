@@ -17,8 +17,9 @@ namespace Events
 
 KeyDown::KeyDown (SDL_Event & event)
 : Event (EventType (event.type))
+, code_ (Key (event.key.keysym.sym))
 {
-  this->code_ = Key (event.key.keysym.sym);
+
 }
 
 void KeyDown::accept (EventHandler & handler)

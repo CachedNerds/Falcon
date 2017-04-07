@@ -16,8 +16,9 @@ namespace Events
 {
 
 Event::Event (EventType type)
+: type_ (type)
 {
-  this->type_ = type;
+  
 }
 
 Event::~Event (void)

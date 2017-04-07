@@ -32,14 +32,14 @@ Window::Window (std::string title)
 
 // initializer constructor
 Window::Window (std::string title, int x, int y, int width, int height)
-: title_ (title),
-x_ (x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED),
-y_ (y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED),
-width_ (width > 0 ? width : SCREEN_WIDTH),
-height_ (height > 0 ? height : SCREEN_HEIGHT),
-window_ (nullptr),
-renderer_ (nullptr),
-screen_ (nullptr)
+: title_ (title)
+, x_ (x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED)
+, y_ (y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED)
+, width_ (width > 0 ? width : SCREEN_WIDTH)
+, height_ (height > 0 ? height : SCREEN_HEIGHT)
+, window_ (nullptr)
+, renderer_ (nullptr)
+, screen_ (nullptr)
 {
   SDL_Window * window = SDL_CreateWindow (this->title_.c_str (),
                                           this->x_,
@@ -71,6 +71,9 @@ Window::~Window (void)
 {
   SDL_DestroyWindow (this->window_);
   this->window_ = nullptr;
+  this->renderer_ = nullptr;
+  
+  // this->screen_ is deleted by SDL_DestroyWindow
 }
 
 // updates the window

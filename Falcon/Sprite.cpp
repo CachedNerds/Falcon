@@ -17,8 +17,8 @@ namespace Falcon
 {
 
 Sprite::Sprite (std::string image, int x, int y)
-: image_ (nullptr),
-  eventHandler_ (new SpriteEventHandler (this))
+: image_ (nullptr)
+, eventHandler_ (new SpriteEventHandler (this))
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
@@ -39,12 +39,12 @@ Sprite::~Sprite (void)
   SDL_FreeSurface (this->image_); this->image_ = nullptr;
 }
 
-void Sprite::draw (SDL::Window & window)
+void Sprite::draw (Window & window)
 {
   SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
 }
 
-void Sprite::handleEvent (Events::Event & event)
+void Sprite::handleEvent (Event & event)
 {
   event.accept (*this->eventHandler_);
 }

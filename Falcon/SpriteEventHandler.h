@@ -33,7 +33,7 @@ private:
   
 };
 
-}
+} // namespace Falcon
 
 
 #endif /* SpriteEventHandler_h */

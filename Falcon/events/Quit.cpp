@@ -11,21 +11,21 @@
 
 namespace Falcon
 {
+
+namespace Events
+{
+
+Quit::Quit (SDL_Event & event)
+: Event (EventType (event.type))
+{
   
-  namespace Events
-  {
-    
-    Quit::Quit (SDL_Event & event)
-    : Event (EventType (event.type))
-    {
-      
-    }
-    
-    void Quit::accept (EventHandler & handler)
-    {
-      handler.handleQuit (*this);
-    }
-    
-  } // namespace Events
-  
+}
+
+void Quit::accept (EventHandler & handler)
+{
+  handler.handleQuit (*this);
+}
+
+} // namespace Events
+
 } // namespace Falcon
