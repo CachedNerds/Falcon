@@ -59,7 +59,7 @@ private:
   SDL_Rect rect_;
   
   SpriteEventHandler * eventHandler_;
-  
+
 };
 
 } // namespace Falcon

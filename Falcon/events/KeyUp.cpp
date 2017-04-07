@@ -17,8 +17,9 @@ namespace Events
 
 KeyUp::KeyUp (SDL_Event & event)
 : Event (EventType (event.type))
+, code_ (Key (event.key.keysym.sym))
 {
-  this->code_ = Key (event.key.keysym.sym);
+
 }
 
 void KeyUp::accept (EventHandler & handler)

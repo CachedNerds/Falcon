@@ -17,6 +17,7 @@ namespace Falcon
 SpriteEventHandler::SpriteEventHandler (Sprite * sprite)
 : sprite_ (sprite)
 {
+
 }
 
 void SpriteEventHandler::handleKeyDown (KeyDown & event)
