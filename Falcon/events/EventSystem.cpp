@@ -50,14 +50,8 @@ Event * EventSystem::getNextEvent (void)
 {
   EventType type = EventType (this->event_.type);
   FACTORYMETHOD createEvent = this->factoryMethods_[type];
-  if (createEvent == nullptr)
-  {
-    return this->eventFactory_->createNullEvent (this->event_);
-  }
-  else
-  {
-    return (this->eventFactory_->*createEvent)(this->event_);
-  }
+  return (createEvent == nullptr) ? this->eventFactory_->createNullEvent (this->event_)
+                                  : (this->eventFactory_->*createEvent)(this->event_);
 }
 
 } // namespace Events
