@@ -25,15 +25,15 @@ EventSystem & EventSystem::instance (void)
 EventSystem::EventSystem (void)
 : eventFactory_ (new EventFactory)
 {
-  this->events_[KEYDOWN] = &EventFactory::createKeyDown;
-  this->events_[KEYUP] = &EventFactory::createKeyUp;
-  this->events_[QUIT] = &EventFactory::createQuit;
-  this->events_[MOUSEMOTION] = &EventFactory::createMouseMotion;
-  this->events_[MOUSEDOWN] = &EventFactory::createKeyDown;
-  this->events_[MOUSEUP] = &EventFactory::createMouseUp;
-  this->events_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
-  this->events_[WINDOWEVENT] = &EventFactory::createWindowEvent;
-  this->events_[NULLEVENT] = &EventFactory::createNullEvent;
+  this->factoryMethods_[KEYDOWN] = &EventFactory::createKeyDown;
+  this->factoryMethods_[KEYUP] = &EventFactory::createKeyUp;
+  this->factoryMethods_[QUIT] = &EventFactory::createQuit;
+  this->factoryMethods_[MOUSEMOTION] = &EventFactory::createMouseMotion;
+  this->factoryMethods_[MOUSEDOWN] = &EventFactory::createKeyDown;
+  this->factoryMethods_[MOUSEUP] = &EventFactory::createMouseUp;
+  this->factoryMethods_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
+  this->factoryMethods_[WINDOWEVENT] = &EventFactory::createWindowEvent;
+  this->factoryMethods_[NULLEVENT] = &EventFactory::createNullEvent;
 }
 
 EventSystem::~EventSystem (void)
@@ -49,7 +49,7 @@ bool EventSystem::nextEvent (void)
 Event * EventSystem::getNextEvent (void)
 {
   EventType type = EventType (this->event_.type);
-  FACTORYMETHOD createEvent = this->events_[type];
+  FACTORYMETHOD createEvent = this->factoryMethods_[type];
   if (createEvent == nullptr)
   {
     return this->eventFactory_->createNullEvent (this->event_);

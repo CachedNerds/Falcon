@@ -39,7 +39,7 @@ private:
 
   typedef Event * (EventFactory::*FACTORYMETHOD) (SDL_Event &);
 
-  std::map<EventType, FACTORYMETHOD> events_;
+  std::map<EventType, FACTORYMETHOD> factoryMethods_;
 
   EventFactory * eventFactory_;
 
