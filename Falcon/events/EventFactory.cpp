@@ -15,47 +15,47 @@ namespace Falcon
 namespace Events
 {
 
-KeyDown * EventFactory::createKeyDown (SDL_Event & event)
+Event * EventFactory::createKeyDown (SDL_Event & event)
 {
   return new KeyDown (event);
 }
 
-KeyUp * EventFactory::createKeyUp (SDL_Event & event)
+Event * EventFactory::createKeyUp (SDL_Event & event)
 {
   return new KeyUp (event);
 }
 
-Quit * EventFactory::createQuit (SDL_Event & event)
+Event * EventFactory::createQuit (SDL_Event & event)
 {
   return new Quit (event);
 }
 
-MouseMotion * EventFactory::createMouseMotion (SDL_Event & event)
+Event * EventFactory::createMouseMotion (SDL_Event & event)
 {
   return new MouseMotion (event);
 }
 
-MouseDown * EventFactory::createMouseDown (SDL_Event & event)
+Event * EventFactory::createMouseDown (SDL_Event & event)
 {
   return new MouseDown (event);
 }
 
-MouseUp * EventFactory::createMouseUp (SDL_Event & event)
+Event * EventFactory::createMouseUp (SDL_Event & event)
 {
   return new MouseUp (event);
 }
 
-MouseWheel * EventFactory::createMouseWheel (SDL_Event & event)
+Event * EventFactory::createMouseWheel (SDL_Event & event)
 {
   return new MouseWheel (event);
 }
 
-WindowEvent * EventFactory::createWindowEvent (SDL_Event & event)
+Event * EventFactory::createWindowEvent (SDL_Event & event)
 {
   return new WindowEvent (event);
 }
 
-NullEvent * EventFactory::createNullEvent (SDL_Event & event)
+Event * EventFactory::createNullEvent (SDL_Event & event)
 {
   return new NullEvent (event);
 }

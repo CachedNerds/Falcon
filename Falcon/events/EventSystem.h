@@ -1,5 +1,5 @@
 //
-//  InputEventSystem.h
+//  EventSystem.h
 //  Falcon
 //
 //  Created by Danny Peck on 4/4/17.
@@ -10,7 +10,10 @@
 #define EventSystem_h
 
 #include <SDL2/SDL.h>
+#include <map>
+#include "Event.h"
 #include "EventFactory.h"
+#include "EventType.h"
 
 namespace Falcon
 {
@@ -23,19 +26,27 @@ class Event;
 class EventSystem
 {
 public:
-  
+
   static EventSystem & instance (void);
-  
+
   bool nextEvent (void);
-  
+
   Event * getNextEvent (void);
-  
+
 private:
-  
+
   SDL_Event event_;
-  
-  EventFactory eventFactory_;
-  
+
+  typedef Event * (EventFactory::*FACTORYMETHOD) (SDL_Event &);
+
+  std::map<EventType, FACTORYMETHOD> events_;
+
+  EventFactory * eventFactory_;
+
+  EventSystem (void);
+
+  ~EventSystem (void);
+
 };
 
 } // namespace Events

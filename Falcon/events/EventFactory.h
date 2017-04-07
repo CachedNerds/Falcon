@@ -10,6 +10,7 @@
 #define EventFactory_h
 
 #include <SDL2/SDL.h>
+#include "Event.h"
 
 namespace Falcon
 {
@@ -31,23 +32,23 @@ class EventFactory
 {
 public:
   
-  KeyDown * createKeyDown (SDL_Event & event);
+  Event * createKeyDown (SDL_Event & event);
   
-  KeyUp * createKeyUp (SDL_Event & event);
+  Event * createKeyUp (SDL_Event & event);
   
-  Quit * createQuit (SDL_Event & event);
+  Event * createQuit (SDL_Event & event);
   
-  MouseMotion * createMouseMotion (SDL_Event & event);
+  Event * createMouseMotion (SDL_Event & event);
   
-  MouseDown * createMouseDown (SDL_Event & event);
+  Event * createMouseDown (SDL_Event & event);
   
-  MouseUp * createMouseUp (SDL_Event & event);
+  Event * createMouseUp (SDL_Event & event);
   
-  MouseWheel * createMouseWheel (SDL_Event & event);
+  Event * createMouseWheel (SDL_Event & event);
   
-  WindowEvent * createWindowEvent (SDL_Event & event);
+  Event * createWindowEvent (SDL_Event & event);
   
-  NullEvent * createNullEvent (SDL_Event & event);
+  Event * createNullEvent (SDL_Event & event);
   
 };
 
