@@ -1,16 +1,16 @@
 //
-//  MouseDown.h
+//  MouseWheel.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/6/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef MouseDown_h
-#define MouseDown_h
+#ifndef MouseWheel_hpp
+#define MouseWheel_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.h"
+#include "Event.hpp"
 
 namespace Falcon
 {
@@ -20,18 +20,18 @@ namespace Events
 
 class EventHandler;
 
-class MouseDown : public Event
+class MouseWheel : public Event
 {
 public:
-  
-  MouseDown (SDL_Event & event);
-  
+
+  MouseWheel (SDL_Event & event);
+
   void accept (EventHandler & handler);
-  
+
 };
 
 } // namespace Events
 
 } // namespace Falcon
 
-#endif /* MouseDown_h */
+#endif /* MouseWheel_hpp */

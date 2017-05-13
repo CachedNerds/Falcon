@@ -6,15 +6,15 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "Window.h"
-#include "SDL_Exception.h"
+#include "Window.hpp"
+#include "SDL_Exception.hpp"
 
 namespace Falcon
 {
 
 namespace SDL
 {
-  
+
 // Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -62,7 +62,7 @@ Window::Window (std::string title, int x, int y, int width, int height)
   SDL_FillRect (this->screen_, nullptr, SDL_MapRGB (this->screen_->format, 0xFF, 0xFF, 0xFF));
 
   this->renderer_ = SDL_CreateRenderer (window, -1, SDL_RENDERER_ACCELERATED);
-  
+
   this->update ();
 }
 
@@ -72,7 +72,7 @@ Window::~Window (void)
   SDL_DestroyWindow (this->window_);
   this->window_ = nullptr;
   this->renderer_ = nullptr;
-  
+
   // this->screen_ is deleted by SDL_DestroyWindow
 }
 
@@ -118,7 +118,7 @@ void Window::show (void)
 {
   SDL_ShowWindow (this->window_);
 }
-  
+
 } // namespace SDL
   
 } // namespace Falcon

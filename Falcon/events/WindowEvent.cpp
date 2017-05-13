@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "WindowEvent.h"
-#include "EventHandler.h"
+#include "WindowEvent.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,7 +18,7 @@ namespace Events
 WindowEvent::WindowEvent (SDL_Event & event)
 : Event (EventType (event.type))
 {
-  
+
 }
 
 void WindowEvent::accept (EventHandler & handler)

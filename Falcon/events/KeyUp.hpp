@@ -1,16 +1,17 @@
 //
-//  WindowEvent.h
+//  KeyUp.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/6/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef WindowEvent_h
-#define WindowEvent_h
+#ifndef KeyUp_hpp
+#define KeyUp_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.h"
+#include "Event.hpp"
+#include "Key.hpp"
 
 namespace Falcon
 {
@@ -20,18 +21,24 @@ namespace Events
 
 class EventHandler;
 
-class WindowEvent : public Event
+class KeyUp : public Event
 {
 public:
-  
-  WindowEvent (SDL_Event & event);
-  
+
+  KeyUp (SDL_Event & event);
+
   void accept (EventHandler & handler);
-  
+
+  Key getKey (void) const;
+
+private:
+
+  Key code_;
+
 };
 
 } // namespace Events
 
 } // namespace Falcon
 
-#endif /* WindowEvent_h */
+#endif /* KeyUp_hpp */

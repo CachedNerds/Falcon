@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "NullEvent.h"
-#include "EventHandler.h"
+#include "NullEvent.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,7 +18,7 @@ namespace Events
 NullEvent::NullEvent (SDL_Event & event)
 : Event (EventType (event.type))
 {
-  
+
 }
 
 void NullEvent::accept (EventHandler & handler)

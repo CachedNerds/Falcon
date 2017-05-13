@@ -6,12 +6,12 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "Sprite.h"
-#include "SpriteEventHandler.h"
-#include "SDL/Window.h"
-#include "events/Event.h"
-#include "events/Key.h"
-#include "SDL/IMG_Exception.h"
+#include "Sprite.hpp"
+#include "SpriteEventHandler.hpp"
+#include "SDL/Window.hpp"
+#include "events/Event.hpp"
+#include "events/Key.hpp"
+#include "SDL/IMG_Exception.hpp"
 
 namespace Falcon
 {
@@ -27,7 +27,7 @@ Sprite::Sprite (std::string image, int x, int y)
   }
 
   this->image_ = surface;
-  
+
   this->rect_.x = x;
   this->rect_.y = y;
   this->rect_.w = this->image_->w;

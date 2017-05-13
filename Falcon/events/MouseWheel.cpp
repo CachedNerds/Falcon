@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "MouseWheel.h"
-#include "EventHandler.h"
+#include "MouseWheel.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,7 +18,7 @@ namespace Events
 MouseWheel::MouseWheel (SDL_Event & event)
 : Event (EventType (event.type))
 {
-  
+
 }
 
 void MouseWheel::accept (EventHandler & handler)

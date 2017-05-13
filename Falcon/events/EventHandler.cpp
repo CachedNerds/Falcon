@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "EventHandler.h"
-#include "Events.h"
+#include "EventHandler.hpp"
+#include "Events.hpp"
 
 namespace Falcon
 {
@@ -17,47 +17,47 @@ namespace Events
 
 void EventHandler::handleKeyDown (KeyDown & event)
 {
-  
+
 }
 
 void EventHandler::handleKeyUp (KeyUp & event)
 {
-  
+
 }
 
 void EventHandler::handleQuit (Quit & event)
 {
-  
+
 }
 
 void EventHandler::handleMouseMotion (MouseMotion & event)
 {
-  
+
 }
 
 void EventHandler::handleMouseDown (MouseDown & event)
 {
-  
+
 }
 
 void EventHandler::handleMouseUp (MouseUp & event)
 {
-  
+
 }
 
 void EventHandler::handleMouseWheel (MouseWheel & event)
 {
-  
+
 }
 
 void EventHandler::handleWindowEvent (WindowEvent & event)
 {
-  
+
 }
 
 void EventHandler::handleNullEvent (NullEvent & event)
 {
-  
+
 }
 
 } // namespace Events

@@ -1,13 +1,13 @@
 //
-//  EventType.h
+//  EventType.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/6/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef EventType_h
-#define EventType_h
+#ifndef EventType_hpp
+#define EventType_hpp
 
 #include <SDL2/SDL.h>
 
@@ -34,4 +34,4 @@ enum EventType
 
 } // namespace Falcon
 
-#endif /* EventType_h */
+#endif /* EventType_hpp */

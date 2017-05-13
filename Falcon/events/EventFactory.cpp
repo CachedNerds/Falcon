@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "EventFactory.h"
-#include "Events.h"
+#include "EventFactory.hpp"
+#include "Events.hpp"
 
 namespace Falcon
 {

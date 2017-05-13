@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "Event.h"
-#include "EventHandler.h"
+#include "Event.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,12 +18,12 @@ namespace Events
 Event::Event (EventType type)
 : type_ (type)
 {
-  
+
 }
 
 Event::~Event (void)
 {
-  
+
 }
 
 EventType & Event::getType (void)

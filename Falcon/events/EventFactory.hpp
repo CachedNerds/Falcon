@@ -1,16 +1,16 @@
 //
-//  EventFactory.h
+//  EventFactory.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/5/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef EventFactory_h
-#define EventFactory_h
+#ifndef EventFactory_hpp
+#define EventFactory_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.h"
+#include "Event.hpp"
 
 namespace Falcon
 {
@@ -31,7 +31,7 @@ class NullEvent;
 class EventFactory
 {
 public:
-  
+
   Event * createKeyDown (SDL_Event & event);
   
   Event * createKeyUp (SDL_Event & event);
@@ -49,11 +49,11 @@ public:
   Event * createWindowEvent (SDL_Event & event);
   
   Event * createNullEvent (SDL_Event & event);
-  
+
 };
 
 } // namespace Events
 
 } // namespace Falcon
 
-#endif /* EventFactory_h */
+#endif /* EventFactory_hpp */

@@ -1,17 +1,16 @@
 //
-//  KeyDown.h
+//  NullEvent.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/6/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef KeyDown_h
-#define KeyDown_h
+#ifndef NullEvent_hpp
+#define NullEvent_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.h"
-#include "Key.h"
+#include "Event.hpp"
 
 namespace Falcon
 {
@@ -21,24 +20,18 @@ namespace Events
 
 class EventHandler;
 
-class KeyDown : public Event
+class NullEvent : public Event
 {
 public:
-  
-  KeyDown (SDL_Event & event);
-  
+
+  NullEvent (SDL_Event & event);
+
   void accept (EventHandler & handler);
-  
-  Key getKey (void) const;
-  
-private:
-  
-  Key code_;
-  
+
 };
 
 } // namespace Events
 
 } // namespace Falcon
 
-#endif /* KeyDown_h */
+#endif /* NullEvent_hpp */

@@ -7,9 +7,9 @@
 //
 
 #include <iostream>
-#include "SpriteEventHandler.h"
-#include "Sprite.h"
-#include "KeyDown.h"
+#include "SpriteEventHandler.hpp"
+#include "Sprite.hpp"
+#include "events/KeyDown.hpp"
 
 namespace Falcon
 {
@@ -26,32 +26,28 @@ void SpriteEventHandler::handleKeyDown (KeyDown & event)
   using Events::Key::RIGHT;
   using Events::Key::UP;
   using Events::Key::DOWN;
-  
+
   switch (event.getKey ())
   {
     case RIGHT:
-      std::cout << "right" << std::endl;
       this->sprite_->setX (this->sprite_->getX () + 5);
       break;
-      
+
     case LEFT:
-      std::cout << "left" << std::endl;
       this->sprite_->setX (this->sprite_->getX () - 5);
       break;
-      
+
     case UP:
-      std::cout << "up" << std::endl;
       this->sprite_->setY (this->sprite_->getY () - 5);
       break;
-      
+
     case DOWN:
-      std::cout << "down" << std::endl;
       this->sprite_->setY (this->sprite_->getY () + 5);
       break;
-      
+
     default:
       break;
   }
 }
-  
+
 } // namespace Falcon

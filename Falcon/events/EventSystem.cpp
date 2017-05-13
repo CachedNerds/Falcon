@@ -7,8 +7,8 @@
 //
 
 #include <iostream>
-#include "EventSystem.h"
-#include "Events.h"
+#include "EventSystem.hpp"
+#include "Events.hpp"
 
 namespace Falcon
 {
@@ -33,7 +33,6 @@ EventSystem::EventSystem (void)
   this->factoryMethods_[MOUSEUP] = &EventFactory::createMouseUp;
   this->factoryMethods_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
   this->factoryMethods_[WINDOWEVENT] = &EventFactory::createWindowEvent;
-  this->factoryMethods_[NULLEVENT] = &EventFactory::createNullEvent;
 }
 
 EventSystem::~EventSystem (void)
@@ -50,8 +49,18 @@ Event * EventSystem::getNextEvent (void)
 {
   EventType type = EventType (this->event_.type);
   FACTORYMETHOD createEvent = this->factoryMethods_[type];
-  return (createEvent == nullptr) ? this->eventFactory_->createNullEvent (this->event_)
-                                  : (this->eventFactory_->*createEvent)(this->event_);
+
+  Event * event = nullptr;
+  if (createEvent == nullptr)
+  {
+    event = this->eventFactory_->createNullEvent (this->event_);
+  }
+  else
+  {
+    event = (this->eventFactory_->*createEvent)(this->event_);
+  }
+
+  return event;
 }
 
 } // namespace Events

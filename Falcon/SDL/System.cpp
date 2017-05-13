@@ -7,9 +7,9 @@
 //
 
 #include <iostream>
-#include "SDL_Exception.h"
-#include "IMG_Exception.h"
-#include "System.h"
+#include "SDL_Exception.hpp"
+#include "IMG_Exception.hpp"
+#include "System.hpp"
 
 namespace Falcon
 {
@@ -22,16 +22,16 @@ System & System::instance (void)
   static System system;
   return system;
 }
-  
+
 System::System (void)
 : initialized_ (false)
 {
-  
+
 }
 
 System::~System (void)
 {
-  
+
 }
 
 System & System::enableVideo (void)
@@ -75,25 +75,25 @@ void System::initialize (void)
   if (!this->initialized_)
   {
     Uint32 SDL_INIT_FLAGS = 0;
-    
+
     for (auto iter = this->flags_.begin (); iter != this->flags_.end (); ++ iter)
     {
       Uint32 flag = *iter;
       SDL_INIT_FLAGS = SDL_INIT_FLAGS | flag;
     }
-    
+
     Uint32 IMG_INIT_FLAGS = IMG_INIT_JPG | IMG_INIT_PNG;
-  
+
     if (SDL_Init (SDL_INIT_FLAGS) < 0)
     {
       throw SDL_Exception (SDL_GetError ());
     }
-    
+
     if (!IMG_Init (IMG_INIT_FLAGS))
     {
       throw SDL_Exception (IMG_GetError ());
     }
-    
+
     this->initialized_ = true;
   }
 }

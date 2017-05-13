@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "MouseUp.h"
-#include "EventHandler.h"
+#include "MouseUp.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,7 +18,7 @@ namespace Events
 MouseUp::MouseUp (SDL_Event & event)
 : Event (EventType (event.type))
 {
-  
+
 }
 
 void MouseUp::accept (EventHandler & handler)

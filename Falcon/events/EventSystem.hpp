@@ -1,19 +1,19 @@
 //
-//  EventSystem.h
+//  EventSystem.hpp
 //  Falcon
 //
 //  Created by Danny Peck on 4/4/17.
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#ifndef EventSystem_h
-#define EventSystem_h
+#ifndef EventSystem_hpp
+#define EventSystem_hpp
 
 #include <SDL2/SDL.h>
 #include <map>
-#include "Event.h"
-#include "EventFactory.h"
-#include "EventType.h"
+#include "Event.hpp"
+#include "EventFactory.hpp"
+#include "EventType.hpp"
 
 namespace Falcon
 {
@@ -53,4 +53,4 @@ private:
 
 } // namespace Falcon
 
-#endif /* EventSystem_h */
+#endif /* EventSystem_hpp */

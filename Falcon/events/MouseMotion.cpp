@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "MouseMotion.h"
-#include "EventHandler.h"
+#include "MouseMotion.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
@@ -18,7 +18,7 @@ namespace Events
 MouseMotion::MouseMotion (SDL_Event & event)
 : Event (EventType (event.type))
 {
-  
+
 }
 
 void MouseMotion::accept (EventHandler & handler)

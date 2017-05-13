@@ -9,12 +9,12 @@
 #include <iostream>
 #include <SDL2_image/SDL_image.h>
 #include <vector>
-#include "SDL/SDL_Exception.h"
-#include "SDL/System.h"
-#include "SDL/Window.h"
-#include "Sprite.h"
-#include "events/EventSystem.h"
-#include "events/Event.h"
+#include "SDL/SDL_Exception.hpp"
+#include "SDL/System.hpp"
+#include "SDL/Window.hpp"
+#include "Sprite.hpp"
+#include "events/EventSystem.hpp"
+#include "events/Event.hpp"
 
 int main (int argc, char * args[])
 {
@@ -25,49 +25,68 @@ int main (int argc, char * args[])
   using Events::EventSystem;
   using Events::QUIT;
   using Events::NULLEVENT;
-  
+
   try
   {
     System::instance ()
            .enableAll ()
            .initialize ();
-    
+
     Window window ("Game", 0, 0, 500, 500);
-    
-    Sprite player ("fez.jpg", 10, 10);
-    
+    std::vector <Sprite *> eventListeners;
+    std::vector <Sprite *> updateable;
+    std::vector <Sprite *> renderable;
+
+    Sprite * player = new Sprite ("fez.jpg", 10, 10);
+    Sprite * enemy = new Sprite ("fez.jpg", 30, 100);
+    eventListeners.push_back (player);
+    renderable.push_back (player);
+    eventListeners.push_back (enemy);
+    renderable.push_back (enemy);
+
     EventSystem & eventSystem = EventSystem::instance ();
-    
+
     bool keepGoing = true;
     while (keepGoing)
     {
-      // handle input
+      // handle input / events
       while (eventSystem.nextEvent ())
       {
         Event * event = eventSystem.getNextEvent ();
-        if (event->getType () == QUIT)
+        if (event->getType () == NULLEVENT)
+        {
+          // do nothing
+        }
+        else if (event->getType () == QUIT)
         {
           keepGoing = false;
           break;
         }
-        else if (event->getType () == NULLEVENT)
-        {
-          // do nothing
-        }
         else
         {
-          player.handleEvent (*event);
+          for (auto iter = eventListeners.begin (); iter != eventListeners.end (); ++ iter)
+          {
+            (*iter)->handleEvent (*event);
+          }
         }
-        
-        delete event;
       }
-      
+
       // update
       
       // render
-      player.draw (window);
+      for (auto iter = renderable.begin (); iter != renderable.end (); ++ iter)
+      {
+        (*iter)->draw (window);
+      }
+
       window.update ();
     }
+
+    for (auto iter = eventListeners.begin (); iter != eventListeners.end (); ++ iter)
+    {
+      delete (*iter);
+    }
+
   }
   catch (SDL_Exception & e)
   {

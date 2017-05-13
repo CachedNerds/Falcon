@@ -6,8 +6,8 @@
 //  Copyright © 2017 Danny Peck. All rights reserved.
 //
 
-#include "KeyDown.h"
-#include "EventHandler.h"
+#include "KeyDown.hpp"
+#include "EventHandler.hpp"
 
 namespace Falcon
 {
