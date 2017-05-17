@@ -9,11 +9,16 @@
 #ifndef Updateable_hpp
 #define Updateable_hpp
 
+namespace Falcon
+{
+
 class Updateable
 {
   public:
 
-    virtual void update (GameObject & object) = 0;
+    virtual void update (void) = 0;
 };
+
+} // namespace Falcon
 
 #endif /* Updateable_hpp */

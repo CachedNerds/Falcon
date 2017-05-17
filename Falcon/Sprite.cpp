@@ -9,16 +9,16 @@
 #include "Sprite.hpp"
 #include "SpriteEventHandler.hpp"
 #include "SDL/Window.hpp"
-#include "events/Event.hpp"
-#include "events/Key.hpp"
+#include "Events/Event.hpp"
+#include "Events/Key.hpp"
 #include "SDL/IMG_Exception.hpp"
 
 namespace Falcon
 {
 
 Sprite::Sprite (std::string image, int x, int y)
-: image_ (nullptr)
-, eventHandler_ (new SpriteEventHandler (this))
+: GameObject (new SpriteEventHandler (this))
+, image_ (nullptr)
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
@@ -38,15 +38,15 @@ Sprite::~Sprite (void)
 {
   SDL_FreeSurface (this->image_); this->image_ = nullptr;
 }
+  
+void Sprite::update (void)
+{
+  // update
+}
 
 void Sprite::draw (Window & window)
 {
   SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
-}
-
-void Sprite::handleEvent (Event & event)
-{
-  event.accept (*this->eventHandler_);
 }
 
 void Sprite::setX (int x)

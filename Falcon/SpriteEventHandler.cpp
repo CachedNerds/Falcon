@@ -9,7 +9,7 @@
 #include <iostream>
 #include "SpriteEventHandler.hpp"
 #include "Sprite.hpp"
-#include "events/KeyDown.hpp"
+#include "Events/KeyDown.hpp"
 
 namespace Falcon
 {

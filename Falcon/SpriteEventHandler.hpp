@@ -9,7 +9,7 @@
 #ifndef SpriteEventHandler_hpp
 #define SpriteEventHandler_hpp
 
-#include "events/EventHandler.hpp"
+#include "Events/EventHandler.hpp"
 
 namespace Falcon
 {

@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <string>
-#include "events/EventListener.hpp"
+#include "GameObject.hpp"
 
 namespace Falcon
 {
@@ -29,17 +29,17 @@ using SDL::Window;
 
 class SpriteEventHandler;
 
-class Sprite : public EventListener
+class Sprite : public GameObject
 {
 public:
 
   Sprite (std::string image, int x, int y);
 
   ~Sprite (void);
+  
+  void update (void);
 
   void draw (Window & window);
-
-  virtual void handleEvent (Event & event);
 
   void setX (int x);
 
@@ -57,8 +57,6 @@ private:
 
   SDL_Surface * image_;
   SDL_Rect rect_;
-
-  SpriteEventHandler * eventHandler_;
 
 };
 

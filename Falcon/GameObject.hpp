@@ -9,20 +9,36 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
-#include "Drawable.hpp"
-#include "events/EventListener.hpp"
+#include "Events/EventListener.hpp"
+#include "Events/EventHandler.hpp"
 #include "Updateable.hpp"
+#include "Drawable.hpp"
+#include "Game.hpp"
 
 namespace Falcon
 {
 
 using Events::EventListener;
+using Events::EventHandler;
+using Events::Event;
 
-class GameObject : public Drawable, EventListener, Updateable
+class GameObject : public Drawable, public EventListener, public Updateable
 {
   public:
 
-  private:
+    virtual void handleEvent (Event & event);
+
+  protected:
+
+    GameObject (Game & game, EventHandler * eventHandler);
+
+    virtual ~GameObject (void);
+
+    Game & getGame (void) const;
+
+    Game & game_;
+
+    EventHandler * eventHandler_;
 
 };
 
