@@ -33,7 +33,7 @@ class Sprite : public GameObject
 {
 public:
 
-  Sprite (std::string image, int x, int y);
+  Sprite (Game & game, std::string image, int x, int y);
 
   ~Sprite (void);
   

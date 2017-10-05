@@ -12,10 +12,11 @@
 #include <vector>
 #include "SDL/Window.hpp"
 #include "Events/EventSystem.hpp"
-#include "GameObject.hpp"
 
 namespace Falcon
 {
+
+class GameObject;
 
 class Game
 {

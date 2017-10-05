@@ -15,8 +15,8 @@ int main (int argc, char * args[])
   using namespace Falcon;
   
   Game game;
-  Sprite * player = new Sprite ("fez.jpg", 10, 10);
-  game.registerGameObject (player);
+  Sprite sprite (game, "../fez.jpg", 0, 0);
+  game.registerGameObject (&sprite);
   game.loop ();
 
   return 0;

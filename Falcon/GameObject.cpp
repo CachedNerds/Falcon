@@ -7,6 +7,7 @@
 //
 
 #include "GameObject.hpp"
+#include "Game.hpp"
 
 namespace Falcon
 {

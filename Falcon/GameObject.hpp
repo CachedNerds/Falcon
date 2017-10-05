@@ -13,7 +13,6 @@
 #include "Events/EventHandler.hpp"
 #include "Updateable.hpp"
 #include "Drawable.hpp"
-#include "Game.hpp"
 
 namespace Falcon
 {
@@ -21,6 +20,8 @@ namespace Falcon
 using Events::EventListener;
 using Events::EventHandler;
 using Events::Event;
+
+class Game;
 
 class GameObject : public Drawable, public EventListener, public Updateable
 {

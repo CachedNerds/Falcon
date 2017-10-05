@@ -16,8 +16,8 @@
 namespace Falcon
 {
 
-Sprite::Sprite (std::string image, int x, int y)
-: GameObject (new SpriteEventHandler (this))
+Sprite::Sprite (Game & game, std::string image, int x, int y)
+: GameObject (game, new SpriteEventHandler (this))
 , image_ (nullptr)
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());

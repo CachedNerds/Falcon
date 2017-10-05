@@ -11,6 +11,7 @@
 #include "SDL/System.hpp"
 #include "Events/Event.hpp"
 #include "Events/Events.hpp"
+#include "GameObject.hpp"
 
 namespace Falcon
 {
