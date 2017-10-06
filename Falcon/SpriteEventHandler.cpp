@@ -14,39 +14,39 @@
 namespace Falcon
 {
 
-SpriteEventHandler::SpriteEventHandler (Sprite * sprite)
+SpriteEventHandler::SpriteEventHandler (Sprite * const sprite)
 : sprite_ (sprite)
 {
 
 }
 
-void SpriteEventHandler::handleKeyDown (KeyDown & event)
+void SpriteEventHandler::handleKeyDown (const KeyDown & event)
 {
-  using Events::Key::LEFT;
-  using Events::Key::RIGHT;
-  using Events::Key::UP;
-  using Events::Key::DOWN;
-
-  switch (event.getKey ())
+  if (sprite_ != nullptr)
   {
-    case RIGHT:
-      this->sprite_->setX (this->sprite_->getX () + 5);
-      break;
-
-    case LEFT:
-      this->sprite_->setX (this->sprite_->getX () - 5);
-      break;
-
-    case UP:
-      this->sprite_->setY (this->sprite_->getY () - 5);
-      break;
-
-    case DOWN:
-      this->sprite_->setY (this->sprite_->getY () + 5);
-      break;
-
-    default:
-      break;
+    using Events::Key;
+    
+    switch (event.getKey ())
+    {
+      case Key::Right:
+        this->sprite_->setX (this->sprite_->getX () + 5);
+        break;
+  
+      case Key::Left:
+        this->sprite_->setX (this->sprite_->getX () - 5);
+        break;
+  
+      case Key::Up:
+        this->sprite_->setY (this->sprite_->getY () - 5);
+        break;
+  
+      case Key::Down:
+        this->sprite_->setY (this->sprite_->getY () + 5);
+        break;
+  
+      default:
+        break;
+    }
   }
 }
 

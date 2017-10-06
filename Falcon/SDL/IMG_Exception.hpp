@@ -10,11 +10,10 @@
 #define IMG_Exception_hpp
 
 #include <SDL2_image/SDL_image.h>
+#include <stdexcept>
+#include <string>
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 /**
@@ -26,17 +25,9 @@ class IMG_Exception : public std::exception
 {
 public:
 
-  IMG_Exception (const char * error)
-  {
-    this->error_ = std::string (error);
-  }
+  IMG_Exception (const char * error);
 
-  const char * what () const throw ()
-  {
-    std::string message = "IMG_Error: " + this->error_;
-
-    return message.c_str ();
-  }
+  const char * what () const throw ();
 
 protected:
 
@@ -44,8 +35,6 @@ protected:
 
 };
 
-} // namespace SDL
-
-} // namespace Falcon
+} // namespace Falcon::SDL
 
 #endif /* IMG_Exception_hpp */

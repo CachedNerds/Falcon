@@ -9,16 +9,15 @@
 #ifndef EventSystem_hpp
 #define EventSystem_hpp
 
-#include <SDL2/SDL.h>
-#include <map>
 #include "Event.hpp"
 #include "EventFactory.hpp"
 #include "EventType.hpp"
 
-namespace Falcon
-{
+#include <SDL2/SDL.h>
+#include <map>
+#include <memory>
 
-namespace Events
+namespace Falcon::Events
 {
 
 class Event;
@@ -35,22 +34,17 @@ public:
 
 private:
 
-  SDL_Event event_;
-
-  typedef Event * (EventFactory::*FACTORYMETHOD) (SDL_Event &);
-
-  std::map<EventType, FACTORYMETHOD> factoryMethods_;
-
-  EventFactory * eventFactory_;
-
   EventSystem (void);
 
-  ~EventSystem (void);
+  SDL_Event event_;
+
+  EventFactory eventFactory_;
+
+  typedef Event * (EventFactory::*FACTORYMETHOD) (const SDL_Event &);
+  std::map<EventType, FACTORYMETHOD> factoryMethods_;
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* EventSystem_hpp */

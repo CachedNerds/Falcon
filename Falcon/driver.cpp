@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Game.hpp"
 #include "Sprite.hpp"
+#include "events/Event.hpp"
+#include "events/KeyDown.hpp"
 
 int main (int argc, char * args[])
 {

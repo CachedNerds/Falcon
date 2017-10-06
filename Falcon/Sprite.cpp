@@ -16,9 +16,10 @@
 namespace Falcon
 {
 
-Sprite::Sprite (Game & game, std::string image, int x, int y)
+Sprite::Sprite (Game & game, const std::string & image, int x, int y)
 : GameObject (game, new SpriteEventHandler (this))
 , image_ (nullptr)
+, rect_ ()
 {
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
@@ -36,7 +37,8 @@ Sprite::Sprite (Game & game, std::string image, int x, int y)
 
 Sprite::~Sprite (void)
 {
-  SDL_FreeSurface (this->image_); this->image_ = nullptr;
+  SDL_FreeSurface (this->image_);
+  this->image_ = nullptr;
 }
   
 void Sprite::update (void)

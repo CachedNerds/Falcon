@@ -29,13 +29,13 @@ class SpriteEventHandler : public EventHandler
 {
 public:
 
-  SpriteEventHandler (Sprite * sprite);
+  SpriteEventHandler (Sprite * const sprite);
 
-  void handleKeyDown (KeyDown & event);
+  void handleKeyDown (const KeyDown & event) override;
 
 private:
 
-  Sprite * sprite_;
+  Sprite * const sprite_;
 
 };
 

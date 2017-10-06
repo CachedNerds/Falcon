@@ -9,14 +9,11 @@
 #include "NullEvent.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-NullEvent::NullEvent (SDL_Event & event)
-: Event (EventType (event.type))
+NullEvent::NullEvent (const SDL_Event & event)
+: Event (EventType::NullEvent)
 {
 
 }
@@ -26,6 +23,4 @@ void NullEvent::accept (EventHandler & handler)
   handler.handleNullEvent (*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

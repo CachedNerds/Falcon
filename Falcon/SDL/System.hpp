@@ -12,10 +12,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 class System
@@ -40,18 +37,14 @@ public:
 
 private:
 
+  System (void);
+
   std::vector<Uint32> flags_;
 
   bool initialized_;
 
-  System (void);
-
-  ~System (void);
-
 };
   
-} // namespace SDL
-  
-} // namespace Falcon
+} // namespace Falcon::SDL
 
 #endif /* System_hpp */

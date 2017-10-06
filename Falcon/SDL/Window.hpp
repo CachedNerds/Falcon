@@ -11,11 +11,9 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include <memory>
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 /**
@@ -28,24 +26,22 @@ class Window
 public:
 
   // default constructor
-  Window (std::string title);
+  Window (const std::string & title);
 
   // initializer constructor
-  Window (std::string title, int x, int y, int width, int height);
+  Window (const std::string & title, int x, int y, int width, int height);
 
   // destructor
-  ~Window (void);
+  virtual ~Window (void);
 
   // updates the window
-  void update (void);
+  virtual void update (void);
 
   SDL_Surface * getScreen (void) const;
 
-  SDL_Renderer * getRenderer (void) const;
-
   std::string getTitle (void) const;
 
-  void setTitle (std::string title);
+  void setTitle (const std::string & title);
 
   int getWidth (void) const;
 
@@ -62,13 +58,11 @@ private:
   int width_, height_;
 
   SDL_Window * window_;
-  SDL_Renderer * renderer_;
   SDL_Surface * screen_;
+  SDL_Renderer * renderer_;
 
 };
 
-} // namespace SDL
-
-} // namespace Falcon
+} // namespace Falcon::SDL
 
 #endif /* Window_hpp */

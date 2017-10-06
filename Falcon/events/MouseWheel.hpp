@@ -12,10 +12,7 @@
 #include <SDL2/SDL.h>
 #include "Event.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class EventHandler;
@@ -24,14 +21,12 @@ class MouseWheel : public Event
 {
 public:
 
-  MouseWheel (SDL_Event & event);
+  MouseWheel (const SDL_Event & event);
 
-  void accept (EventHandler & handler);
+  void accept (EventHandler & handler) override;
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* MouseWheel_hpp */

@@ -9,14 +9,11 @@
 #include "MouseDown.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-MouseDown::MouseDown (SDL_Event & event)
-: Event (EventType (event.type))
+MouseDown::MouseDown (const SDL_Event & event)
+: Event (EventType::MouseDown)
 {
 
 }
@@ -26,6 +23,4 @@ void MouseDown::accept (EventHandler & handler)
   handler.handleMouseDown (*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

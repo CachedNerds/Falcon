@@ -9,57 +9,52 @@
 #include "EventFactory.hpp"
 #include "Events.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-Event * EventFactory::createKeyDown (SDL_Event & event)
+Event * EventFactory::createKeyDown (const SDL_Event & event)
 {
   return new KeyDown (event);
 }
 
-Event * EventFactory::createKeyUp (SDL_Event & event)
+Event * EventFactory::createKeyUp (const SDL_Event & event)
 {
   return new KeyUp (event);
 }
 
-Event * EventFactory::createQuit (SDL_Event & event)
+Event * EventFactory::createQuit (const SDL_Event & event)
 {
   return new Quit (event);
 }
 
-Event * EventFactory::createMouseMotion (SDL_Event & event)
+Event * EventFactory::createMouseMotion (const SDL_Event & event)
 {
   return new MouseMotion (event);
 }
 
-Event * EventFactory::createMouseDown (SDL_Event & event)
+Event * EventFactory::createMouseDown (const SDL_Event & event)
 {
   return new MouseDown (event);
 }
 
-Event * EventFactory::createMouseUp (SDL_Event & event)
+Event * EventFactory::createMouseUp (const SDL_Event & event)
 {
   return new MouseUp (event);
 }
 
-Event * EventFactory::createMouseWheel (SDL_Event & event)
+Event * EventFactory::createMouseWheel (const SDL_Event & event)
 {
   return new MouseWheel (event);
 }
 
-Event * EventFactory::createWindowEvent (SDL_Event & event)
+Event * EventFactory::createWindowEvent (const SDL_Event & event)
 {
   return new WindowEvent (event);
 }
 
-Event * EventFactory::createNullEvent (SDL_Event & event)
+Event * EventFactory::createNullEvent (const SDL_Event & event)
 {
   return new NullEvent (event);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

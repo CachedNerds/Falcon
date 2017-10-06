@@ -12,10 +12,7 @@
 #include <SDL2/SDL.h>
 #include "Event.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class KeyDown;
@@ -32,28 +29,26 @@ class EventFactory
 {
 public:
 
-  Event * createKeyDown (SDL_Event & event);
+  Event * createKeyDown (const SDL_Event & event);
   
-  Event * createKeyUp (SDL_Event & event);
+  Event * createKeyUp (const SDL_Event & event);
   
-  Event * createQuit (SDL_Event & event);
+  Event * createQuit (const SDL_Event & event);
   
-  Event * createMouseMotion (SDL_Event & event);
+  Event * createMouseMotion (const SDL_Event & event);
   
-  Event * createMouseDown (SDL_Event & event);
+  Event * createMouseDown (const SDL_Event & event);
   
-  Event * createMouseUp (SDL_Event & event);
+  Event * createMouseUp (const SDL_Event & event);
   
-  Event * createMouseWheel (SDL_Event & event);
+  Event * createMouseWheel (const SDL_Event & event);
   
-  Event * createWindowEvent (SDL_Event & event);
+  Event * createWindowEvent (const SDL_Event & event);
   
-  Event * createNullEvent (SDL_Event & event);
+  Event * createNullEvent (const SDL_Event & event);
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* EventFactory_hpp */

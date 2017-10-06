@@ -33,13 +33,13 @@ class Sprite : public GameObject
 {
 public:
 
-  Sprite (Game & game, std::string image, int x, int y);
+  Sprite (Game & game, const std::string & image, int x, int y);
 
-  ~Sprite (void);
+  virtual ~Sprite (void);
   
-  void update (void);
+  void update (void) override;
 
-  void draw (Window & window);
+  void draw (Window & window) override;
 
   void setX (int x);
 

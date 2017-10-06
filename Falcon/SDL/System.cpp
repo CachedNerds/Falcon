@@ -11,10 +11,7 @@
 #include "IMG_Exception.hpp"
 #include "System.hpp"
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 System & System::instance (void)
@@ -24,12 +21,8 @@ System & System::instance (void)
 }
 
 System::System (void)
-: initialized_ (false)
-{
-
-}
-
-System::~System (void)
+: flags_ ()
+, initialized_ (false)
 {
 
 }
@@ -79,7 +72,7 @@ void System::initialize (void)
     for (auto iter = this->flags_.begin (); iter != this->flags_.end (); ++ iter)
     {
       Uint32 flag = *iter;
-      SDL_INIT_FLAGS = SDL_INIT_FLAGS | flag;
+      SDL_INIT_FLAGS |= flag;
     }
 
     Uint32 IMG_INIT_FLAGS = IMG_INIT_JPG | IMG_INIT_PNG;
@@ -98,6 +91,4 @@ void System::initialize (void)
   }
 }
 
-} // namespace SDL
-
-} // namespace Falcon
+} // namespace Falcon::SDL

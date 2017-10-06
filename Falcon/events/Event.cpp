@@ -9,13 +9,10 @@
 #include "Event.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-Event::Event (EventType type)
+Event::Event (const EventType & type)
 : type_ (type)
 {
 
@@ -26,21 +23,19 @@ Event::~Event (void)
 
 }
 
-EventType & Event::getType (void)
+EventType Event::getType (void) const
 {
   return this->type_;
 }
 
-bool Event::operator == (Event & rhs) const
+bool Event::operator == (const Event & rhs) const
 {
-  return this->type_ == rhs.getType ();
+  return this->type_ == rhs.type_;
 }
 
-bool Event::operator != (Event & rhs) const
+bool Event::operator != (const Event & rhs) const
 {
   return !(this->operator == (rhs));
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

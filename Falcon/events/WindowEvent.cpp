@@ -9,14 +9,11 @@
 #include "WindowEvent.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-WindowEvent::WindowEvent (SDL_Event & event)
-: Event (EventType (event.type))
+WindowEvent::WindowEvent (const SDL_Event & event)
+: Event (EventType::WindowEvent)
 {
 
 }
@@ -26,6 +23,4 @@ void WindowEvent::accept (EventHandler & handler)
   handler.handleWindowEvent (*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

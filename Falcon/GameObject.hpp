@@ -27,7 +27,7 @@ class GameObject : public Drawable, public EventListener, public Updateable
 {
   public:
 
-    virtual void handleEvent (Event & event);
+    virtual void handleEvent (Event & event) override;
 
   protected:
 

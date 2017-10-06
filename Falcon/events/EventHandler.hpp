@@ -9,10 +9,7 @@
 #ifndef EventHandler_hpp
 #define EventHandler_hpp
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class KeyDown;
@@ -29,28 +26,28 @@ class EventHandler
 {
   public:
 
-    virtual void handleKeyDown (KeyDown & event);
+    virtual ~EventHandler (void);
 
-    virtual void handleKeyUp (KeyUp & event);
+    virtual void handleKeyDown (const KeyDown & event);
 
-    virtual void handleQuit (Quit & event);
+    virtual void handleKeyUp (const KeyUp & event);
 
-    virtual void handleMouseMotion (MouseMotion & event);
+    virtual void handleQuit (const Quit & event);
 
-    virtual void handleMouseDown (MouseDown & event);
+    virtual void handleMouseMotion (const MouseMotion & event);
 
-    virtual void handleMouseUp (MouseUp & event);
+    virtual void handleMouseDown (const MouseDown & event);
 
-    virtual void handleMouseWheel (MouseWheel & event);
+    virtual void handleMouseUp (const MouseUp & event);
 
-    virtual void handleWindowEvent (WindowEvent & event);
+    virtual void handleMouseWheel (const MouseWheel & event);
 
-    virtual void handleNullEvent (NullEvent & event);
+    virtual void handleWindowEvent (const WindowEvent & event);
+
+    virtual void handleNullEvent (const NullEvent & event);
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* EventHandler_hpp */

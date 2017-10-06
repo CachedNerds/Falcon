@@ -11,10 +11,7 @@
 
 #include "Event.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class EventListener
@@ -25,8 +22,6 @@ public:
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* EventListener_hpp */

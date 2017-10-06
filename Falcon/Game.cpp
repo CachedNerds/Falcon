@@ -17,7 +17,9 @@ namespace Falcon
 {
 
   Game::Game (void)
-  : eventSystem_ (Events::EventSystem::instance ())
+  : window_ ()
+  , eventSystem_ (Events::EventSystem::instance ())
+  , gameObjects_ ()
   {
     using SDL::System;
     using SDL::Window;
@@ -26,12 +28,13 @@ namespace Falcon
            .enableAll ()
            .initialize ();
 
-    this->window_ = new Window ("Game", 0, 0, 500, 500);
+    // must be created after System has been initialized
+    this->window_ = std::make_shared<Window>("Game", 0, 0, 500, 500);
   }
   
   Game::~Game (void)
   {
-    delete this->window_;
+
   }
   
   void Game::registerGameObject (GameObject * object)
@@ -41,10 +44,8 @@ namespace Falcon
   
   bool Game::processEvents (void)
   {
-    using Events::Event;
-    using Events::NULLEVENT;
-    using Events::QUIT;
-    
+    using Events::EventType;
+
     bool keepGoing = true;
     
     // handle input / events
@@ -54,18 +55,18 @@ namespace Falcon
       Event * event = this->eventSystem_.getNextEvent ();
       
       // handle event
-      if (event->getType () == NULLEVENT)
+      if (event->getType () == EventType::NullEvent)
       {
         // do nothing
       }
-      else if (event->getType () == QUIT)
+      else if (event->getType () == EventType::Quit)
       {
         keepGoing = false;
         break;
       }
       else
       {
-        for (auto iter = this->gameObjects_.begin (); iter != this->gameObjects_.end (); ++ iter)
+        for (auto iter = this->gameObjects_.begin (); iter != this->gameObjects_.end (); ++iter)
         {
           (*iter)->handleEvent (*event);
         }

@@ -10,10 +10,7 @@
 #include "EventSystem.hpp"
 #include "Events.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 EventSystem & EventSystem::instance (void)
@@ -23,21 +20,18 @@ EventSystem & EventSystem::instance (void)
 }
 
 EventSystem::EventSystem (void)
-: eventFactory_ (new EventFactory)
+: event_ ()
+, eventFactory_ ()
+, factoryMethods_ ()
 {
-  this->factoryMethods_[KEYDOWN] = &EventFactory::createKeyDown;
-  this->factoryMethods_[KEYUP] = &EventFactory::createKeyUp;
-  this->factoryMethods_[QUIT] = &EventFactory::createQuit;
-  this->factoryMethods_[MOUSEMOTION] = &EventFactory::createMouseMotion;
-  this->factoryMethods_[MOUSEDOWN] = &EventFactory::createKeyDown;
-  this->factoryMethods_[MOUSEUP] = &EventFactory::createMouseUp;
-  this->factoryMethods_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
-  this->factoryMethods_[WINDOWEVENT] = &EventFactory::createWindowEvent;
-}
-
-EventSystem::~EventSystem (void)
-{
-  delete this->eventFactory_;
+  this->factoryMethods_[EventType::KeyDown] = &EventFactory::createKeyDown;
+  this->factoryMethods_[EventType::KeyUp] = &EventFactory::createKeyUp;
+  this->factoryMethods_[EventType::Quit] = &EventFactory::createQuit;
+  this->factoryMethods_[EventType::MouseMotion] = &EventFactory::createMouseMotion;
+  this->factoryMethods_[EventType::MouseDown] = &EventFactory::createKeyDown;
+  this->factoryMethods_[EventType::MouseUp] = &EventFactory::createMouseUp;
+  this->factoryMethods_[EventType::MouseWheel] = &EventFactory::createMouseWheel;
+  this->factoryMethods_[EventType::WindowEvent] = &EventFactory::createWindowEvent;
 }
 
 bool EventSystem::nextEvent (void)
@@ -50,19 +44,17 @@ Event * EventSystem::getNextEvent (void)
   EventType type = EventType (this->event_.type);
   FACTORYMETHOD createEvent = this->factoryMethods_[type];
 
-  Event * event = nullptr;
+  Event * event;
   if (createEvent == nullptr)
   {
-    event = this->eventFactory_->createNullEvent (this->event_);
+    event = this->eventFactory_.createNullEvent (this->event_);
   }
   else
   {
-    event = (this->eventFactory_->*createEvent)(this->event_);
+    event = (this->eventFactory_.*createEvent)(this->event_);
   }
 
   return event;
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

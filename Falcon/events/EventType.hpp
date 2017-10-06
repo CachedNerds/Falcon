@@ -11,27 +11,22 @@
 
 #include <SDL2/SDL.h>
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
+enum class EventType
 {
-
-enum EventType
-{
-  KEYDOWN = SDL_KEYDOWN,
-  KEYUP = SDL_KEYUP,
-  QUIT = SDL_QUIT,
-  MOUSEMOTION = SDL_MOUSEMOTION,
-  MOUSEDOWN = SDL_MOUSEBUTTONDOWN,
-  MOUSEUP = SDL_MOUSEBUTTONUP,
-  MOUSEWHEEL = SDL_MOUSEWHEEL,
-  WINDOWEVENT = SDL_WINDOWEVENT,
-  NULLEVENT = 0
+  NullEvent = 0,
+  KeyDown = SDL_KEYDOWN,
+  KeyUp = SDL_KEYUP,
+  Quit = SDL_QUIT,
+  MouseMotion = SDL_MOUSEMOTION,
+  MouseDown = SDL_MOUSEBUTTONDOWN,
+  MouseUp = SDL_MOUSEBUTTONUP,
+  MouseWheel = SDL_MOUSEWHEEL,
+  WindowEvent = SDL_WINDOWEVENT
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* EventType_hpp */

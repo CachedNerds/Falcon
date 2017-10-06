@@ -9,57 +9,57 @@
 #include "EventHandler.hpp"
 #include "Events.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-void EventHandler::handleKeyDown (KeyDown & event)
+EventHandler::~EventHandler (void)
 {
 
 }
 
-void EventHandler::handleKeyUp (KeyUp & event)
+void EventHandler::handleKeyDown (const KeyDown & event)
 {
 
 }
 
-void EventHandler::handleQuit (Quit & event)
+void EventHandler::handleKeyUp (const KeyUp & event)
 {
 
 }
 
-void EventHandler::handleMouseMotion (MouseMotion & event)
+void EventHandler::handleQuit (const Quit & event)
 {
 
 }
 
-void EventHandler::handleMouseDown (MouseDown & event)
+void EventHandler::handleMouseMotion (const MouseMotion & event)
 {
 
 }
 
-void EventHandler::handleMouseUp (MouseUp & event)
+void EventHandler::handleMouseDown (const MouseDown & event)
 {
 
 }
 
-void EventHandler::handleMouseWheel (MouseWheel & event)
+void EventHandler::handleMouseUp (const MouseUp & event)
 {
 
 }
 
-void EventHandler::handleWindowEvent (WindowEvent & event)
+void EventHandler::handleMouseWheel (const MouseWheel & event)
 {
 
 }
 
-void EventHandler::handleNullEvent (NullEvent & event)
+void EventHandler::handleWindowEvent (const WindowEvent & event)
 {
 
 }
 
-} // namespace Events
+void EventHandler::handleNullEvent (const NullEvent & event)
+{
 
-} // namespace Falcon
+}
+
+} // namespace Falcon::Events

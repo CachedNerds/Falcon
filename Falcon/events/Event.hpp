@@ -13,10 +13,7 @@
 #include "EventType.hpp"
 #include "Key.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 class EventHandler;
 
@@ -24,26 +21,24 @@ class Event
 {
 public:
 
-  Event (EventType type);
+  Event (const EventType & type);
   
   virtual ~Event (void);
   
-  EventType & getType (void);
+  EventType getType (void) const;
   
-  bool operator == (Event & rhs) const;
+  bool operator == (const Event & rhs) const;
   
-  bool operator != (Event & rhs) const;
+  bool operator != (const Event & rhs) const;
   
   virtual void accept (EventHandler & handler) = 0;
 
-private:
+protected:
 
   EventType type_;
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* Event_hpp */

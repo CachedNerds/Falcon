@@ -9,14 +9,11 @@
 #include "MouseWheel.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-MouseWheel::MouseWheel (SDL_Event & event)
-: Event (EventType (event.type))
+MouseWheel::MouseWheel (const SDL_Event & event)
+: Event (EventType::MouseWheel)
 {
 
 }
@@ -26,6 +23,4 @@ void MouseWheel::accept (EventHandler & handler)
   handler.handleMouseWheel (*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

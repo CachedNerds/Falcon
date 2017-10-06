@@ -12,10 +12,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 /**
@@ -27,17 +24,9 @@ class SDL_Exception : public std::exception
 {
 public:
 
-  SDL_Exception (const char * error)
-  {
-    this->error_ = std::string (error);
-  }
+  SDL_Exception (const char * error);
 
-  const char * what () const throw ()
-  {
-    std::string message = "SDL_Error: " + this->error_;
-
-    return message.c_str ();
-  }
+  const char * what () const throw ();
 
 protected:
 
@@ -45,8 +34,6 @@ protected:
 
 };
 
-} // namespace SDL
-
-} // namespace Falcon
+} // namespace Falcon::SDL
 
 #endif /* SDL_Exception_hpp */

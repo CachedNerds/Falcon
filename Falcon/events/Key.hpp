@@ -11,24 +11,21 @@
 
 #include <SDL2/SDL.h>
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
+enum class Key
 {
-
-enum Key
-{
-  ZERO = SDLK_0,
-  ONE = SDLK_1,
-  TWO = SDLK_2,
-  THREE = SDLK_3,
-  FOUR = SDLK_4,
-  FIVE = SDLK_5,
-  SIX = SDLK_6,
-  SEVEN = SDLK_7,
-  EIGHT = SDLK_8,
-  NINE = SDLK_9,
+  Zero = SDLK_0,
+  One = SDLK_1,
+  Two = SDLK_2,
+  Three = SDLK_3,
+  Four = SDLK_4,
+  Five = SDLK_5,
+  Six = SDLK_6,
+  Seven = SDLK_7,
+  Eight = SDLK_8,
+  Nine = SDLK_9,
   A = SDLK_a,
   B = SDLK_b,
   C = SDLK_c,
@@ -55,17 +52,15 @@ enum Key
   X = SDLK_x,
   Y = SDLK_y,
   Z = SDLK_z,
-  UP = SDLK_UP,
-  DOWN = SDLK_DOWN,
-  LEFT = SDLK_LEFT,
-  RIGHT = SDLK_RIGHT,
-  SPACE = SDLK_SPACE,
-  BACKSPACE = SDLK_BACKSPACE,
-  RETURN = SDLK_RETURN
+  Up = SDLK_UP,
+  Down = SDLK_DOWN,
+  Left = SDLK_LEFT,
+  Right = SDLK_RIGHT,
+  Space = SDLK_SPACE,
+  Backspace = SDLK_BACKSPACE,
+  Return = SDLK_RETURN
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* Key_hpp */

@@ -9,14 +9,11 @@
 #include "Quit.hpp"
 #include "Eventhandler.hpp"
 
-namespace Falcon
+namespace Falcon::Events
 {
 
-namespace Events
-{
-
-Quit::Quit (SDL_Event & event)
-: Event (EventType (event.type))
+Quit::Quit (const SDL_Event & event)
+: Event (EventType::Quit)
 {
 
 }
@@ -26,6 +23,4 @@ void Quit::accept (EventHandler & handler)
   handler.handleQuit (*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events

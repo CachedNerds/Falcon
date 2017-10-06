@@ -10,35 +10,24 @@
 #define KeyDown_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.hpp"
+#include "KeyEvent.hpp"
 #include "Key.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class EventHandler;
 
-class KeyDown : public Event
+class KeyDown : public KeyEvent
 {
   public:
 
-    KeyDown (SDL_Event & event);
+    KeyDown (const SDL_Event & event);
 
-    void accept (EventHandler & handler);
-
-    Key getKey (void) const;
-
-  private:
-
-    Key code_;
-
+    void accept (EventHandler & handler) override;
+    
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* KeyDown_hpp */

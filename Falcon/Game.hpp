@@ -9,9 +9,10 @@
 #ifndef World_hpp
 #define World_hpp
 
-#include <vector>
 #include "SDL/Window.hpp"
 #include "Events/EventSystem.hpp"
+#include <vector>
+#include <memory>
 
 namespace Falcon
 {
@@ -24,7 +25,7 @@ class Game
 
     Game (void);
 
-    ~Game (void);
+    virtual ~Game (void);
 
     void loop (void);
   
@@ -34,7 +35,7 @@ class Game
 
     bool processEvents (void);
 
-    SDL::Window * window_;
+    std::shared_ptr<SDL::Window> window_;
 
     Events::EventSystem & eventSystem_;
   

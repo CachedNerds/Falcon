@@ -10,35 +10,24 @@
 #define KeyUp_hpp
 
 #include <SDL2/SDL.h>
-#include "Event.hpp"
+#include "KeyEvent.hpp"
 #include "Key.hpp"
 
-namespace Falcon
-{
-
-namespace Events
+namespace Falcon::Events
 {
 
 class EventHandler;
 
-class KeyUp : public Event
+class KeyUp : public KeyEvent
 {
 public:
 
-  KeyUp (SDL_Event & event);
+  KeyUp (const SDL_Event & event);
 
-  void accept (EventHandler & handler);
-
-  Key getKey (void) const;
-
-private:
-
-  Key code_;
+  void accept (EventHandler & handler) override;
 
 };
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace Falcon::Events
 
 #endif /* KeyUp_hpp */

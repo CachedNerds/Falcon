@@ -9,10 +9,7 @@
 #include "Window.hpp"
 #include "SDL_Exception.hpp"
 
-namespace Falcon
-{
-
-namespace SDL
+namespace Falcon::SDL
 {
 
 // Screen dimension constants
@@ -20,7 +17,7 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 // default constructor
-Window::Window (std::string title)
+Window::Window (const std::string & title)
 : Window (title,
           SDL_WINDOWPOS_UNDEFINED,
           SDL_WINDOWPOS_UNDEFINED,
@@ -31,7 +28,7 @@ Window::Window (std::string title)
 }
 
 // initializer constructor
-Window::Window (std::string title, int x, int y, int width, int height)
+Window::Window (const std::string & title, int x, int y, int width, int height)
 : title_ (title)
 , x_ (x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED)
 , y_ (y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED)
@@ -83,11 +80,6 @@ void Window::update (void)
   SDL_FillRect (this->screen_, NULL, 0xFFFFFF);
 }
 
-SDL_Renderer * Window::getRenderer (void) const
-{
-  return this->renderer_;
-}
-
 SDL_Surface * Window::getScreen (void) const
 {
   return this->screen_;
@@ -98,7 +90,7 @@ std::string Window::getTitle (void) const
   return this->title_;
 }
 
-void Window::setTitle (std::string title)
+void Window::setTitle (const std::string & title)
 {
   SDL_SetWindowTitle (this->window_, title.c_str ());
   this->title_ = title;
@@ -119,6 +111,4 @@ void Window::show (void)
   SDL_ShowWindow (this->window_);
 }
 
-} // namespace SDL
-  
-} // namespace Falcon
+} // namespace Falcon::SDL
