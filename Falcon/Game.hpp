@@ -1,17 +1,10 @@
-//
-//  Game
-//  Falcon
-//
-//  Created by Danny Peck on 5/13/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef World_hpp
-#define World_hpp
+#ifndef _FALCON_GAME_HPP_
+#define _FALCON_GAME_HPP_
 
 #include "SDL/Window.hpp"
 #include "Events/EventSystem.hpp"
 #include <vector>
+#include <set>
 #include <memory>
 
 namespace Falcon
@@ -29,7 +22,7 @@ class Game
 
     void loop (void);
   
-    void registerGameObject (GameObject * object);
+    void registerGameObject (std::shared_ptr<GameObject> object);
 
   private:
 
@@ -39,10 +32,10 @@ class Game
 
     Events::EventSystem & eventSystem_;
   
-    std::vector<GameObject *> gameObjects_;
+    std::set<std::shared_ptr<GameObject>> gameObjects_;
   
 };
 
 } // namespace Falcon
 
-#endif /* Game_hpp */
+#endif // _FALCON_GAME_HPP_

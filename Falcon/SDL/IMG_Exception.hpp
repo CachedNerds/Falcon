@@ -1,13 +1,5 @@
-//
-//  IMG_Exception.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef IMG_Exception_hpp
-#define IMG_Exception_hpp
+#ifndef _FALCON_SDL_IMG_EXCEPTION_HPP_
+#define _FALCON_SDL_IMG_EXCEPTION_HPP_
 
 #include <SDL2_image/SDL_image.h>
 #include <stdexcept>
@@ -21,20 +13,14 @@ namespace Falcon::SDL
  *
  * Exception class that wraps IMG related errors
  */
-class IMG_Exception : public std::exception
+class IMG_Exception : public std::runtime_error
 {
 public:
 
-  IMG_Exception (const char * error);
-
-  const char * what () const throw ();
-
-protected:
-
-  std::string error_;
+  explicit IMG_Exception (const std::string & error);
 
 };
 
 } // namespace Falcon::SDL
 
-#endif /* IMG_Exception_hpp */
+#endif // _FALCON_SDL_IMG_EXCEPTION_HPP_

@@ -1,13 +1,5 @@
-//
-//  Events.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Events_hpp
-#define Events_hpp
+#ifndef _FALCON_EVENTS_HPP_
+#define _FALCON_EVENTS_HPP_
 
 #include "KeyDown.hpp"
 #include "KeyUp.hpp"
@@ -19,4 +11,4 @@
 #include "WindowEvent.hpp"
 #include "NullEvent.hpp"
 
-#endif /* Events_hpp */
+#endif // _FALCON_EVENTS_HPP_

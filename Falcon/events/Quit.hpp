@@ -1,13 +1,5 @@
-//
-//  Quit.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Quit_hpp
-#define Quit_hpp
+#ifndef _FALCON_EVENTS_QUIT_HPP_
+#define _FALCON_EVENTS_QUIT_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* Quit_hpp */
+#endif // _FALCON_EVENTS_QUIT_HPP_

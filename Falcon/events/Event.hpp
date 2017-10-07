@@ -1,17 +1,8 @@
-//
-//  Event.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/3/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Event_hpp
-#define Event_hpp
+#ifndef _FALCON_EVENTS_EVENT_HPP_
+#define _FALCON_EVENTS_EVENT_HPP_
 
 #include <SDL2/SDL.h>
 #include "EventType.hpp"
-#include "Key.hpp"
 
 namespace Falcon::Events
 {
@@ -41,4 +32,4 @@ protected:
 
 } // namespace Falcon::Events
 
-#endif /* Event_hpp */
+#endif // _FALCON_EVENTS_EVENT_HPP_

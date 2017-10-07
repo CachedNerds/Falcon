@@ -1,13 +1,5 @@
-//
-//  MouseDown.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef MouseDown_hpp
-#define MouseDown_hpp
+#ifndef _FALCON_EVENTS_MOUSE_DOWN_HPP_
+#define _FALCON_EVENTS_MOUSE_DOWN_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* MouseDown_hpp */
+#endif // _FALCON_EVENTS_MOUSE_DOWN_HPP_

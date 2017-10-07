@@ -1,11 +1,3 @@
-//
-//  Game.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 5/13/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
 #include <iostream>
 #include "Game.hpp"
 #include "SDL/System.hpp"
@@ -37,9 +29,9 @@ namespace Falcon
 
   }
   
-  void Game::registerGameObject (GameObject * object)
+  void Game::registerGameObject (std::shared_ptr<GameObject> object)
   {
-    this->gameObjects_.push_back (object);
+    this->gameObjects_.insert (object);
   }
   
   bool Game::processEvents (void)

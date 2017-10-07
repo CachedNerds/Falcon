@@ -1,13 +1,5 @@
-//
-//  EventListener.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/3/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef EventListener_hpp
-#define EventListener_hpp
+#ifndef _FALCON_EVENTS_EVENT_LISTENER_HPP_
+#define _FALCON_EVENTS_EVENT_LISTENER_HPP_
 
 #include "Event.hpp"
 
@@ -24,4 +16,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* EventListener_hpp */
+#endif // _FALCON_EVENTS_EVENT_LISTENER_HPP_

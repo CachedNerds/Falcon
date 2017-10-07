@@ -1,11 +1,3 @@
-//
-//  Window.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
 #include "Window.hpp"
 #include "SDL_Exception.hpp"
 

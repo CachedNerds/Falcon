@@ -1,13 +1,5 @@
-//
-//  NullEvent.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef NullEvent_hpp
-#define NullEvent_hpp
+#ifndef _FALCON_EVENTS_NULL_EVENT_HPP_
+#define _FALCON_EVENTS_NULL_EVENT_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* NullEvent_hpp */
+#endif // _FALCON_EVENTS_NULL_EVENT_HPP_

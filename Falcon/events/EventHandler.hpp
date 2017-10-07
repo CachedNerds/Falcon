@@ -1,13 +1,5 @@
-//
-//  EventHandler.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/4/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef EventHandler_hpp
-#define EventHandler_hpp
+#ifndef _FALCON_EVENTS_EVENT_HANDLER_HPP_
+#define _FALCON_EVENTS_EVENT_HANDLER_HPP_
 
 namespace Falcon::Events
 {
@@ -50,4 +42,4 @@ class EventHandler
 
 } // namespace Falcon::Events
 
-#endif /* EventHandler_hpp */
+#endif // _FALCON_EVENTS_EVENT_HANDLER_HPP_

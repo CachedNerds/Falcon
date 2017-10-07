@@ -1,13 +1,5 @@
-//
-//  EventSystem.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/4/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef EventSystem_hpp
-#define EventSystem_hpp
+#ifndef _FALCON_EVENTS_EVENT_SYSTEM_HPP_
+#define _FALCON_EVENTS_EVENT_SYSTEM_HPP_
 
 #include "Event.hpp"
 #include "EventFactory.hpp"
@@ -47,4 +39,4 @@ private:
 
 } // namespace Falcon::Events
 
-#endif /* EventSystem_hpp */
+#endif // _FALCON_EVENTS_EVENT_SYSTEM_HPP_

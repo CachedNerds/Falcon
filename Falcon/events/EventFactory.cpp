@@ -1,11 +1,3 @@
-//
-//  EventFactory.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/5/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
 #include "EventFactory.hpp"
 #include "Events.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef KeyEvent_hpp
-#define KeyEvent_hpp
+#ifndef _FALCON_EVENTS_KEY_EVENT_HPP_
+#define _FALCON_EVENTS_KEY_EVENT_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -26,4 +26,4 @@ class KeyEvent : public Event
 
 } // namespace Falcon::Events
 
-#endif /* KeyEvent_hpp */
+#endif // _FALCON_EVENTS_KEY_EVENT_HPP_

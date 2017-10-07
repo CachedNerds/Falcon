@@ -1,13 +1,5 @@
-//
-//  MouseMotion.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef MouseMotion_hpp
-#define MouseMotion_hpp
+#ifndef _FALCON_EVENTS_MOUSE_MOTION_HPP_
+#define _FALCON_EVENTS_MOUSE_MOTION_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* MouseMotion_hpp */
+#endif // _FALCON_EVENTS_MOUSE_DOWN_HPP_

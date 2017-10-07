@@ -1,13 +1,5 @@
-//
-//  Sprite.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Sprite_hpp
-#define Sprite_hpp
+#ifndef _FALCON_SPRITE_HPP_
+#define _FALCON_SPRITE_HPP_
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -62,4 +54,4 @@ private:
 
 } // namespace Falcon
 
-#endif /* Sprite_hpp */
+#endif // _FALCON_SPRITE_HPP_

@@ -1,13 +1,5 @@
-//
-//  GameObject.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef GameObject_hpp
-#define GameObject_hpp
+#ifndef _FALCON_GAME_OBJECT_HPP_
+#define _FALCON_GAME_OBJECT_HPP_
 
 #include "Events/EventListener.hpp"
 #include "Events/EventHandler.hpp"
@@ -45,4 +37,4 @@ class GameObject : public Drawable, public EventListener, public Updateable
 
 } // namespace Falcon
 
-#endif /* GameObject_hpp */
+#endif // _FALCON_GAME_OBJECT_HPP_

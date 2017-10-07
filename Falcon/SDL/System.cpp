@@ -1,11 +1,3 @@
-//
-//  System.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/3/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
 #include <iostream>
 #include "SDL_Exception.hpp"
 #include "IMG_Exception.hpp"

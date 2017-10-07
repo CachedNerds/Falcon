@@ -1,13 +1,5 @@
-//
-//  MouseUp.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef MouseUp_hpp
-#define MouseUp_hpp
+#ifndef _FALCON_EVENTS_MOUSE_UP_HPP_
+#define _FALCON_EVENTS_MOUSE_UP_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* MouseUp_hpp */
+#endif // _FALCON_EVENTS_MOUSE_UP_HPP_

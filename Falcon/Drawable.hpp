@@ -1,13 +1,5 @@
-//
-//  Drawable.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Drawable_hpp
-#define Drawable_hpp
+#ifndef _FALCON_DRAWABLE_HPP_
+#define _FALCON_DRAWABLE_HPP_
 
 namespace Falcon
 {
@@ -31,4 +23,4 @@ class Drawable
 
 } // namespace Falcon
 
-#endif /* Drawable_hpp */
+#endif // _FALCON_DRAWABLE_HPP_

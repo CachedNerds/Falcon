@@ -1,13 +1,5 @@
-//
-//  System.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/5/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef System_hpp
-#define System_hpp
+#ifndef _FALCON_SDL_SYSTEM_HPP_
+#define _FALCON_SDL_SYSTEM_HPP_
 
 #include <SDL2/SDL.h>
 #include <vector>
@@ -47,4 +39,4 @@ private:
   
 } // namespace Falcon::SDL
 
-#endif /* System_hpp */
+#endif // _FALCON_SDL_SYSTEM_HPP_

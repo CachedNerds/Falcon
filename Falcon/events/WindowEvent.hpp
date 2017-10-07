@@ -1,13 +1,5 @@
-//
-//  WindowEvent.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef WindowEvent_hpp
-#define WindowEvent_hpp
+#ifndef _FALCON_EVENTS_WINDOW_EVENT_HPP_
+#define _FALCON_EVENTS_WINDOW_EVENT_HPP_
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
@@ -29,4 +21,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* WindowEvent_hpp */
+#endif // _FALCON_EVENTS_WINDOW_EVENT_HPP_

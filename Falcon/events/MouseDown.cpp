@@ -1,11 +1,3 @@
-//
-//  MouseDown.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
 #include "MouseDown.hpp"
 #include "EventHandler.hpp"
 

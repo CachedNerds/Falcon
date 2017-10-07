@@ -1,13 +1,5 @@
-//
-//  Window.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Window_hpp
-#define Window_hpp
+#ifndef _FALCON_SDL_WINDOW_HPP_
+#define _FALCON_SDL_WINDOW_HPP_
 
 #include <SDL2/SDL.h>
 #include <string>
@@ -65,4 +57,4 @@ private:
 
 } // namespace Falcon::SDL
 
-#endif /* Window_hpp */
+#endif // _FALCON_SDL_WINDOW_HPP_

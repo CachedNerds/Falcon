@@ -1,13 +1,5 @@
-//
-//  KeyUp.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef KeyUp_hpp
-#define KeyUp_hpp
+#ifndef _FALCON_EVENTS_KEY_UP_HPP_
+#define _FALCON_EVENTS_KEY_UP_HPP_
 
 #include <SDL2/SDL.h>
 #include "KeyEvent.hpp"
@@ -30,4 +22,4 @@ public:
 
 } // namespace Falcon::Events
 
-#endif /* KeyUp_hpp */
+#endif // _FALCON_EVENTS_KEY_UP_HPP_

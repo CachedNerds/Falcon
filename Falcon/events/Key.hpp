@@ -1,13 +1,5 @@
-//
-//  Key.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/4/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef Key_hpp
-#define Key_hpp
+#ifndef _FALCON_EVENTS_KEY_HPP_
+#define _FALCON_EVENTS_KEY_HPP_
 
 #include <SDL2/SDL.h>
 
@@ -63,4 +55,4 @@ enum class Key
 
 } // namespace Falcon::Events
 
-#endif /* Key_hpp */
+#endif // _FALCON_EVENTS_KEY_HPP_

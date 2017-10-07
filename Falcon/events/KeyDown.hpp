@@ -1,13 +1,5 @@
-//
-//  KeyDown.hpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
-
-#ifndef KeyDown_hpp
-#define KeyDown_hpp
+#ifndef _FALCON_EVENTS_KEY_DOWN_HPP_
+#define _FALCON_EVENTS_KEY_DOWN_HPP_
 
 #include <SDL2/SDL.h>
 #include "KeyEvent.hpp"
@@ -25,9 +17,9 @@ class KeyDown : public KeyEvent
     KeyDown (const SDL_Event & event);
 
     void accept (EventHandler & handler) override;
-    
+
 };
 
 } // namespace Falcon::Events
 
-#endif /* KeyDown_hpp */
+#endif // _FALCON_EVENTS_KEY_DOWN_HPP_

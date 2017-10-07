@@ -3,16 +3,10 @@
 namespace Falcon::SDL
 {
 
-SDL_Exception::SDL_Exception (const char * error)
-: error_ (error)
+SDL_Exception::SDL_Exception (const std::string & error)
+: std::runtime_error (error)
 {
 
-}
-
-const char * SDL_Exception::what () const throw ()
-{
-  std::string message = "SDL_Error: " + this->error_;
-  return message.c_str ();
 }
 
 } // namespace Falcon::SDL
