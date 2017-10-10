@@ -1,9 +1,9 @@
-#include "IMG_Exception.hpp"
+#include "SdlException.hpp"
 
 namespace Falcon::SDL
 {
 
-IMG_Exception::IMG_Exception (const std::string & error)
+  SdlException::SdlException (const std::string & error)
 : std::runtime_error (error)
 {
 

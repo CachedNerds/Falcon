@@ -15,7 +15,7 @@ public:
 
   MouseUp (const SDL_Event & event);
 
-  void accept (EventHandler & handler) override;
+  void accept (EventHandler & handler) const override;
 
 };
 

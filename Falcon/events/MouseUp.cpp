@@ -10,7 +10,7 @@ MouseUp::MouseUp (const SDL_Event & event)
 
 }
 
-void MouseUp::accept (EventHandler & handler)
+void MouseUp::accept (EventHandler & handler) const
 {
   handler.handleMouseUp (*this);
 }

@@ -1,8 +1,9 @@
 #ifndef _FALCON_EVENTS_EVENT_FACTORY_HPP_
 #define _FALCON_EVENTS_EVENT_FACTORY_HPP_
 
-#include <SDL2/SDL.h>
 #include "Event.hpp"
+#include <SDL2/SDL.h>
+#include <memory>
 
 namespace Falcon::Events
 {
@@ -20,24 +21,24 @@ class NullEvent;
 class EventFactory
 {
 public:
-
-  Event * createKeyDown (const SDL_Event & event);
   
-  Event * createKeyUp (const SDL_Event & event);
+  std::unique_ptr<const Event> createKeyDown (const SDL_Event & event);
   
-  Event * createQuit (const SDL_Event & event);
+  std::unique_ptr<const Event> createKeyUp (const SDL_Event & event);
   
-  Event * createMouseMotion (const SDL_Event & event);
+  std::unique_ptr<const Event> createQuit (const SDL_Event & event);
   
-  Event * createMouseDown (const SDL_Event & event);
+  std::unique_ptr<const Event> createMouseMotion (const SDL_Event & event);
   
-  Event * createMouseUp (const SDL_Event & event);
+  std::unique_ptr<const Event> createMouseDown (const SDL_Event & event);
   
-  Event * createMouseWheel (const SDL_Event & event);
+  std::unique_ptr<const Event> createMouseUp (const SDL_Event & event);
   
-  Event * createWindowEvent (const SDL_Event & event);
+  std::unique_ptr<const Event> createMouseWheel (const SDL_Event & event);
   
-  Event * createNullEvent (const SDL_Event & event);
+  std::unique_ptr<const Event> createWindowEvent (const SDL_Event & event);
+  
+  std::unique_ptr<const Event> createNullEvent (const SDL_Event & event);
 
 };
 

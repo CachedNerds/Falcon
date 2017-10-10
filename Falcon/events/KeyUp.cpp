@@ -10,7 +10,7 @@ KeyUp::KeyUp (const SDL_Event & event)
 
 }
 
-void KeyUp::accept (EventHandler & handler)
+void KeyUp::accept (EventHandler & handler) const
 {
   handler.handleKeyUp (*this);
 }

@@ -16,14 +16,14 @@ GameObject::~GameObject (void)
   delete this->eventHandler_;
 }
 
+void GameObject::handleEvent (const Event & event)
+{
+  event.accept (*this->eventHandler_);
+}
+
 Game & GameObject::getGame (void) const
 {
   return this->game_;
-}
-
-void GameObject::handleEvent (Event & event)
-{
-  event.accept (*this->eventHandler_);
 }
   
 } // namespace Falcon

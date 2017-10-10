@@ -10,7 +10,7 @@ NullEvent::NullEvent (const SDL_Event & event)
 
 }
 
-void NullEvent::accept (EventHandler & handler)
+void NullEvent::accept (EventHandler & handler) const
 {
   handler.handleNullEvent (*this);
 }

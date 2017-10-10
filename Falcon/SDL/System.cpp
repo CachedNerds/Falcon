@@ -1,6 +1,6 @@
 #include <iostream>
-#include "SDL_Exception.hpp"
-#include "IMG_Exception.hpp"
+#include "SdlException.hpp"
+#include "ImgException.hpp"
 #include "System.hpp"
 
 namespace Falcon::SDL
@@ -71,12 +71,12 @@ void System::initialize (void)
 
     if (SDL_Init (SDL_INIT_FLAGS) < 0)
     {
-      throw SDL_Exception (SDL_GetError ());
+      throw SdlException (SDL_GetError ());
     }
 
     if (!IMG_Init (IMG_INIT_FLAGS))
     {
-      throw SDL_Exception (IMG_GetError ());
+      throw SdlException (IMG_GetError ());
     }
 
     this->initialized_ = true;

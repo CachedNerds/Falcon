@@ -10,7 +10,7 @@ Quit::Quit (const SDL_Event & event)
 
 }
 
-void Quit::accept (EventHandler & handler)
+void Quit::accept (EventHandler & handler) const
 {
   handler.handleQuit (*this);
 }

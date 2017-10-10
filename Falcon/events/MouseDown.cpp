@@ -10,7 +10,7 @@ MouseDown::MouseDown (const SDL_Event & event)
 
 }
 
-void MouseDown::accept (EventHandler & handler)
+void MouseDown::accept (EventHandler & handler) const
 {
   handler.handleMouseDown (*this);
 }

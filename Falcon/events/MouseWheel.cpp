@@ -10,7 +10,7 @@ MouseWheel::MouseWheel (const SDL_Event & event)
 
 }
 
-void MouseWheel::accept (EventHandler & handler)
+void MouseWheel::accept (EventHandler & handler) const
 {
   handler.handleMouseWheel (*this);
 }

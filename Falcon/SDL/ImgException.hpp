@@ -9,15 +9,15 @@ namespace Falcon::SDL
 {
 
 /**
- * IMG_Exception
+ * ImgException
  *
  * Exception class that wraps IMG related errors
  */
-class IMG_Exception : public std::runtime_error
+class ImgException : public std::runtime_error
 {
 public:
 
-  explicit IMG_Exception (const std::string & error);
+  ImgException (const std::string & error);
 
 };
 

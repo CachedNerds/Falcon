@@ -8,15 +8,15 @@ namespace Falcon::SDL
 {
 
 /**
- * SDL_Exception
+ * SdlException
  *
  * Exception class that wraps SDL related errors
  */
-class SDL_Exception : public std::runtime_error
+class SdlException : public std::runtime_error
 {
 public:
 
-  SDL_Exception (const std::string & error);
+  SdlException (const std::string & error);
 
 };
 

@@ -10,7 +10,7 @@ KeyDown::KeyDown (const SDL_Event & event)
 
 }
 
-void KeyDown::accept (EventHandler & handler)
+void KeyDown::accept (EventHandler & handler) const
 {
   handler.handleKeyDown (*this);
 }

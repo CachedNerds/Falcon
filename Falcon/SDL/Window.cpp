@@ -1,5 +1,5 @@
 #include "Window.hpp"
-#include "SDL_Exception.hpp"
+#include "SdlException.hpp"
 
 namespace Falcon::SDL
 {
@@ -42,7 +42,7 @@ Window::Window (const std::string & title, int x, int y, int width, int height)
   }
   else
   {
-    throw SDL_Exception (SDL_GetError ());
+    throw SdlException (SDL_GetError ());
   }
 
   this->screen_ = SDL_GetWindowSurface (window);

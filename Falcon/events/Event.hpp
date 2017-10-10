@@ -22,7 +22,7 @@ public:
   
   bool operator != (const Event & rhs) const;
   
-  virtual void accept (EventHandler & handler) = 0;
+  virtual void accept (EventHandler & handler) const = 0;
 
 protected:
 

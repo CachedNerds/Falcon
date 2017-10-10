@@ -4,49 +4,49 @@
 namespace Falcon::Events
 {
 
-Event * EventFactory::createKeyDown (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createKeyDown (const SDL_Event & event)
 {
-  return new KeyDown (event);
+  return std::make_unique<KeyDown> (event);
 }
 
-Event * EventFactory::createKeyUp (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createKeyUp (const SDL_Event & event)
 {
-  return new KeyUp (event);
+  return std::make_unique<KeyUp> (event);
 }
 
-Event * EventFactory::createQuit (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createQuit (const SDL_Event & event)
 {
-  return new Quit (event);
+  return std::make_unique<Quit> (event);
 }
 
-Event * EventFactory::createMouseMotion (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseMotion (const SDL_Event & event)
 {
-  return new MouseMotion (event);
+  return std::make_unique<MouseMotion> (event);
 }
 
-Event * EventFactory::createMouseDown (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseDown (const SDL_Event & event)
 {
-  return new MouseDown (event);
+  return std::make_unique<MouseDown> (event);
 }
 
-Event * EventFactory::createMouseUp (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseUp (const SDL_Event & event)
 {
-  return new MouseUp (event);
+  return std::make_unique<MouseUp> (event);
 }
 
-Event * EventFactory::createMouseWheel (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseWheel (const SDL_Event & event)
 {
-  return new MouseWheel (event);
+  return std::make_unique<MouseWheel> (event);
 }
 
-Event * EventFactory::createWindowEvent (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createWindowEvent (const SDL_Event & event)
 {
-  return new WindowEvent (event);
+  return std::make_unique<WindowEvent> (event);
 }
 
-Event * EventFactory::createNullEvent (const SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createNullEvent (const SDL_Event & event)
 {
-  return new NullEvent (event);
+  return std::make_unique<NullEvent> (event);
 }
 
 } // namespace Falcon::Events

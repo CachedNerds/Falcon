@@ -10,7 +10,7 @@ MouseMotion::MouseMotion (const SDL_Event & event)
 
 }
 
-void MouseMotion::accept (EventHandler & handler)
+void MouseMotion::accept (EventHandler & handler) const
 {
   handler.handleMouseMotion (*this);
 }

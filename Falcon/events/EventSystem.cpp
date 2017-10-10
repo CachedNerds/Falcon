@@ -31,12 +31,12 @@ bool EventSystem::nextEvent (void)
   return SDL_PollEvent (&this->event_);
 }
 
-Event * EventSystem::getNextEvent (void)
+std::unique_ptr<const Event> EventSystem::getNextEvent (void)
 {
   EventType type = EventType (this->event_.type);
-  FACTORYMETHOD createEvent = this->factoryMethods_[type];
+  CREATE_EVENT_METHOD createEvent = this->factoryMethods_[type];
 
-  Event * event;
+  std::unique_ptr<const Event> event (nullptr);
   if (createEvent == nullptr)
   {
     event = this->eventFactory_.createNullEvent (this->event_);

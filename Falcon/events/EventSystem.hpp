@@ -22,7 +22,7 @@ public:
 
   bool nextEvent (void);
 
-  Event * getNextEvent (void);
+  std::unique_ptr<const Event> getNextEvent (void);
 
 private:
 
@@ -32,8 +32,8 @@ private:
 
   EventFactory eventFactory_;
 
-  typedef Event * (EventFactory::*FACTORYMETHOD) (const SDL_Event &);
-  std::map<EventType, FACTORYMETHOD> factoryMethods_;
+  typedef std::unique_ptr<const Event> (EventFactory::*CREATE_EVENT_METHOD) (const SDL_Event &);
+  std::map<EventType, CREATE_EVENT_METHOD> factoryMethods_;
 
 };
 

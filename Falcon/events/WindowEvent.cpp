@@ -10,7 +10,7 @@ WindowEvent::WindowEvent (const SDL_Event & event)
 
 }
 
-void WindowEvent::accept (EventHandler & handler)
+void WindowEvent::accept (EventHandler & handler) const
 {
   handler.handleWindowEvent (*this);
 }

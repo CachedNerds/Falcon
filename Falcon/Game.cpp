@@ -44,7 +44,7 @@ namespace Falcon
     while (this->eventSystem_.nextEvent ())
     {
       // get next event
-      Event * event = this->eventSystem_.getNextEvent ();
+      std::shared_ptr<const Event> event = this->eventSystem_.getNextEvent ();
       
       // handle event
       if (event->getType () == EventType::NullEvent)

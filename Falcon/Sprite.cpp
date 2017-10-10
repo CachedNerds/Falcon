@@ -3,7 +3,7 @@
 #include "SDL/Window.hpp"
 #include "Events/Event.hpp"
 #include "Events/Key.hpp"
-#include "SDL/IMG_Exception.hpp"
+#include "SDL/ImgException.hpp"
 
 namespace Falcon
 {
@@ -16,7 +16,7 @@ Sprite::Sprite (Game & game, const std::string & image, int x, int y)
   SDL_Surface * surface = IMG_Load (image.c_str ());
   if (!surface)
   {
-    throw SDL::IMG_Exception (IMG_GetError ());
+    throw SDL::ImgException (IMG_GetError ());
   }
 
   this->image_ = surface;
