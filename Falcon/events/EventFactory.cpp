@@ -1,65 +1,52 @@
-//
-//  EventFactory.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/5/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "EventFactory.hpp"
+#include "Events.hpp"
 
-#include "EventFactory.h"
-#include "Events.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+std::unique_ptr<const Event> EventFactory::createKeyDown (const SDL_Event & event)
 {
-
-Event * EventFactory::createKeyDown (SDL_Event & event)
-{
-  return new KeyDown (event);
+  return std::make_unique<KeyDown>(event);
 }
 
-Event * EventFactory::createKeyUp (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createKeyUp (const SDL_Event & event)
 {
-  return new KeyUp (event);
+  return std::make_unique<KeyUp>(event);
 }
 
-Event * EventFactory::createQuit (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createQuit (const SDL_Event & event)
 {
-  return new Quit (event);
+  return std::make_unique<Quit>(event);
 }
 
-Event * EventFactory::createMouseMotion (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseMotion (const SDL_Event & event)
 {
-  return new MouseMotion (event);
+  return std::make_unique<MouseMotion>(event);
 }
 
-Event * EventFactory::createMouseDown (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseDown (const SDL_Event & event)
 {
-  return new MouseDown (event);
+  return std::make_unique<MouseDown>(event);
 }
 
-Event * EventFactory::createMouseUp (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseUp (const SDL_Event & event)
 {
-  return new MouseUp (event);
+  return std::make_unique<MouseUp>(event);
 }
 
-Event * EventFactory::createMouseWheel (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createMouseWheel (const SDL_Event & event)
 {
-  return new MouseWheel (event);
+  return std::make_unique<MouseWheel>(event);
 }
 
-Event * EventFactory::createWindowEvent (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createWindowEvent (const SDL_Event & event)
 {
-  return new WindowEvent (event);
+  return std::make_unique<WindowEvent>(event);
 }
 
-Event * EventFactory::createNullEvent (SDL_Event & event)
+std::unique_ptr<const Event> EventFactory::createNullEvent (const SDL_Event & event)
 {
-  return new NullEvent (event);
+  return std::make_unique<NullEvent>(event);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

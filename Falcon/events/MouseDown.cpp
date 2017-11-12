@@ -1,31 +1,18 @@
-//
-//  MouseDown.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "MouseDown.hpp"
+#include "EventHandler.hpp"
 
-#include "MouseDown.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+MouseDown::MouseDown (const SDL_Event & event)
+: Event(EventType::MouseDown)
 {
 
-MouseDown::MouseDown (SDL_Event & event)
-: Event (EventType (event.type))
-{
-  
 }
 
-void MouseDown::accept (EventHandler & handler)
+void MouseDown::accept (EventHandler & handler) const
 {
-  handler.handleMouseDown (*this);
+  handler.handleMouseDown(*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

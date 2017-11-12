@@ -1,37 +1,18 @@
-//
-//  KeyUp.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "KeyUp.hpp"
+#include "EventHandler.hpp"
 
-#include "KeyUp.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
-{
-
-KeyUp::KeyUp (SDL_Event & event)
-: Event (EventType (event.type))
-, code_ (Key (event.key.keysym.sym))
+KeyUp::KeyUp (const SDL_Event & event)
+: KeyEvent(EventType::KeyUp, Key(event.key.keysym.sym))
 {
 
 }
 
-void KeyUp::accept (EventHandler & handler)
+void KeyUp::accept (EventHandler & handler) const
 {
-  handler.handleKeyUp (*this);
+  handler.handleKeyUp(*this);
 }
 
-Key KeyUp::getKey (void) const
-{
-  return this->code_;
-}
-
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

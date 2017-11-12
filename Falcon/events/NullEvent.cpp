@@ -1,31 +1,18 @@
-//
-//  NullEvent.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "NullEvent.hpp"
+#include "EventHandler.hpp"
 
-#include "NullEvent.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+NullEvent::NullEvent (const SDL_Event & event)
+: Event(EventType::NullEvent)
 {
 
-NullEvent::NullEvent (SDL_Event & event)
-: Event (EventType (event.type))
-{
-  
 }
 
-void NullEvent::accept (EventHandler & handler)
+void NullEvent::accept (EventHandler & handler) const
 {
-  handler.handleNullEvent (*this);
+  handler.handleNullEvent(*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

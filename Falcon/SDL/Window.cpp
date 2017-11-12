@@ -1,124 +1,102 @@
-//
-//  Window.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "Window.hpp"
+#include "SdlException.hpp"
 
-#include "Window.h"
-#include "SDL_Exception.h"
-
-namespace Falcon
+namespace falcon::sdl
 {
 
-namespace SDL
-{
-  
 // Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 // default constructor
-Window::Window (std::string title)
-: Window (title,
-          SDL_WINDOWPOS_UNDEFINED,
-          SDL_WINDOWPOS_UNDEFINED,
-          SCREEN_WIDTH,
-          SCREEN_HEIGHT)
+Window::Window (const std::string & title)
+: Window(title,
+         SDL_WINDOWPOS_UNDEFINED,
+         SDL_WINDOWPOS_UNDEFINED,
+         SCREEN_WIDTH,
+         SCREEN_HEIGHT)
 {
 
 }
 
 // initializer constructor
-Window::Window (std::string title, int x, int y, int width, int height)
-: title_ (title)
-, x_ (x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED)
-, y_ (y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED)
-, width_ (width > 0 ? width : SCREEN_WIDTH)
-, height_ (height > 0 ? height : SCREEN_HEIGHT)
-, window_ (nullptr)
-, renderer_ (nullptr)
-, screen_ (nullptr)
+Window::Window (const std::string & title, int x, int y, int width, int height)
+: _title(title)
+, _x(x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED)
+, _y(y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED)
+, _width(width > 0 ? width : SCREEN_WIDTH)
+, _height(height > 0 ? height : SCREEN_HEIGHT)
+, _window(nullptr)
+, _renderer(nullptr)
+, _screen(nullptr)
 {
-  SDL_Window * window = SDL_CreateWindow (this->title_.c_str (),
-                                          this->x_,
-                                          this->y_,
-                                          this->width_,
-                                          this->height_,
-                                          SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+  SDL_Window * window = SDL_CreateWindow(_title.c_str(), _x, _y, _width, _height,
+                                         SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
   if (window != nullptr)
   {
-    this->window_ = window;
+    _window = window;
   }
   else
   {
-    throw SDL_Exception (SDL_GetError ());
+    throw SdlException(SDL_GetError());
   }
 
-  this->screen_ = SDL_GetWindowSurface (window);
+  _screen = SDL_GetWindowSurface(window);
 
   // Fill the surface white
-  SDL_FillRect (this->screen_, nullptr, SDL_MapRGB (this->screen_->format, 0xFF, 0xFF, 0xFF));
+  SDL_FillRect(_screen, nullptr, SDL_MapRGB(_screen->format, 0xFF, 0xFF, 0xFF));
 
-  this->renderer_ = SDL_CreateRenderer (window, -1, SDL_RENDERER_ACCELERATED);
-  
-  this->update ();
+  _renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+  update();
 }
 
 // destructor
 Window::~Window (void)
 {
-  SDL_DestroyWindow (this->window_);
-  this->window_ = nullptr;
-  this->renderer_ = nullptr;
-  
-  // this->screen_ is deleted by SDL_DestroyWindow
+  SDL_DestroyWindow(_window);
+  _window = nullptr;
+  _renderer = nullptr;
+
+  // _screen, _window, and _renderer are deleted by SDL_DestroyWindow
 }
 
 // updates the window
 void Window::update (void)
 {
-  SDL_UpdateWindowSurface (this->window_);
-  SDL_FillRect (this->screen_, NULL, 0xFFFFFF);
-}
-
-SDL_Renderer * Window::getRenderer (void) const
-{
-  return this->renderer_;
+  SDL_UpdateWindowSurface(_window);
+  SDL_FillRect(_screen, nullptr, 0xFFFFFF);
 }
 
 SDL_Surface * Window::getScreen (void) const
 {
-  return this->screen_;
+  return _screen;
 }
 
 std::string Window::getTitle (void) const
 {
-  return this->title_;
+  return _title;
 }
 
-void Window::setTitle (std::string title)
+void Window::setTitle (const std::string & title)
 {
-  SDL_SetWindowTitle (this->window_, title.c_str ());
-  this->title_ = title;
+  SDL_SetWindowTitle(_window, title.c_str());
+  _title = title;
 }
 
 int Window::getWidth (void) const
 {
-  return this->width_;
+  return _width;
 }
 
 void Window::hide (void)
 {
-  SDL_HideWindow (this->window_);
+  SDL_HideWindow(_window);
 }
 
 void Window::show (void)
 {
-  SDL_ShowWindow (this->window_);
+  SDL_ShowWindow(_window);
 }
-  
-} // namespace SDL
-  
-} // namespace Falcon
+
+} // namespace falcon::sdl

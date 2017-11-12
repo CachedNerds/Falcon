@@ -1,31 +1,18 @@
-//
-//  MouseWheel.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "MouseWheel.hpp"
+#include "EventHandler.hpp"
 
-#include "MouseWheel.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+MouseWheel::MouseWheel (const SDL_Event & event)
+: Event(EventType::MouseWheel)
 {
 
-MouseWheel::MouseWheel (SDL_Event & event)
-: Event (EventType (event.type))
-{
-  
 }
 
-void MouseWheel::accept (EventHandler & handler)
+void MouseWheel::accept (EventHandler & handler) const
 {
-  handler.handleMouseWheel (*this);
+  handler.handleMouseWheel(*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

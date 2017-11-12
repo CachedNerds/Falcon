@@ -1,19 +1,7 @@
-//
-//  InputEventQueue.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/4/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "EventSystem.hpp"
+#include "Events.hpp"
 
-#include <iostream>
-#include "EventSystem.h"
-#include "Events.h"
-
-namespace Falcon
-{
-
-namespace Events
+namespace falcon::events
 {
 
 EventSystem & EventSystem::instance (void)
@@ -23,37 +11,41 @@ EventSystem & EventSystem::instance (void)
 }
 
 EventSystem::EventSystem (void)
-: eventFactory_ (new EventFactory)
+: _event()
+, _eventFactory()
+, _eventFactoryMethods()
 {
-  this->factoryMethods_[KEYDOWN] = &EventFactory::createKeyDown;
-  this->factoryMethods_[KEYUP] = &EventFactory::createKeyUp;
-  this->factoryMethods_[QUIT] = &EventFactory::createQuit;
-  this->factoryMethods_[MOUSEMOTION] = &EventFactory::createMouseMotion;
-  this->factoryMethods_[MOUSEDOWN] = &EventFactory::createKeyDown;
-  this->factoryMethods_[MOUSEUP] = &EventFactory::createMouseUp;
-  this->factoryMethods_[MOUSEWHEEL] = &EventFactory::createMouseWheel;
-  this->factoryMethods_[WINDOWEVENT] = &EventFactory::createWindowEvent;
-  this->factoryMethods_[NULLEVENT] = &EventFactory::createNullEvent;
-}
-
-EventSystem::~EventSystem (void)
-{
-  delete this->eventFactory_;
+  _eventFactoryMethods[EventType::KeyDown] = &EventFactory::createKeyDown;
+  _eventFactoryMethods[EventType::KeyUp] = &EventFactory::createKeyUp;
+  _eventFactoryMethods[EventType::Quit] = &EventFactory::createQuit;
+  _eventFactoryMethods[EventType::MouseMotion] = &EventFactory::createMouseMotion;
+  _eventFactoryMethods[EventType::MouseDown] = &EventFactory::createKeyDown;
+  _eventFactoryMethods[EventType::MouseUp] = &EventFactory::createMouseUp;
+  _eventFactoryMethods[EventType::MouseWheel] = &EventFactory::createMouseWheel;
+  _eventFactoryMethods[EventType::WindowEvent] = &EventFactory::createWindowEvent;
 }
 
 bool EventSystem::nextEvent (void)
 {
-  return SDL_PollEvent (&this->event_);
+  return SDL_PollEvent(&_event);
 }
 
-Event * EventSystem::getNextEvent (void)
+std::unique_ptr<const Event> EventSystem::getNextEvent (void)
 {
-  EventType type = EventType (this->event_.type);
-  FACTORYMETHOD createEvent = this->factoryMethods_[type];
-  return (createEvent == nullptr) ? this->eventFactory_->createNullEvent (this->event_)
-                                  : (this->eventFactory_->*createEvent)(this->event_);
+  EventType type = EventType(_event.type);
+  CreateEventFactoryMethod createEvent = _eventFactoryMethods[type];
+
+  std::unique_ptr<const Event> event(nullptr);
+  if (createEvent == nullptr)
+  {
+    event = _eventFactory.createNullEvent(_event);
+  }
+  else
+  {
+    event = (_eventFactory.*createEvent)(_event);
+  }
+
+  return event;
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

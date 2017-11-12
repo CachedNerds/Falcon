@@ -1,31 +1,18 @@
-//
-//  Quit.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "Quit.hpp"
+#include "Eventhandler.hpp"
 
-#include "Quit.h"
-#include "Eventhandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+Quit::Quit (const SDL_Event & event)
+: Event(EventType::Quit)
 {
 
-Quit::Quit (SDL_Event & event)
-: Event (EventType (event.type))
-{
-  
 }
 
-void Quit::accept (EventHandler & handler)
+void Quit::accept (EventHandler & handler) const
 {
-  handler.handleQuit (*this);
+  handler.handleQuit(*this);
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

@@ -1,37 +1,18 @@
-//
-//  KeyDown.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "KeyDown.hpp"
+#include "EventHandler.hpp"
 
-#include "KeyDown.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
-{
-
-KeyDown::KeyDown (SDL_Event & event)
-: Event (EventType (event.type))
-, code_ (Key (event.key.keysym.sym))
+KeyDown::KeyDown (const SDL_Event & event)
+: KeyEvent(EventType::KeyDown, Key(event.key.keysym.sym))
 {
 
 }
 
-void KeyDown::accept (EventHandler & handler)
+void KeyDown::accept (EventHandler & handler) const
 {
-  handler.handleKeyDown (*this);
+  handler.handleKeyDown(*this);
 }
 
-Key KeyDown::getKey (void) const
-{
-  return this->code_;
-}
-
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events

@@ -1,65 +1,57 @@
-//
-//  EventHandler.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/4/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "EventHandler.hpp"
+#include "Events.hpp"
 
-#include "EventHandler.h"
-#include "Events.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+EventHandler::~EventHandler (void)
 {
 
-void EventHandler::handleKeyDown (KeyDown & event)
-{
-  
 }
 
-void EventHandler::handleKeyUp (KeyUp & event)
+void EventHandler::handleKeyDown (const KeyDown & event)
 {
-  
+
 }
 
-void EventHandler::handleQuit (Quit & event)
+void EventHandler::handleKeyUp (const KeyUp & event)
 {
-  
+
 }
 
-void EventHandler::handleMouseMotion (MouseMotion & event)
+void EventHandler::handleQuit (const Quit & event)
 {
-  
+
 }
 
-void EventHandler::handleMouseDown (MouseDown & event)
+void EventHandler::handleMouseMotion (const MouseMotion & event)
 {
-  
+
 }
 
-void EventHandler::handleMouseUp (MouseUp & event)
+void EventHandler::handleMouseDown (const MouseDown & event)
 {
-  
+
 }
 
-void EventHandler::handleMouseWheel (MouseWheel & event)
+void EventHandler::handleMouseUp (const MouseUp & event)
 {
-  
+
 }
 
-void EventHandler::handleWindowEvent (WindowEvent & event)
+void EventHandler::handleMouseWheel (const MouseWheel & event)
 {
-  
+
 }
 
-void EventHandler::handleNullEvent (NullEvent & event)
+void EventHandler::handleWindowEvent (const WindowEvent & event)
 {
-  
+
 }
 
-} // namespace Events
+void EventHandler::handleNullEvent (const NullEvent & event)
+{
 
-} // namespace Falcon
+}
+
+} // namespace falcon::events

@@ -1,82 +1,77 @@
-//
-//  Sprite.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/2/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "Sprite.hpp"
+#include "SpriteEventHandler.hpp"
+#include "SDL/Window.hpp"
+#include "Events/Event.hpp"
+#include "Events/Key.hpp"
+#include "SDL/ImgException.hpp"
+#include <memory>
 
-#include "Sprite.h"
-#include "SpriteEventHandler.h"
-#include "SDL/Window.h"
-#include "events/Event.h"
-#include "events/Key.h"
-#include "SDL/IMG_Exception.h"
-
-namespace Falcon
+namespace falcon
 {
 
-Sprite::Sprite (std::string image, int x, int y)
-: image_ (nullptr)
-, eventHandler_ (new SpriteEventHandler (this))
+Sprite::Sprite (Game & game, const std::string & image, int x, int y)
+: GameObject(game, std::make_unique<SpriteEventHandler>(*this))
+, _image(nullptr)
+, _rect()
 {
-  SDL_Surface * surface = IMG_Load (image.c_str ());
+  SDL_Surface * surface = IMG_Load(image.c_str());
   if (!surface)
   {
-    throw SDL::IMG_Exception (IMG_GetError ());
+    throw sdl::ImgException(IMG_GetError());
   }
 
-  this->image_ = surface;
-  
-  this->rect_.x = x;
-  this->rect_.y = y;
-  this->rect_.w = this->image_->w;
-  this->rect_.h = this->image_->h;
+  _image = surface;
+
+  _rect.x = x;
+  _rect.y = y;
+  _rect.w = _image->w;
+  _rect.h = _image->h;
 }
 
 Sprite::~Sprite (void)
 {
-  SDL_FreeSurface (this->image_); this->image_ = nullptr;
+  SDL_FreeSurface(_image);
+  _image = nullptr;
+}
+  
+void Sprite::update (void)
+{
+  // update
 }
 
 void Sprite::draw (Window & window)
 {
-  SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
-}
-
-void Sprite::handleEvent (Event & event)
-{
-  event.accept (*this->eventHandler_);
+  SDL_BlitSurface(_image, nullptr, window.getScreen(), &_rect);
 }
 
 void Sprite::setX (int x)
 {
-  this->rect_.x = x;
+  _rect.x = x;
 }
 
 int Sprite::getX (void) const
 {
-  return this->rect_.x;
+  return _rect.x;
 }
 
 void Sprite::setY (int y)
 {
-  this->rect_.y = y;
+  _rect.y = y;
 }
 
 int Sprite::getY (void) const
 {
-  return this->rect_.y;
+  return _rect.y;
 }
 
 int Sprite::getWidth (void) const
 {
-  return this->rect_.w;
+  return _rect.w;
 }
 
 int Sprite::getHeight (void) const
 {
-  return this->rect_.h;
+  return _rect.h;
 }
 
-} // namespace Falcon
+} // namespace falcon

@@ -1,46 +1,32 @@
-//
-//  Event.cpp
-//  Falcon
-//
-//  Created by Danny Peck on 4/6/17.
-//  Copyright © 2017 Danny Peck. All rights reserved.
-//
+#include "Event.hpp"
 
-#include "Event.h"
-#include "EventHandler.h"
-
-namespace Falcon
+namespace falcon::events
 {
 
-namespace Events
+Event::Event (const EventType & type)
+: _type(type)
 {
 
-Event::Event (EventType type)
-: type_ (type)
-{
-  
 }
 
 Event::~Event (void)
 {
-  
+
 }
 
-EventType & Event::getType (void)
+EventType Event::getType (void) const
 {
-  return this->type_;
+  return _type;
 }
 
-bool Event::operator == (Event & rhs) const
+bool Event::operator == (const Event & rhs) const
 {
-  return this->type_ == rhs.getType ();
+  return _type == rhs._type;
 }
 
-bool Event::operator != (Event & rhs) const
+bool Event::operator != (const Event & rhs) const
 {
   return !(this->operator == (rhs));
 }
 
-} // namespace Events
-
-} // namespace Falcon
+} // namespace falcon::events
