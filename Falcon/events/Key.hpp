@@ -1,9 +1,8 @@
-#ifndef _FALCON_EVENTS_KEY_HPP_
-#define _FALCON_EVENTS_KEY_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 enum class Key
@@ -53,6 +52,4 @@ enum class Key
   Return = SDLK_RETURN
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_KEY_HPP_
+} // namespace falcon::events

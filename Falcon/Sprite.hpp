@@ -1,57 +1,44 @@
-#ifndef _FALCON_SPRITE_HPP_
-#define _FALCON_SPRITE_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <string>
 #include "GameObject.hpp"
 
-namespace Falcon
+namespace falcon
 {
 
-using Events::EventListener;
-using Events::Event;
+using events::EventListener;
+using events::Event;
 
-namespace SDL
+namespace sdl
 {
   class Window;
-} // namespace SDL
+} // namespace sdl
 
-using SDL::Window;
-
-class SpriteEventHandler;
+using sdl::Window;
 
 class Sprite : public GameObject
 {
 public:
-
   Sprite (Game & game, const std::string & image, int x, int y);
-
   virtual ~Sprite (void);
   
   void update (void) override;
-
   void draw (Window & window) override;
 
   void setX (int x);
-
   int getX (void) const;
 
   void setY (int y);
-
   int getY (void) const;
 
   int getWidth (void) const;
-
   int getHeight (void) const;
 
 private:
-
-  SDL_Surface * image_;
-  SDL_Rect rect_;
-
+  SDL_Surface * _image;
+  SDL_Rect _rect;
 };
 
-} // namespace Falcon
-
-#endif // _FALCON_SPRITE_HPP_
+} // namespace falcon

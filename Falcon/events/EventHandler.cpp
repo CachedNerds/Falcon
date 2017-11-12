@@ -1,7 +1,7 @@
 #include "EventHandler.hpp"
 #include "Events.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 EventHandler::~EventHandler (void)
@@ -54,4 +54,4 @@ void EventHandler::handleNullEvent (const NullEvent & event)
 
 }
 
-} // namespace Falcon::Events
+} // namespace falcon::events

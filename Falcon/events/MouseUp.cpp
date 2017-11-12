@@ -1,18 +1,18 @@
 #include "MouseUp.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 MouseUp::MouseUp (const SDL_Event & event)
-: Event (EventType::MouseUp)
+: Event(EventType::MouseUp)
 {
 
 }
 
 void MouseUp::accept (EventHandler & handler) const
 {
-  handler.handleMouseUp (*this);
+  handler.handleMouseUp(*this);
 }
 
-} // namespace Falcon::Events
+} // namespace falcon::events

@@ -1,9 +1,8 @@
-#ifndef _FALCON_EVENTS_EVENT_TYPE_HPP_
-#define _FALCON_EVENTS_EVENT_TYPE_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 enum class EventType
@@ -19,6 +18,4 @@ enum class EventType
   WindowEvent = SDL_WINDOWEVENT
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_EVENT_TYPE_HPP_
+} // namespace falcon::events

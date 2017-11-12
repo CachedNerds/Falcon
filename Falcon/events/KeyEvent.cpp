@@ -1,18 +1,18 @@
 #include "KeyEvent.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 KeyEvent::KeyEvent (const EventType & type, const Key & key)
-: Event (type)
-, key_ (key)
+: Event(type)
+, _key(key)
 {
 
 }
 
 Key KeyEvent::getKey (void) const
 {
-  return this->key_;
+  return _key;
 }
 
-} // namespace Falcon::Events
+} // namespace falcon::events

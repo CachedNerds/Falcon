@@ -1,10 +1,9 @@
-#ifndef _FALCON_EVENTS_NULL_EVENT_HPP_
-#define _FALCON_EVENTS_NULL_EVENT_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 class EventHandler;
@@ -12,13 +11,9 @@ class EventHandler;
 class NullEvent : public Event
 {
 public:
-
   NullEvent (const SDL_Event & event);
 
   void accept (EventHandler & handler) const override;
-
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_NULL_EVENT_HPP_
+} // namespace falcon::events

@@ -1,35 +1,26 @@
-#ifndef _FALCON_EVENTS_EVENT_HPP_
-#define _FALCON_EVENTS_EVENT_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include "EventType.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 class EventHandler;
 
 class Event
 {
 public:
-
   Event (const EventType & type);
-  
   virtual ~Event (void);
-  
+
   EventType getType (void) const;
-  
   bool operator == (const Event & rhs) const;
-  
   bool operator != (const Event & rhs) const;
-  
+
   virtual void accept (EventHandler & handler) const = 0;
 
 protected:
-
-  EventType type_;
-
+  EventType _type;
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_EVENT_HPP_
+} // namespace falcon::events

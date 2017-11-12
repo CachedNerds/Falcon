@@ -1,9 +1,8 @@
-#include <iostream>
 #include "SdlException.hpp"
 #include "ImgException.hpp"
 #include "System.hpp"
 
-namespace Falcon::SDL
+namespace falcon::sdl
 {
 
 System & System::instance (void)
@@ -13,74 +12,71 @@ System & System::instance (void)
 }
 
 System::System (void)
-: flags_ ()
-, initialized_ (false)
+: _flags()
+, _initialized(false)
 {
 
 }
 
 System & System::enableVideo (void)
 {
-  this->flags_.push_back (SDL_INIT_VIDEO);
+  _flags.push_back(SDL_INIT_VIDEO);
   return *this;
 }
 
 System & System::enableAudio (void)
 {
-  this->flags_.push_back (SDL_INIT_AUDIO);
+  _flags.push_back(SDL_INIT_AUDIO);
   return *this;
 }
 
 System & System::enableEvents (void)
 {
-  this->flags_.push_back (SDL_INIT_EVENTS);
+  _flags.push_back(SDL_INIT_EVENTS);
   return *this;
 }
 
 System & System::enableJoystick (void)
 {
-  this->flags_.push_back (SDL_INIT_JOYSTICK);
+  _flags.push_back(SDL_INIT_JOYSTICK);
   return *this;
 }
 
 System & System::enableTimer (void)
 {
-  this->flags_.push_back (SDL_INIT_TIMER);
+  _flags.push_back(SDL_INIT_TIMER);
   return *this;
 }
 
 System & System::enableAll (void)
 {
-  this->flags_.push_back (SDL_INIT_EVERYTHING);
+  _flags.push_back(SDL_INIT_EVERYTHING);
   return *this;
 }
 
 void System::initialize (void)
 {
-  if (!this->initialized_)
+  if (!_initialized)
   {
     Uint32 SDL_INIT_FLAGS = 0;
-
-    for (auto iter = this->flags_.begin (); iter != this->flags_.end (); ++ iter)
+    for (Uint32 flag : _flags)
     {
-      Uint32 flag = *iter;
       SDL_INIT_FLAGS |= flag;
     }
 
     Uint32 IMG_INIT_FLAGS = IMG_INIT_JPG | IMG_INIT_PNG;
-
-    if (SDL_Init (SDL_INIT_FLAGS) < 0)
+    if (SDL_Init(SDL_INIT_FLAGS) < 0)
     {
-      throw SdlException (SDL_GetError ());
+      throw SdlException (SDL_GetError());
     }
 
-    if (!IMG_Init (IMG_INIT_FLAGS))
+    if (!IMG_Init(IMG_INIT_FLAGS))
     {
-      throw SdlException (IMG_GetError ());
+      throw SdlException (IMG_GetError());
     }
 
-    this->initialized_ = true;
+    _initialized = true;
   }
 }
 
-} // namespace Falcon::SDL
+} // namespace falcon::sdl

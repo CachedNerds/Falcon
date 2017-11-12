@@ -1,29 +1,20 @@
-#ifndef _FALCON_EVENTS_KEY_EVENT_HPP_
-#define _FALCON_EVENTS_KEY_EVENT_HPP_
+#pragma once
 
-#include <SDL2/SDL.h>
 #include "Event.hpp"
 #include "Key.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
-
-class EventHandler;
 
 class KeyEvent : public Event
 {
-  public:
+public:
+  KeyEvent (const EventType & type, const Key & key);
 
-    KeyEvent (const EventType & type, const Key & key);
+  Key getKey (void) const;
 
-    Key getKey (void) const;
-
-  protected:
-
-    Key key_;
-
+protected:
+  Key _key;
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_KEY_EVENT_HPP_
+} // namespace falcon::events

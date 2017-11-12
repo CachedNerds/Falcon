@@ -1,18 +1,18 @@
 #include "WindowEvent.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 WindowEvent::WindowEvent (const SDL_Event & event)
-: Event (EventType::WindowEvent)
+: Event(EventType::WindowEvent)
 {
 
 }
 
 void WindowEvent::accept (EventHandler & handler) const
 {
-  handler.handleWindowEvent (*this);
+  handler.handleWindowEvent(*this);
 }
 
-} // namespace Falcon::Events
+} // namespace falcon::events

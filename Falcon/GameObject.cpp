@@ -1,29 +1,29 @@
 #include "GameObject.hpp"
 #include "Game.hpp"
 
-namespace Falcon
+namespace falcon
 {
   
-GameObject::GameObject (Game & game, EventHandler * eventHandler)
-: game_ (game),
-  eventHandler_ (eventHandler)
+GameObject::GameObject (Game & game, std::unique_ptr<EventHandler> eventHandler)
+: _game(game)
+, _eventHandler(std::move(eventHandler))
 {
-  
+
 }
 
 GameObject::~GameObject (void)
 {
-  delete this->eventHandler_;
+
 }
 
 void GameObject::handleEvent (const Event & event)
 {
-  event.accept (*this->eventHandler_);
+  event.accept(*_eventHandler);
 }
 
 Game & GameObject::getGame (void) const
 {
-  return this->game_;
+  return _game;
 }
   
-} // namespace Falcon
+} // namespace falcon

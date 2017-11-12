@@ -1,11 +1,9 @@
-#ifndef _FALCON_SDL_WINDOW_HPP_
-#define _FALCON_SDL_WINDOW_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include <string>
-#include <memory>
 
-namespace Falcon::SDL
+namespace falcon::sdl
 {
 
 /**
@@ -16,45 +14,31 @@ namespace Falcon::SDL
 class Window
 {
 public:
-
-  // default constructor
   Window (const std::string & title);
-
-  // initializer constructor
   Window (const std::string & title, int x, int y, int width, int height);
-
-  // destructor
   virtual ~Window (void);
 
-  // updates the window
   virtual void update (void);
 
   SDL_Surface * getScreen (void) const;
 
   std::string getTitle (void) const;
-
   void setTitle (const std::string & title);
 
   int getWidth (void) const;
-
   int getHeight (void) const;
 
   void hide (void);
-
   void show (void);
 
 private:
+  std::string _title;
+  int _x, _y;
+  int _width, _height;
 
-  std::string title_;
-  int x_, y_;
-  int width_, height_;
-
-  SDL_Window * window_;
-  SDL_Surface * screen_;
-  SDL_Renderer * renderer_;
-
+  SDL_Window * _window;
+  SDL_Surface * _screen;
+  SDL_Renderer * _renderer;
 };
 
-} // namespace Falcon::SDL
-
-#endif // _FALCON_SDL_WINDOW_HPP_
+} // namespace falcon::sdl

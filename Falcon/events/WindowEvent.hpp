@@ -1,10 +1,9 @@
-#ifndef _FALCON_EVENTS_WINDOW_EVENT_HPP_
-#define _FALCON_EVENTS_WINDOW_EVENT_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include "Event.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 class EventHandler;
@@ -12,13 +11,9 @@ class EventHandler;
 class WindowEvent : public Event
 {
 public:
-
   WindowEvent (const SDL_Event & event);
 
   void accept (EventHandler & handler) const override;
-
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_WINDOW_EVENT_HPP_
+} // namespace falcon::events

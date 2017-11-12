@@ -1,25 +1,19 @@
-#ifndef _FALCON_EVENTS_KEY_DOWN_HPP_
-#define _FALCON_EVENTS_KEY_DOWN_HPP_
+#pragma once
 
 #include <SDL2/SDL.h>
 #include "KeyEvent.hpp"
-#include "Key.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 class EventHandler;
 
 class KeyDown : public KeyEvent
 {
-  public:
+public:
+  KeyDown (const SDL_Event & event);
 
-    KeyDown (const SDL_Event & event);
-
-    void accept (EventHandler & handler) const override;
-
+  void accept (EventHandler & handler) const override;
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_KEY_DOWN_HPP_
+} // namespace falcon::events

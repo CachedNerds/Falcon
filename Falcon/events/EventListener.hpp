@@ -1,19 +1,14 @@
-#ifndef _FALCON_EVENTS_EVENT_LISTENER_HPP_
-#define _FALCON_EVENTS_EVENT_LISTENER_HPP_
+#pragma once
 
 #include "Event.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 class EventListener
 {
 public:
-
   virtual void handleEvent (const Event & event) = 0;
-
 };
 
-} // namespace Falcon::Events
-
-#endif // _FALCON_EVENTS_EVENT_LISTENER_HPP_
+} // namespace falcon::events

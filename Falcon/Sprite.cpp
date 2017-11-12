@@ -4,33 +4,34 @@
 #include "Events/Event.hpp"
 #include "Events/Key.hpp"
 #include "SDL/ImgException.hpp"
+#include <memory>
 
-namespace Falcon
+namespace falcon
 {
 
 Sprite::Sprite (Game & game, const std::string & image, int x, int y)
-: GameObject (game, new SpriteEventHandler (this))
-, image_ (nullptr)
-, rect_ ()
+: GameObject(game, std::make_unique<SpriteEventHandler>(*this))
+, _image(nullptr)
+, _rect()
 {
-  SDL_Surface * surface = IMG_Load (image.c_str ());
+  SDL_Surface * surface = IMG_Load(image.c_str());
   if (!surface)
   {
-    throw SDL::ImgException (IMG_GetError ());
+    throw sdl::ImgException(IMG_GetError());
   }
 
-  this->image_ = surface;
+  _image = surface;
 
-  this->rect_.x = x;
-  this->rect_.y = y;
-  this->rect_.w = this->image_->w;
-  this->rect_.h = this->image_->h;
+  _rect.x = x;
+  _rect.y = y;
+  _rect.w = _image->w;
+  _rect.h = _image->h;
 }
 
 Sprite::~Sprite (void)
 {
-  SDL_FreeSurface (this->image_);
-  this->image_ = nullptr;
+  SDL_FreeSurface(_image);
+  _image = nullptr;
 }
   
 void Sprite::update (void)
@@ -40,37 +41,37 @@ void Sprite::update (void)
 
 void Sprite::draw (Window & window)
 {
-  SDL_BlitSurface (this->image_, NULL, window.getScreen (), &this->rect_);
+  SDL_BlitSurface(_image, nullptr, window.getScreen(), &_rect);
 }
 
 void Sprite::setX (int x)
 {
-  this->rect_.x = x;
+  _rect.x = x;
 }
 
 int Sprite::getX (void) const
 {
-  return this->rect_.x;
+  return _rect.x;
 }
 
 void Sprite::setY (int y)
 {
-  this->rect_.y = y;
+  _rect.y = y;
 }
 
 int Sprite::getY (void) const
 {
-  return this->rect_.y;
+  return _rect.y;
 }
 
 int Sprite::getWidth (void) const
 {
-  return this->rect_.w;
+  return _rect.w;
 }
 
 int Sprite::getHeight (void) const
 {
-  return this->rect_.h;
+  return _rect.h;
 }
 
-} // namespace Falcon
+} // namespace falcon

@@ -1,37 +1,29 @@
-#ifndef _FALCON_SPRITE_EVENT_HANDLER_HPP_
-#define _FALCON_SPRITE_EVENT_HANDLER_HPP_
+#pragma once
 
 #include "Events/EventHandler.hpp"
 
-namespace Falcon
+namespace falcon
 {
 
-using Events::EventHandler;
-
-namespace Events
+namespace events
 {
   class KeyDown;
-} // namespace Events
+} // namespace events
 
-using Events::KeyDown;
+using events::EventHandler;
+using events::KeyDown;
 
 class Sprite;
 
 class SpriteEventHandler : public EventHandler
 {
 public:
-
-  SpriteEventHandler (Sprite * const sprite);
+  SpriteEventHandler (Sprite & sprite);
 
   void handleKeyDown (const KeyDown & event) override;
 
 private:
-
-  Sprite * const sprite_;
-
+  Sprite & _sprite;
 };
 
-} // namespace Falcon
-
-
-#endif // _FALCON_SPRITE_EVENT_HANDLER_HPP_
+} // namespace falcon

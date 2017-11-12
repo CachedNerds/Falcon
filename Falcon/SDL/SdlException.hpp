@@ -1,10 +1,9 @@
-#ifndef _FALCON_SDL_SDL_EXCEPTION_HPP_
-#define _FALCON_SDL_SDL_EXCEPTION_HPP_
+#pragma once
 
 #include <stdexcept>
 #include <string>
 
-namespace Falcon::SDL
+namespace falcon::sdl
 {
 
 /**
@@ -15,11 +14,7 @@ namespace Falcon::SDL
 class SdlException : public std::runtime_error
 {
 public:
-
   SdlException (const std::string & error);
-
 };
 
-} // namespace Falcon
-
-#endif // _FALCON_SDL_SDL_EXCEPTION_HPP_
+} // namespace falcon::sdl

@@ -1,17 +1,15 @@
-#include <iostream>
 #include "Game.hpp"
 #include "Sprite.hpp"
-#include "events/Event.hpp"
-#include "events/KeyDown.hpp"
+#include <memory>
 
 int main (int argc, char * args[])
 {
-  using namespace Falcon;
+  using namespace falcon;
   
   Game game;
-  auto sprite = std::make_shared<Sprite> (game, "../fez.jpg", 0, 0);
-  game.registerGameObject (sprite);
-  game.loop ();
+  auto sprite = std::make_shared<Sprite>(game, "../fez.jpg", 0, 0);
+  game.registerGameObject(sprite);
+  game.loop();
 
   return 0;
 }

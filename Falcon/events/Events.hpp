@@ -1,5 +1,4 @@
-#ifndef _FALCON_EVENTS_HPP_
-#define _FALCON_EVENTS_HPP_
+#pragma once
 
 #include "KeyDown.hpp"
 #include "KeyUp.hpp"
@@ -10,5 +9,3 @@
 #include "MouseWheel.hpp"
 #include "WindowEvent.hpp"
 #include "NullEvent.hpp"
-
-#endif // _FALCON_EVENTS_HPP_

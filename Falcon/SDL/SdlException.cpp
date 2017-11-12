@@ -1,12 +1,12 @@
 #include "SdlException.hpp"
 
-namespace Falcon::SDL
+namespace falcon::sdl
 {
 
-  SdlException::SdlException (const std::string & error)
-: std::runtime_error (error)
+SdlException::SdlException (const std::string & error)
+: std::runtime_error(error)
 {
 
 }
 
-} // namespace Falcon::SDL
+} // namespace falcon::sdl

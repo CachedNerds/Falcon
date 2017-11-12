@@ -1,17 +1,12 @@
-#ifndef _FALCON_UPDATEABLE_HPP_
-#define _FALCON_UPDATEABLE_HPP_
+#pragma once
 
-namespace Falcon
+namespace falcon
 {
 
 class Updateable
 {
-  public:
-
-    virtual void update (void) = 0;
-
+public:
+  virtual void update (void) = 0;
 };
 
-} // namespace Falcon
-
-#endif // _FALCON_UPDATEABLE_HPP_
+} // namespace falcon

@@ -1,26 +1,21 @@
-#ifndef _FALCON_SDL_IMG_EXCEPTION_HPP_
-#define _FALCON_SDL_IMG_EXCEPTION_HPP_
+#pragma once
 
 #include <SDL2_image/SDL_image.h>
 #include <stdexcept>
 #include <string>
 
-namespace Falcon::SDL
+namespace falcon::sdl
 {
 
 /**
  * ImgException
  *
- * Exception class that wraps IMG related errors
+ * Exception class that wraps SDL IMG related errors
  */
 class ImgException : public std::runtime_error
 {
 public:
-
   ImgException (const std::string & error);
-
 };
 
-} // namespace Falcon::SDL
-
-#endif // _FALCON_SDL_IMG_EXCEPTION_HPP_
+} // namespace falcon::sdl

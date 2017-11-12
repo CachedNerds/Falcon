@@ -1,18 +1,18 @@
 #include "KeyUp.hpp"
 #include "EventHandler.hpp"
 
-namespace Falcon::Events
+namespace falcon::events
 {
 
 KeyUp::KeyUp (const SDL_Event & event)
-: KeyEvent (EventType::KeyUp, Key (event.key.keysym.sym))
+: KeyEvent(EventType::KeyUp, Key(event.key.keysym.sym))
 {
 
 }
 
 void KeyUp::accept (EventHandler & handler) const
 {
-  handler.handleKeyUp (*this);
+  handler.handleKeyUp(*this);
 }
 
-} // namespace Falcon::Events
+} // namespace falcon::events

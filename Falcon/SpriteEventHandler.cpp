@@ -1,45 +1,41 @@
-#include <iostream>
 #include "SpriteEventHandler.hpp"
 #include "Sprite.hpp"
 #include "Events/KeyDown.hpp"
 
-namespace Falcon
+namespace falcon
 {
 
-SpriteEventHandler::SpriteEventHandler (Sprite * const sprite)
-: sprite_ (sprite)
+SpriteEventHandler::SpriteEventHandler (Sprite & sprite)
+: _sprite(sprite)
 {
 
 }
 
 void SpriteEventHandler::handleKeyDown (const KeyDown & event)
 {
-  if (sprite_ != nullptr)
+  using events::Key;
+  
+  switch (event.getKey())
   {
-    using Events::Key;
+    case Key::Right:
+      _sprite.setX(_sprite.getX() + 5);
+      break;
+
+    case Key::Left:
+      _sprite.setX(_sprite.getX() - 5);
+      break;
+
+    case Key::Up:
+      _sprite.setY(_sprite.getY() - 5);
+      break;
+
+    case Key::Down:
+      _sprite.setY(_sprite.getY() + 5);
+      break;
     
-    switch (event.getKey ())
-    {
-      case Key::Right:
-        this->sprite_->setX (this->sprite_->getX () + 5);
-        break;
-  
-      case Key::Left:
-        this->sprite_->setX (this->sprite_->getX () - 5);
-        break;
-  
-      case Key::Up:
-        this->sprite_->setY (this->sprite_->getY () - 5);
-        break;
-  
-      case Key::Down:
-        this->sprite_->setY (this->sprite_->getY () + 5);
-        break;
-  
       default:
-        break;
-    }
+      break;
   }
 }
 
-} // namespace Falcon
+} // namespace falcon
