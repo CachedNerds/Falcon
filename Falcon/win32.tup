@@ -1,0 +1,3 @@
+LINKFLAGS += -lSDL2main
+LINKFLAGS += -lSDL2
+LINKFLAGS += -lSDL2_image
