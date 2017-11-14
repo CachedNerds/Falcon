@@ -20,7 +20,7 @@ SOURCE_OBJ_FILES = $(SOURCE_OUT)/*.o
 
 # macros
 !compile = |> $(CC) $(CFLAGS) %f -o %o |>
-!link = |> $(CC) $(LINKFLAGS) %f -o %o |>
+!link = |> $(CC) $(LINKFLAGS) %f $(LIBS) -o %o |>
 
 # platform specific code
 include @(TUP_PLATFORM).tup
