@@ -5,8 +5,6 @@ include_rules
 # override build variables
 SOURCE_FILES += Events/*.cpp
 SOURCE_FILES += SDL/*.cpp
-LINKFLAGS += -framework SDL2_IMAGE
-LINKFLAGS += -framework SDL2
 
 # define custom build variables
 
