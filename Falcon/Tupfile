@@ -12,4 +12,4 @@ SOURCE_FILES += SDL/*.cpp
 : foreach $(SOURCE_FILES) |> !compile |> $(SOURCE_OUT)/%B.o
 
 # Create Link Executable
-: $(SOURCE_OBJ_FILES) |> !link |> $(SOURCE_OUT)/$(PROJECT)
+: $(SOURCE_OBJ_FILES) |> !link |> $(SOURCE_OUT)/$(PROJECT)$(EXT)
