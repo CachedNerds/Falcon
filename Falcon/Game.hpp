@@ -1,34 +1,40 @@
 #pragma once
 
 #include "SDL/Window.hpp"
-#include <vector>
+#include "Event.hpp"
 #include <set>
 #include <memory>
+#include <queue>
 
 namespace falcon
 {
 
-namespace events
+namespace sdl::events
 {
   class EventSystem;
-} // namespace events
+} // namespace sdl::events
 
 class GameObject;
+
+using sdl::events::EventSystem;
 
 class Game
 {
 public:
-  Game (void);
+  explicit Game (void);
   virtual ~Game (void);
 
   void loop (void);
   void registerGameObject (std::shared_ptr<GameObject> object);
+  void queueEvent (std::unique_ptr<const Event> event);
 
 private:
-  bool processEvents (void);
+  void queueSdlEvents (void);
+  void processEventQueue (void);
 
   std::shared_ptr<sdl::Window> _window;
-  events::EventSystem & _eventSystem;
+  EventSystem & _eventSystem;
+  std::queue<std::unique_ptr<const Event>> _eventQueue;
   std::set<std::shared_ptr<GameObject>> _gameObjects;
 };
 

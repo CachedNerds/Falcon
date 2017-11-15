@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Events/EventListener.hpp"
-#include "Events/EventHandler.hpp"
+#include "EventListener.hpp"
+#include "SDL/EventHandler.hpp"
 #include "Updateable.hpp"
 #include "Drawable.hpp"
 #include <memory>
@@ -9,11 +9,9 @@
 namespace falcon
 {
 
-using events::EventListener;
-using events::EventHandler;
-using events::Event;
-
 class Game;
+
+using sdl::events::EventHandler;
 
 class GameObject : public Drawable, public EventListener, public Updateable
 {

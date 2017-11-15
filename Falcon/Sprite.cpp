@@ -1,21 +1,20 @@
 #include "Sprite.hpp"
-#include "SpriteEventHandler.hpp"
 #include "SDL/Window.hpp"
-#include "Events/Event.hpp"
-#include "Events/Key.hpp"
+#include "Event.hpp"
+#include "SDL/Key.hpp"
 #include "SDL/ImgException.hpp"
 #include <memory>
 
 namespace falcon
 {
 
-Sprite::Sprite (Game & game, const std::string & image, int x, int y)
-: GameObject(game, std::make_unique<SpriteEventHandler>(*this))
+Sprite::Sprite (Game & game, std::unique_ptr<EventHandler> eventHandler, const std::string & image, int x, int y)
+: GameObject(game, std::move(eventHandler))
 , _image(nullptr)
 , _rect()
 {
   SDL_Surface * surface = IMG_Load(image.c_str());
-  if (!surface)
+  if (surface == nullptr)
   {
     throw sdl::ImgException(IMG_GetError());
   }
@@ -44,24 +43,24 @@ void Sprite::draw (Window & window)
   SDL_BlitSurface(_image, nullptr, window.getScreen(), &_rect);
 }
 
-void Sprite::setX (int x)
-{
-  _rect.x = x;
-}
-
 int Sprite::getX (void) const
 {
   return _rect.x;
 }
 
-void Sprite::setY (int y)
+void Sprite::setX (int x)
 {
-  _rect.y = y;
+  _rect.x = x;
 }
 
 int Sprite::getY (void) const
 {
   return _rect.y;
+}
+
+void Sprite::setY (int y)
+{
+  _rect.y = y;
 }
 
 int Sprite::getWidth (void) const

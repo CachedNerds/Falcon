@@ -1,8 +1,8 @@
 #include "Game.hpp"
 #include "SDL/System.hpp"
-#include "Events/Event.hpp"
-#include "Events/Events.hpp"
-#include "Events/EventSystem.hpp"
+#include "SDL/SdlEvent.hpp"
+#include "SDL/Events.hpp"
+#include "SDL/EventSystem.hpp"
 #include "GameObject.hpp"
 
 namespace falcon
@@ -10,7 +10,8 @@ namespace falcon
 
 Game::Game (void)
 : _window()
-, _eventSystem(events::EventSystem::instance())
+, _eventSystem(EventSystem::instance())
+, _eventQueue()
 , _gameObjects()
 {
   using sdl::System;
@@ -31,41 +32,34 @@ Game::~Game (void)
 
 void Game::registerGameObject (std::shared_ptr<GameObject> object)
 {
-  _gameObjects.insert(object);
+  if (object) {
+   _gameObjects.insert(object); 
+  }
 }
 
-bool Game::processEvents (void)
+void Game::queueEvent (std::unique_ptr<const Event> event)
 {
-  using events::EventType;
+  _eventQueue.push(std::move(event));
+}
 
-  bool keepGoing = true;
-  
-  // handle input / events
+void Game::queueSdlEvents (void)
+{
   while (_eventSystem.nextEvent())
   {
-    // get next event
-    std::shared_ptr<const Event> event = _eventSystem.getNextEvent();
-    
-    // handle event
-    if (event->getType() == EventType::NullEvent)
-    {
-      // do nothing
-    }
-    else if (event->getType() == EventType::Quit)
-    {
-      keepGoing = false;
-      break;
-    }
-    else
-    {
-      for (auto iter = _gameObjects.begin(); iter != _gameObjects.end(); ++iter)
-      {
-        (*iter)->handleEvent(*event);
-      }
-    }
+    queueEvent(_eventSystem.getNextEvent());
   }
-  
-  return keepGoing;
+}
+
+void Game::processEventQueue (void)
+{
+  while (!_eventQueue.empty())
+  {
+    std::shared_ptr<const Event> event = std::move(_eventQueue.front());
+    for (auto gameObject : _gameObjects) {
+      gameObject->handleEvent(*event);
+    }
+    _eventQueue.pop();
+  }
 }
 
 void Game::loop (void)
@@ -73,21 +67,23 @@ void Game::loop (void)
   bool keepGoing = true;
   while (keepGoing)
   {
-    // process events
-    keepGoing = processEvents();
-    
+    // add sdl events to the event queue
+    queueSdlEvents();
+
+    processEventQueue();
+
     // update
-    for (auto iter = _gameObjects.begin(); iter != _gameObjects.end(); ++iter)
+    for (auto gameObject : _gameObjects)
     {
-      (*iter)->update();
+      gameObject->update();
     }
-    
+
     // draw
-    for (auto iter = _gameObjects.begin(); iter != _gameObjects.end(); ++iter)
+    for (auto gameObject : _gameObjects)
     {
-      (*iter)->draw(*_window);
+      gameObject->draw(*_window);
     }
-    
+
     _window->update();
   }
 }

@@ -15,7 +15,7 @@ class Window
 {
 public:
   Window (const std::string & title);
-  Window (const std::string & title, int x, int y, int width, int height);
+  Window (const std::string & title, int x, int y, unsigned int width, unsigned int height);
   virtual ~Window (void);
 
   virtual void update (void);

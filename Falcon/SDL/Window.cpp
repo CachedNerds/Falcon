@@ -5,8 +5,8 @@ namespace falcon::sdl
 {
 
 // Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+constexpr unsigned int SCREEN_WIDTH = 640;
+constexpr unsigned int SCREEN_HEIGHT = 480;
 
 // default constructor
 Window::Window (const std::string & title)
@@ -20,10 +20,10 @@ Window::Window (const std::string & title)
 }
 
 // initializer constructor
-Window::Window (const std::string & title, int x, int y, int width, int height)
+Window::Window (const std::string & title, int x, int y, unsigned int width, unsigned int height)
 : _title(title)
-, _x(x >= 0 ? x : SDL_WINDOWPOS_UNDEFINED)
-, _y(y >= 0 ? y : SDL_WINDOWPOS_UNDEFINED)
+, _x(x)
+, _y(y)
 , _width(width > 0 ? width : SCREEN_WIDTH)
 , _height(height > 0 ? height : SCREEN_HEIGHT)
 , _window(nullptr)
@@ -56,6 +56,7 @@ Window::~Window (void)
 {
   SDL_DestroyWindow(_window);
   _window = nullptr;
+  _screen = nullptr;
   _renderer = nullptr;
 
   // _screen, _window, and _renderer are deleted by SDL_DestroyWindow

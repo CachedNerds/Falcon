@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include <vector>
 
 namespace falcon::sdl
 {
@@ -22,8 +21,9 @@ public:
 
 private:
   System (void);
+  ~System (void);
 
-  std::vector<Uint32> _flags;
+  Uint32 _flags;
   bool _initialized;
 
 };
