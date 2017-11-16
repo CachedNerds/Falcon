@@ -1,5 +1,5 @@
 #include "Quit.hpp"
-#include "Eventhandler.hpp"
+#include "EventHandler.hpp"
 
 namespace falcon::events
 {

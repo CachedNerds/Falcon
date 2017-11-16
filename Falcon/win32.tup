@@ -1,0 +1,9 @@
+export CPATH
+export LIBRARY_PATH
+
+EXT +=.exe
+
+LIBS += -lmingw32
+LIBS += -lSDL2main
+LIBS += -lSDL2
+LIBS += -lSDL2_image

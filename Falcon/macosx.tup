@@ -1,0 +1,5 @@
+LINKFLAGS += $(ARCH)
+LINKFLAGS += -v
+
+LINKFLAGS += -framework SDL2_IMAGE
+LINKFLAGS += -framework SDL2
