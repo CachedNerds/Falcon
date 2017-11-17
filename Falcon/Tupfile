@@ -4,8 +4,6 @@ include_rules
 
 # override build variables
 SOURCE_FILES += SDL/*.cpp
-LINKFLAGS += -framework SDL2_IMAGE
-LINKFLAGS += -framework SDL2
 
 # define custom build variables
 
@@ -13,4 +11,4 @@ LINKFLAGS += -framework SDL2
 : foreach $(SOURCE_FILES) |> !compile |> $(SOURCE_OUT)/%B.o
 
 # Create Link Executable
-: $(SOURCE_OBJ_FILES) |> !link |> $(SOURCE_OUT)/$(PROJECT)
+: $(SOURCE_OBJ_FILES) |> !link |> $(SOURCE_OUT)/$(PROJECT)$(EXT)
