@@ -16,6 +16,7 @@ namespace sdl::events
 
 using sdl::events::EventHandler;
 using sdl::events::KeyDown;
+using sdl::events::Quit;
 
 /**
  * The root class for the menu system
@@ -33,6 +34,7 @@ private:
     MenuEventHandler (Menu & menu);
 
     void handleKeyDown (const KeyDown & event) override;
+    void handleQuit (const Quit & event) override;
 
   private:
     Menu & _menu;

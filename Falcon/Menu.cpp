@@ -22,6 +22,8 @@ void Menu::MenuEventHandler::handleKeyDown (const KeyDown & event)
 {
   using sdl::events::Key;
 
+  falcon::Game& game = _menu.getGame();
+
   switch (event.getKey())
   {
     case Key::Right:
@@ -40,9 +42,17 @@ void Menu::MenuEventHandler::handleKeyDown (const KeyDown & event)
       _menu._rect.y += 5;
       break;
 
+    case Key::Escape:
+      game.quit();
+      break;
+
     default:
       break;
   }
+}
+
+void Menu::MenuEventHandler::handleQuit (const Quit & event)
+{
 }
 
 } // namespace falcon

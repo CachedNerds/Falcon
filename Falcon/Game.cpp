@@ -42,6 +42,11 @@ void Game::queueEvent (std::unique_ptr<const Event> event)
   _eventQueue.push(std::move(event));
 }
 
+void Game::quit (void)
+{
+  _keepGoing = false;
+}
+
 void Game::queueSdlEvents (void)
 {
   while (_eventSystem.nextEvent())
@@ -64,8 +69,7 @@ void Game::processEventQueue (void)
 
 void Game::loop (void)
 {
-  bool keepGoing = true;
-  while (keepGoing)
+  while (_keepGoing)
   {
     // add sdl events to the event queue
     queueSdlEvents();

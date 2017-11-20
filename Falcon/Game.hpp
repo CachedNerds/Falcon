@@ -27,6 +27,7 @@ public:
   void loop (void);
   void registerGameObject (std::shared_ptr<GameObject> object);
   void queueEvent (std::unique_ptr<const Event> event);
+  void quit(void);
 
 private:
   void queueSdlEvents (void);
@@ -36,6 +37,8 @@ private:
   EventSystem & _eventSystem;
   std::queue<std::unique_ptr<const Event>> _eventQueue;
   std::set<std::shared_ptr<GameObject>> _gameObjects;
+
+  bool _keepGoing = true;
 };
 
 } // namespace falcon

@@ -49,7 +49,8 @@ enum class Key
   Right = SDLK_RIGHT,
   Space = SDLK_SPACE,
   Backspace = SDLK_BACKSPACE,
-  Return = SDLK_RETURN
+  Return = SDLK_RETURN,
+  Escape = SDLK_ESCAPE
 };
 
 } // namespace falcon::sdl::events
