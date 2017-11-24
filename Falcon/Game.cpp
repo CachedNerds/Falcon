@@ -1,33 +1,39 @@
 #include "Game.hpp"
-#include "SDL/System.hpp"
-#include "SDL/SdlEvent.hpp"
-#include "SDL/Events.hpp"
-#include "SDL/EventSystem.hpp"
 #include "GameObject.hpp"
+#include "IEventSource.hpp"
+#include "NullEventSource.hpp"
+#include "NullWindow.hpp"
+#include <chrono>
+#include <thread>
 
 namespace falcon
 {
 
-Game::Game (void)
-: _window()
-, _eventSystem(EventSystem::instance())
-, _eventQueue()
-, _gameObjects()
+Game::Game (void) 
+: Game(std::make_shared<NullEventSource>(), std::make_shared<NullWindow>())
 {
-  using sdl::System;
-  using sdl::Window;
-  
-  System::instance()
-          .enableAll()
-          .initialize();
+}
 
-  // must be created after System has been initialized
-  _window = std::make_shared<Window>("Game", 0, 0, 500, 500);
+Game::Game (std::shared_ptr<IEventSource> externalEventSource) 
+: Game(externalEventSource, std::make_shared<NullWindow>())
+{
+}
+
+Game::Game (std::shared_ptr<IWindow> window) 
+: Game(std::make_shared<NullEventSource>(), window)
+{
+}
+
+Game::Game (std::shared_ptr<IEventSource> externalEventSource, std::shared_ptr<IWindow> window) 
+: _eventQueue() 
+, _gameObjects()
+, _externalEventSource(externalEventSource)
+, _window(window)
+{
 }
 
 Game::~Game (void)
 {
-
 }
 
 void Game::registerGameObject (std::shared_ptr<GameObject> object)
@@ -47,11 +53,13 @@ void Game::quit (void)
   _keepGoing = false;
 }
 
-void Game::queueSdlEvents (void)
+void Game::queueExternalEvents (void)
 {
-  while (_eventSystem.nextEvent())
-  {
-    queueEvent(_eventSystem.getNextEvent());
+  if (_externalEventSource) {
+    while (_externalEventSource->nextEvent())
+    {
+      queueEvent(_externalEventSource->getNextEvent());
+    }
   }
 }
 
@@ -71,8 +79,7 @@ void Game::loop (void)
 {
   while (_keepGoing)
   {
-    // add sdl events to the event queue
-    queueSdlEvents();
+    queueExternalEvents();
 
     processEventQueue();
 
@@ -83,12 +90,17 @@ void Game::loop (void)
     }
 
     // draw
-    for (auto gameObject : _gameObjects)
-    {
-      gameObject->draw(*_window);
+    if (_window) {
+      for (const std::shared_ptr<GameObject>& gameObject : _gameObjects)
+      {
+        _window->draw(gameObject);
+      }
+
+      _window->update();
     }
 
-    _window->update();
+    // sleep for 1 milisecond
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 }
 

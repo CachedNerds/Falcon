@@ -1,6 +1,5 @@
 #pragma once
 
-#include "SDL/Window.hpp"
 #include "Event.hpp"
 #include <set>
 #include <memory>
@@ -9,19 +8,20 @@
 namespace falcon
 {
 
-namespace sdl::events
-{
-  class EventSystem;
-} // namespace sdl::events
-
 class GameObject;
 
-using sdl::events::EventSystem;
+class IEventSource;
+
+class IWindow;
 
 class Game
 {
 public:
   explicit Game (void);
+  Game(std::shared_ptr<IEventSource> externalEventSource);
+  Game(std::shared_ptr<IWindow> window);
+  Game(std::shared_ptr<IEventSource> externalEventSource, std::shared_ptr<IWindow> window);
+
   virtual ~Game (void);
 
   void loop (void);
@@ -30,11 +30,11 @@ public:
   void quit(void);
 
 private:
-  void queueSdlEvents (void);
+  void queueExternalEvents (void);
   void processEventQueue (void);
 
-  std::shared_ptr<sdl::Window> _window;
-  EventSystem & _eventSystem;
+  std::shared_ptr<IWindow> _window;
+  std::shared_ptr<IEventSource> _externalEventSource;
   std::queue<std::unique_ptr<const Event>> _eventQueue;
   std::set<std::shared_ptr<GameObject>> _gameObjects;
 
