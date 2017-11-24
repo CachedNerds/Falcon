@@ -69,6 +69,14 @@ void Window::update (void)
   SDL_FillRect(_screen, nullptr, 0xFFFFFF);
 }
 
+
+void Window::draw (const std::shared_ptr<GameObject>& gameObject) 
+{
+  if (gameObject) {
+    gameObject->draw(*this);
+  }
+}
+
 SDL_Surface * Window::getScreen (void) const
 {
   return _screen;

@@ -1,7 +1,13 @@
 #pragma once
 
+#include "../IWindow.hpp"
 #include <SDL2/SDL.h>
 #include <string>
+
+namespace falcon
+{
+  class GameObject;
+}
 
 namespace falcon::sdl
 {
@@ -11,14 +17,15 @@ namespace falcon::sdl
  *
  * Wrapper class around the SDL_Window
  */
-class Window
+class Window : public IWindow
 {
 public:
   Window (const std::string & title);
   Window (const std::string & title, int x, int y, unsigned int width, unsigned int height);
   virtual ~Window (void);
 
-  virtual void update (void);
+  virtual void update (void) override;
+  virtual void draw (const std::shared_ptr<GameObject>& gameObject) override;
 
   SDL_Surface * getScreen (void) const;
 
