@@ -21,6 +21,11 @@ void GameObject::handleEvent (const Event & event)
   event.accept(*_eventHandler);
 }
 
+void GameObject::emitEvent (std::unique_ptr<const Event> event)
+{
+  _game.queueEvent(std::move(event));
+}
+
 Game & GameObject::getGame (void) const
 {
   return _game;
