@@ -4,10 +4,12 @@
 namespace falcon::sdl::events
 {
 
-EventSystem & EventSystem::instance (void)
+std::shared_ptr<EventSystem> EventSystem::instance (void)
 {
   static EventSystem system;
-  return system;
+  // a no-op custom deleter because this is cleaned up at the end of the program I guess?
+  auto noopDeleter = [](EventSystem* eventSystem) {};
+  return std::shared_ptr<EventSystem>(&system, noopDeleter);
 }
 
 EventSystem::EventSystem (void)
@@ -30,7 +32,7 @@ bool EventSystem::nextEvent (void)
   return SDL_PollEvent(&_event);
 }
 
-std::unique_ptr<const SdlEvent> EventSystem::getNextEvent (void)
+std::unique_ptr<const Event> EventSystem::getNextEvent (void)
 {
   EventType type = EventType(_event.type);
   CreateEventFactoryMethod createEvent = _eventFactoryMethods[type];
